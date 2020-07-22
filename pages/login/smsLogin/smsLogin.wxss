@@ -1,0 +1,25 @@
+/* pages/login/smsLogin/smsLogin.wxss */
+/* 输入账户 */
+.phoneNameInput {
+  position: relative;
+  top: 40rpx;
+}
+
+.phoneNameInput .pswInput {
+  height: 70rpx;
+  width: 500rpx;
+}
+
+/* 验证码 */
+.yzmInput {
+  position: relative;
+  top: 80rpx;
+}
+
+/* 手机快速注册 */
+.phoneRegist {
+  display: inline-block;
+  position: absolute;
+  top: 420rpx;
+  right: 40rpx;
+}

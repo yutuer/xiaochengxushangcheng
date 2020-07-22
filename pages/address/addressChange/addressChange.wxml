@@ -1,0 +1,28 @@
+<!--pages/address/addressChange/addressChange.wxml-->
+<!-- 收货人姓名 -->
+<view>
+	<text class="name">收货人:</text>
+	<input class="nameInput" bindinput="nameInputTap" value="{{name}}">{{name}}</input>
+</view>
+<!-- 手机号码 -->
+<view>
+	<text class="phone">手机号码:</text>
+	<!-- 不允许修改, 做查询使用的 -->
+	<text class="phoneTxt">{{phoneNum}}</text>
+</view>
+<!-- 所在地区 -->
+<view> <text class="mapPosition" catchtap="getLocation">定位</text></view>
+<view>
+	<text class="area">所在地区:</text>
+	<input class="areaInput" bindinput="areaInputTap" value="{{area}}">{{area}}</input>
+	<!-- <image class="positionImg"></image> -->
+</view>
+<view>
+	<text class="areaDetail">详细地址:</text>
+	<input class="areaInputDetail" bindinput="areaDetailTap" value="{{areaDetail}}">{{areaDetail}}</input>
+</view>
+<view>
+	<text>设置默认</text>
+	<switch checked="{{checked}}" bindchange="switchChange"></switch>
+</view>
+<button class="save" catchtap="saveTap" data-index="{{index}}">保存</button>

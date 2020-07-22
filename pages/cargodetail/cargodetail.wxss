@@ -1,0 +1,36 @@
+/* pages/cargodetail/cargodetail.wxss */
+.detailView {}
+
+.detailView .imageView {
+  display: flex;
+}
+
+.detailView .detailImv {
+  width: 90%;
+  justify-content: center;
+}
+
+.detailView .content {
+  width: 100%;
+  padding: 20rpx;
+}
+
+.title {
+  height: 100rpx;
+  font-size: 40rpx;
+  font-weight: bold;
+  flex-wrap: wrap;
+  line-height: 40rpx;
+}
+
+.price {
+  color: red;
+  font-size: 34rpx;
+}
+
+.detailView .add {
+  right: 40rpx;
+  bottom: 20rpx;
+  width: 40rpx;
+  height: 40rpx;
+}

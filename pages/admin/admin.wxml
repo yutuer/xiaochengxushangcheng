@@ -1,0 +1,7 @@
+<!--pages/admin/admin.wxml-->
+<button bindtap="getOpenId" type="primary">获取用户的openId</button>
+<button bindtap="insertClassDB">插入class数据库单条数据</button>
+<button bindtap="queryClassDB" type="primary">查询class数据库所有数据</button>
+<button bindtap="clearClassDB">清空自己创建的表</button>
+<button bindtap="insertInitDataToClassDB" type="primary">插入默认数据到class数据库</button>
+<button bindtap="test">测试云函数</button>

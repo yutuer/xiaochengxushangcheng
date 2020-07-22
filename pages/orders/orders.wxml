@@ -1,0 +1,9 @@
+<!--pages/orders/orders.wxml-->
+<text>pages/orders/orders.wxml</text>
+
+<view>
+	<block wx:for="orders" wx:key="index">
+    <view>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,48 @@
+<!--pages/main/main.wxml-->
+<!-- 顶部搜索框 -->
+<view class='searchView'>
+	<image class='logoImv' src='../../images/main/jd_logo.png'></image>
+	<image class='searchImv' src='../../images/class/search-normal.png'></image>
+	<input class='searchTxt' placeholder="请输入搜索内容" confirm-type="search" bindinput="search"></input>
+</view>
+<!-- 顶部banner图 -->
+<swiper class='bannerView' indicator-dots='{{true}}' indicator-color='#afafaf' indicator-active-color='#ffffff' autoplay='{{true}}' circular='{{true}}'>
+	<block wx:for='{{banner}}' wx:key='index'>
+		<swiper-item>
+			<image src='{{item.src}}' data-cargoid="{{item.cargoid}}" catchtap="bannerTap"></image>
+		</swiper-item>
+	</block>
+</swiper>
+
+<!-- 类别item -->
+<swiper class='itemView' indicator-dots='{{true}}' indicator-color='#afafaf' indicator-active-color='#e6e6e6' circular='{{true}}'>
+	<swiper-item>
+		<!-- 一个页面 -->
+		<block wx:for='{{classData.onePage}}' wx:key='index'>
+			<view class='item' catchtap="typeTap" data-typeid="{{item.type}}">
+				<image class='iconView' src='{{item.icon}}'></image>
+				<view class='titleView'>{{item.title}}</view>
+			</view>
+		</block>
+	</swiper-item>
+	<swiper-item>
+		<!-- 一个页面 -->
+		<block wx:for='{{classData.twoPage}}' wx:key='index'>
+			<view class='item' catchtap="typeTap" data-typeid="{{item.type}}">
+				<image class='iconView' src='{{item.icon}}'></image>
+				<view class='titleView'>{{item.title}}</view>
+			</view>
+		</block>
+	</swiper-item>
+</swiper>
+
+<!-- 猜你喜欢标题 -->
+<view class='cnxhTitle'>猜你喜欢</view>
+<!-- 猜你喜欢内容 -->
+<block wx:for='{{itemArrayData}}' wx:key='index'>
+	<view class='detailView' catchtap="cargoDetailTap" data-cargoid="{{item.cargoid}}">
+		<image class='detailImv' src='{{item.icon}}'></image>
+		<text class='detailTxt'>{{item.detail}}</text>
+		<text class='priceTxt'>¥{{item.price}}</text>
+	</view>
+</block>

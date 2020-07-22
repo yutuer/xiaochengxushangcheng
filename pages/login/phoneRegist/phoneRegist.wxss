@@ -1,0 +1,15 @@
+/* pages/login/phoneRegist/phoneRegist.wxss */
+/* 输入账户 */
+.phoneNameInput{
+  position: relative;
+  top: 40rpx;
+}
+.phoneNameInput .pswInput{
+  height: 70rpx;
+  width: 500rpx;
+}
+/* 验证码 */
+.yzmInput{
+  position: relative;
+  top: 80rpx;
+}

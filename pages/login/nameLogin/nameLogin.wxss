@@ -1,0 +1,42 @@
+/* pages/login/nameLogin/nameLogin.wxss */
+/* 输入账户 */
+.phoneNameInput {
+  /* 不脱离文档流, 只移动 */
+  position: relative;
+  top: 40rpx;
+}
+
+/* 输入密码 */
+.pswView {
+  position: relative;
+  top: 60rpx;
+}
+
+.pswView .pswInput {
+  height: 70rpx;
+  /* input的宽有用, 好像text的没用 */
+  width: 450rpx;
+  /* background-color: green; */
+}
+
+.pswView .pswImv {
+  height: 28rpx;
+  width: 28rpx;
+  margin: 0 20rpx;
+}
+
+/* 短信验证码登录 */
+.smsLogin {
+  display: inline-block;
+  position: absolute;
+  top: 420rpx;
+  left: 40rpx;
+}
+
+/* 手机快速注册 */
+.phoneRegist {
+  display: inline-block;
+  position: absolute;
+  top: 420rpx;
+  right: 40rpx;
+}

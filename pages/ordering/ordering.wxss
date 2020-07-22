@@ -1,0 +1,47 @@
+/* pages/ordering/ordering.wxss */
+.cargoShow {}
+
+.address {
+  margin: 30rpx 20rpx;
+}
+
+.address .area {
+  display: block;
+}
+
+.address .areaDetail {
+  display: block;
+}
+
+.address .name {
+  display: block;
+}
+
+.address .changeAddr {
+  display: block;
+}
+
+.cargo {
+  margin: 30rpx 20rpx;
+}
+
+.cargo .cargoName {
+  display: block;
+}
+
+.cargo .cargoDetail {
+  display: block;
+}
+
+.cargo .cargoNum {
+  display: block;
+}
+
+.priceShow {
+  margin: 30rpx 20rpx;
+}
+
+.priceShow .priceTxt {
+  color: red;
+  font-size: 40rpx bold;
+}

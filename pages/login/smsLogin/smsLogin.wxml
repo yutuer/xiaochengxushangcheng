@@ -1,0 +1,27 @@
+<!--pages/login/smsLogin/smsLogin.wxml-->
+<block>
+	<!-- 存在则显示用户信息 -->
+	<view class="myDetail" wx:if="{{userInfo}}">
+		<view class="hello">你好:{{userInfo.loginPhoneNum}}</view>
+		<view class="orders" catchtap="ordersTap">我的订单</view>
+		<view class="address" catchtap="addressTap">地址管理</view>
+		<button class="loginOut" type="primary" bindtap="loginOutTap">登 出</button>
+	</view>
+
+	<!-- 不存在则登录 -->
+	<view wx:else>
+		<!-- 输入手机号 -->
+		<view class='phoneNameInput inputSuperView'>
+			<input class='pswInput' placeholder='请输入手机号' type='number' bindinput="phoneNumInput"></input>
+			<view class='subBtnView' bindtap='yzmClick'>获取验证码</view>
+		</view>
+		<!-- 验证码 -->
+		<input class='input yzmInput' placeholder='请输入收到的验证码' type='number'></input>
+		<!-- 登录按钮 -->
+		<view class='loginView' bindtap="loginTap">登 录</view>
+		<!-- 手机快速注册 -->
+		<view class='phoneRegist font28' bindtap='phoneRegistClick'>手机快速注册</view>
+		<!-- 同意协议 -->
+		<view class='protocol font28'>登录即代表您已同意<text>京东隐私政策</text></view>
+	</view>
+</block>

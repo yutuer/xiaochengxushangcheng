@@ -1,0 +1,25 @@
+<!--pages/cargodetail/cargodetail.wxml-->
+<view class='detailView' catchtap="cargoDetailTap" data-cargoid="{{item.cargoid}}">
+	<view class="imageView">
+		<image class='detailImv' src='{{item.icon}}'></image>
+	</view>
+	<view class="content">
+		<view>
+			<view>
+				<text class='title'>{{item.title}}</text>
+			</view>
+			<!-- 规格 -->
+			<text class="weightTxt">{{item.weight}}</text>
+			<view>
+				<!-- 详情 -->
+				<text class="detail">{{item.detail}}</text>
+			</view>
+		</view>
+		<view class="">
+			<text>最快 <text>{{leftTime}}</text> 分钟送达</text>
+			<text class='price'>¥{{item.price}}</text>
+			<!-- 配送时间预估 -->
+			<image class='add' src='../../images/shopping/add.png' catchtap='addClick' data-cargoid='{{itemName.cargoid}}'></image>
+		</view>
+	</view>
+</view>

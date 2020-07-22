@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "pages/main/main",
+    "pages/class/class",
+    "pages/cargodetail/cargodetail",
+    "pages/shopping/shopping",
+    "pages/ordering/ordering",
+    "pages/orders/orders",
+    "pages/login/smsLogin/smsLogin",
+    "pages/login/phoneRegist/phoneRegist",
+    "pages/login/nameLogin/nameLogin",
+    "pages/address/addressList/addressList",
+    "pages/address/addressAdd/addressAdd",
+    "pages/address/addressChange/addressChange",
+    "pages/admin/admin"
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#313030",
+    "selectedColor": "#D54331",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/main/main",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/class/class",
+        "text": "分类"
+      },
+      {
+        "pagePath": "pages/shopping/shopping",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/login/smsLogin/smsLogin",
+        "text": "我的"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

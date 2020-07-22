@@ -1,0 +1,32 @@
+<!--pages/shopping/shopping.wxml-->
+<!-- 购物车内容 -->
+<scroll-view class='contentView' scroll-y>
+	<block wx:for='{{shoppingData}}' wx:key='index' wx:for-item="subItem">
+		<!-- 使用 wx:for-item 可以指定数组当前元素的变量名，
+         使用 wx:for-index 可以指定数组当前下标的变量名： -->
+
+		<!-- wx:key
+         如果列表中项目的位置会动态改变或者有新的项目添加到列表中，并且希望列表中的项目保持自己的特征和状态（如 input 中的输入内容，switch 的选中状态），需要使用 wx:key 来指定列表中项目的唯一的标识符。
+     -->
+		<!-- 单个商品样式 -->
+		<view class='itemView' wx:if="{{subItem.num > 0}}">
+			<image class='choose' src='{{subItem.select?"/images/shopping/select.png":"/images/shopping/normal.png"}}' catchtap='singleSelectClick' data-cargoid='{{subItem.cargoid}}' data-index='{{index}}'></image>
+			<image class='icon' src='{{subItem.icon}}'></image>
+			<view class='title'>{{subItem.title}}</view>
+			<view class='detail'>{{subItem.detail}}</view>
+			<view class='price'>¥{{subItem.price}}</view>
+			<image class='reduce' src='../../images/shopping/reduce.png' catchtap='reduceClick' data-cargoid='{{subItem.cargoid}}' data-index='{{index}}'></image>
+			<view class='number'>{{subItem.num}}</view>
+			<image class='add' src='../../images/shopping/add.png' catchtap='addClick' data-cargoid='{{subItem.cargoid}}' data-index='{{index}}'></image>
+		</view>
+	</block>
+</scroll-view>
+
+<!-- 底部工具栏 -->
+<view class='bottomView'>
+	<image class='chooseImv' src='{{allIsSelect?"../../images/shopping/select.png":"../../images/shopping/normal.png"}}' catchtap='allClick'>
+	</image>
+	<!-- 这里text 也嵌套使用了 -->
+	<text class='priceTxt'>总计：<text style='color: red'>¥{{allPrice}}</text></text>
+	<view class='countNum' catchtap="countNumTap" data-allprice="{{allPrice}}">去结算({{allCount}}件)</view>
+</view>

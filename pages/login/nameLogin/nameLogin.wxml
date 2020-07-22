@@ -1,0 +1,17 @@
+<!--pages/login/nameLogin/nameLogin.wxml-->
+<!-- 输入账户 -->
+<input class='phoneNameInput input' placeholder='用户名/邮箱/已验证手机'></input>
+<!-- 输入密码 -->
+<view class='pswView inputSuperView'>
+	<input class='pswInput' placeholder='请输入密码' password='{{!isShow}}'></input>
+	<image src='{{imgSrc}}' class='pswImv' bindtap='hideShowClick'></image>
+	<view class='subBtnView' bindtap='forgetPswClick'>忘记密码</view>
+</view>
+<!-- 登录按钮 -->
+<view class='loginView'>登 录</view>
+<!-- 短信验证码登录 -->
+<view class='smsLogin font28' bindtap='smsLoginClick'>短信验证码登录</view>
+<!-- 手机快速注册 -->
+<view class='phoneRegist font28' bindtap='phoneRegistClick'>手机快速注册</view>
+<!-- 同意协议 -->
+<view class='protocol font28'>登录即代表您已同意<text>京东隐私政策</text></view>

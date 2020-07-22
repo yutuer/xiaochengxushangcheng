@@ -1,0 +1,27 @@
+<!--pages/ordering/ordering.wxml-->
+<view>
+	<!-- 展示栏 -->
+	<!-- 地址展示 -->
+	<view class="address">
+		<text class="area">{{address.area}}</text>
+		<text class="areaDetail">{{address.areaDetail}}</text>
+		<text class="name">{{address.name}} <text>{{address.phoneNum}}</text></text>
+		<text class="changeAddr" bindtap="changeAddrTap">修改地址</text>
+	</view>
+	<!-- 购买货物展示 -->
+	<view class="cargoShow">
+		<block wx:for="{{orderDetail.cargos}}" wx:key="index">
+			<view class="cargo">
+				<text class="cargoName">{{item.cargoName}}</text>
+				<text class="cargoDetail">{{item.cargoDetail}}</text>
+				<text class="cargoNum">数量: <text>{{item.num}}</text></text>
+			</view>
+		</block>
+	</view>
+	<!-- 价格栏 -->
+	<view class="priceShow">
+		<text class="priceTxt">¥ <text>{{orderDetail.allPrice}}</text></text>
+	</view>
+	<!-- 确认订单 -->
+	<button catchtap="confirm" data-allprice="{{orderDetail.allPrice}}">确认订单</button>
+</view>
