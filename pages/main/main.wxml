@@ -3,7 +3,12 @@
 <view class='searchView'>
 	<image class='logoImv' src='../../images/main/jd_logo.png'></image>
 	<image class='searchImv' src='../../images/class/search-normal.png'></image>
-	<input class='searchTxt' placeholder="请输入搜索内容" confirm-type="search" bindinput="search"></input>
+	<input class='searchTxt' placeholder="请输入搜索内容" confirm-type="search" catchinput="search"></input>
+	<view wx:for='{{allSearchData}}' wx:key='index' wx:if="{{allSearchData.length>0}}">
+		<view data-cargoid="{{item.cargoid}}">
+			{{item.title}}
+		</view>
+	</view>
 </view>
 <!-- 顶部banner图 -->
 <swiper class='bannerView' indicator-dots='{{true}}' indicator-color='#afafaf' indicator-active-color='#ffffff' autoplay='{{true}}' circular='{{true}}'>

@@ -76,8 +76,114 @@ var itemArrayData = [{
   },
 ]
 
+var typeData = {
+  "onePage": [{
+      fun: 1,
+      "title": "京东秒杀",
+      "icon": "../../images/main/jdms_type.png"
+    },
+    {
+      fun: 2,
+      "title": "京东超市",
+      "icon": "../../images/main/jdcs_type.png"
+    },
+    {
+      fun: 3,
+      "title": "手机充值",
+      "icon": "../../images/main/sjcz_type.png"
+    },
+    {
+      fun: 4,
+      "title": "电脑",
+      "icon": "../../images/main/dn_type.png"
+    },
+    {
+      fun: 5,
+      "title": "数码",
+      "icon": "../../images/main/sm_type.png"
+    },
+    {
+      fun: 6,
+      "title": "箱包",
+      "icon": "../../images/main/xb_type.png"
+    },
+    {
+      fun: 7,
+      "title": "家居家装",
+      "icon": "../../images/main/jjjz_type.png"
+    },
+    {
+      fun: 8,
+      "title": "运动",
+      "icon": "../../images/main/yd_type.png"
+    },
+    {
+      fun: 9,
+      "title": "钟表",
+      "icon": "../../images/main/zb_type.png"
+    },
+    {
+      fun: 10,
+      "title": "唯品会",
+      "icon": "../../images/main/wph_type.png"
+    },
+  ],
+  "twoPage": [{
+      fun: 11,
+      "title": "领优惠券",
+      "icon": "../../images/main/lgwq_type.png"
+    },
+    {
+      fun: 12,
+      "title": "9.9元拼",
+      "icon": "../../images/main/9.9yp_type.png"
+    },
+    {
+      fun: 13,
+      "title": "找折扣",
+      "icon": "../../images/main/zzk_type.png"
+    },
+    {
+      fun: 14,
+      "title": "品牌特卖",
+      "icon": "../../images/main/pptm_type.png"
+    },
+    {
+      fun: 15,
+      "title": "领京豆",
+      "icon": "../../images/main/ljd_type.png"
+    },
+    {
+      fun: 16,
+      "title": "打卡领奖",
+      "icon": "../../images/main/dkyj_type.png"
+    },
+    {
+      fun: 17,
+      "title": "京豆服饰",
+      "icon": "../../images/main/jdfs_type.png"
+    },
+    {
+      fun: 18,
+      "title": "京东生鲜",
+      "icon": "../../images/main/jdsx_type.png"
+    },
+    {
+      fun: 19,
+      "title": "京东手机",
+      "icon": "../../images/main/jdsj_type.png"
+    },
+    {
+      fun: 20,
+      "title": "全部频道",
+      "icon": "../../images/main/qbpd_type.png"
+    }
+  ]
+}
+
 // 输出数据
 module.exports = {
   bannerData: bannerData,
-  itemArrayData: itemArrayData
+  itemArrayData: itemArrayData,
+  typeData: typeData,
 }

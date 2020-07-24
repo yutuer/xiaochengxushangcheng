@@ -19,12 +19,15 @@ exports.main = async (event, context) => {
 
   const res = await cloud.cloudPay.unifiedOrder({
     "body": "帅狗生鲜-配送中心",
-    "outTradeNo": "12CCA52501201407033233368018",
+    "outTradeNo": "1217752501201407033233368018",
     "spbillCreateIp": "127.0.0.1",
     "subMchId": "1600985746",
     "totalFee": 1,
     "envId": "xiaochi-rlwg9",
     "functionName": "pay_callback",
+    "nonceStr": "5K8264ILTKCH16CQ2502SI8ZNMTM67VS",
+    "nonce_str":"ibuaiVcKdpRxkhJA",
+    "tradeType":"JSAPI",
   })
   return res
 }

@@ -22,7 +22,15 @@ function getCloudDB(name) {
   return db.collection(name)
 }
 
+// 跳转到详情页
+function navigateToDetail(cargoid) {
+  wx.navigateTo({
+    url: '../cargodetail/cargodetail?cargoid=' + cargoid,
+  })
+}
+
 module.exports = {
   formatTime: formatTime,
   getCloudDB: getCloudDB,
+  navigateToDetail: navigateToDetail,
 }

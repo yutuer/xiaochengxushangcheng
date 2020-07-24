@@ -106,6 +106,7 @@ var allDatas = [{
 }, {
   cargoid: "33",
   price: 111.1,
+  "title": "电压力锅222",
   "icon": "../../images/getImages/5a17f224Nea1d3f59.jpg",
   type: 3,
 }, {
