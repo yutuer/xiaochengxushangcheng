@@ -12,9 +12,13 @@
 	<view class="cargoShow">
 		<block wx:for="{{orderDetail.cargos}}" wx:key="index">
 			<view class="cargo">
-				<text class="cargoName">{{item.cargoName}}</text>
-				<text class="cargoDetail">{{item.cargoDetail}}</text>
-				<text class="cargoNum">数量: <text>{{item.num}}</text></text>
+				<view>
+					<text class="cargoName">{{item.title}}</text>
+				</view>
+				<view class="cargoDetail">
+					<image class="cargoImg" src='{{item.icon}}'></image>
+					<text class="cargoNum">数量: <text>{{item.num}}</text></text>
+				</view>
 			</view>
 		</block>
 	</view>
@@ -23,5 +27,5 @@
 		<text class="priceTxt">¥ <text>{{orderDetail.allPrice}}</text></text>
 	</view>
 	<!-- 确认订单 -->
-	<button catchtap="confirm" data-allprice="{{orderDetail.allPrice}}">确认订单</button>
+	<button catchtap="confirm">确认订单</button>
 </view>

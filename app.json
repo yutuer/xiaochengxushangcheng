@@ -6,6 +6,7 @@
     "pages/shopping/shopping",
     "pages/ordering/ordering",
     "pages/orders/orders",
+    "pages/orderDetail/orderDetail",
     "pages/login/smsLogin/smsLogin",
     "pages/login/phoneRegist/phoneRegist",
     "pages/login/nameLogin/nameLogin",

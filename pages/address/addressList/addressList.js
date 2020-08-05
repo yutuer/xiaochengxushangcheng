@@ -1,5 +1,7 @@
 // pages/address/addressList/addressList.js
 const app = getApp()
+const util = require('../../../utils/util.js')
+
 Page({
 
   /**
@@ -54,22 +56,6 @@ Page({
     })
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    console.log("addressList  onLoad")
-
-    if (options) {
-      this.setData({
-        isChoose: true,
-        chooseAddrIndex: parseInt(options.choose),
-      })
-    }
-
-    this.addressLoad()
-  },
-
   // 地址列表读取. 
   // 会先检查wx缓存. 如果没有读取过, 就从库中读取, 然后存入wx缓存.
   // 否则直接展现
@@ -84,47 +70,30 @@ Page({
       })
     } else {
       // 去数据库中获取 玩家地址所有数据
-      let that = this
-      let loginPhoneNum = wx.getStorageSync(app.globalData.userKey)
+      util.getAddressList()
+      let addressObj = wx.getSystemInfoSync(app.globalData.addressKey)
 
-      wx.cloud.callFunction({
-        name: 'queryAllData',
-        data: {
-          dbName: 'address',
-          cond: {
-            'loginPhoneNum': loginPhoneNum
-          }
-        },
-        success(res) {
-          let _id = ''
-          let data = null
-          let defaultIndex = -1
-          let address = []
-          if (res.result.data && res.result.data.length > 0) {
-            data = res.result.data[0]
-            _id = data._id
-            defaultIndex = data.defaultIndex
-            address = data.address
-          }
-
-          let addressObj = {
-            _id: _id,
-            hasQuery: true,
-            defaultIndex: defaultIndex,
-            address: address,
-          }
-          wx.setStorageSync(app.globalData.addressKey, addressObj)
-
-          that.setData({
-            address: addressObj.address,
-            defaultIndex: defaultIndex,
-          })
-        },
-        fail(res) {
-          console.log(res)
-        }
+      this.setData({
+        address: addressObj.address,
+        defaultIndex: addressObj.defaultIndex,
       })
     }
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    console.log("addressList  onLoad")
+
+    if (options) {
+      this.setData({
+        isChoose: true,
+        chooseAddrIndex: parseInt(options.choose),
+      })
+    }
+
+    this.addressLoad()
   },
 
   /**

@@ -25,16 +25,30 @@
   margin: 30rpx 20rpx;
 }
 
-.cargo .cargoName {
-  display: block;
+.cargo {
+  display: flex;
+  flex-direction: column;
 }
 
 .cargo .cargoDetail {
+  display: flex;
+}
+
+.cargo .cargoName {
   display: block;
+  font-size: 40rpx;
+  font-weight: bold;
+  padding-left: 20rpx;
+}
+
+.cargo .cargoDetail .cargoImg {
+  /* display: block; */
+  height: 200rpx;
+  width: 200rpx;
 }
 
 .cargo .cargoNum {
-  display: block;
+  /* display: block; */
 }
 
 .priceShow {

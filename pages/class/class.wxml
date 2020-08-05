@@ -24,7 +24,7 @@
 		<view class='itemView' catchtap="cargoDetailTap" data-cargoid="{{itemName.cargoid}}">
 			<image src='{{itemName.icon}}' class='icon'></image>
 			<view class='detail'>
-				<view class="desc">{{itemName.detail}}</view>
+				<view class="desc">{{itemName.title}}</view>
 				<view class="count">
 					<text class="price">¥{{itemName.price}}</text>
 					<view class="opera">

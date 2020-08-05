@@ -1,13 +1,28 @@
+const util = require("../../utils/util")
+
 // pages/orders/orders.js
 const app = getApp()
-
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    orders: []
+    orders: [],
+    chooseStatus: 0,
+  },
+
+  payFor(e) {
+    let payment = e.currentTarget.dataset.pay
+    console.log("payment:", payment)
+    util.payForPayment(payment)
+  },
+
+  showByStatus(e) {
+    let choosestatus = e.currentTarget.dataset.choosestatus
+    this.setData({
+      chooseStatus: choosestatus
+    })
   },
 
   /**
@@ -33,21 +48,37 @@ Page({
         orders: ordersObj.orders
       })
     } else {
-      const loginPhoneNum = wx.getStorageSync(app.globalData.userKey)
+      const phoneNum = wx.getStorageSync(app.globalData.userKey)
       wx.cloud.callFunction({
         name: 'queryAllData',
         data: {
           dbName: 'orders',
           cond: {
-            loginPhoneNum: loginPhoneNum
+            phoneNum: phoneNum
           }
         },
         success(res) {
           console.log(res)
           if (res.errMsg == 'cloud.callFunction:ok') {
             const orders = res.result.data
+
+            let orderStatus = app.globalData.orderStatus
+
+            for (let i = 0; i < orders.length; i++) {
+              let order = orders[i]
+
+              if (order.status == orderStatus.waitForPay.status) {
+                order.statusDesc = orderStatus.waitForPay.name
+              } else if (order.status == orderStatus.hasPay.status) {
+                order.statusDesc = orderStatus.hasPay.name
+              } else if (order.status == orderStatus.finish.status) {
+                order.statusDesc = orderStatus.finish.name
+              }
+            }
+
+            // 所有订单
             that.setData({
-              orders: orders
+              orders: orders,
             })
             // 遍历下看看是否全部完成
             let finish = true
@@ -69,7 +100,7 @@ Page({
             wx.setStorageSync(app.globalData.ordersKey, ordersCache)
           }
         },
-        fail: console.log
+        fail: console.error
       })
     }
   },

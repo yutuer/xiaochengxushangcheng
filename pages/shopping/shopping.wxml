@@ -28,5 +28,5 @@
 	</image>
 	<!-- 这里text 也嵌套使用了 -->
 	<text class='priceTxt'>总计：<text style='color: red'>¥{{allPrice}}</text></text>
-	<view class='countNum' catchtap="countNumTap" data-allprice="{{allPrice}}">去结算({{allCount}}件)</view>
+	<view class='countNum' catchtap="countNumTap" data-allprice="{{allPrice}}"  >去结算({{allCount}}件)</view>
 </view>

@@ -1,7 +1,7 @@
 // 云函数入口文件
 const cloud = require('wx-server-sdk')
 cloud.init({
-  evn: 'xiaochi-rlwg9'
+  evn: cloud.DYNAMIC_CURRENT_ENV
 })
 
 // 云函数入口函数
@@ -19,15 +19,13 @@ exports.main = async (event, context) => {
 
   const res = await cloud.cloudPay.unifiedOrder({
     "body": "帅狗生鲜-配送中心",
-    "outTradeNo": "1217752501201407033233368018",
+    "outTradeNo": event.order,
     "spbillCreateIp": "127.0.0.1",
     "subMchId": "1600985746",
-    "totalFee": 1,
+    "totalFee": parseInt(event.money),
     "envId": "xiaochi-rlwg9",
-    "functionName": "pay_callback",
-    "nonceStr": "5K8264ILTKCH16CQ2502SI8ZNMTM67VS",
-    "nonce_str":"ibuaiVcKdpRxkhJA",
-    "tradeType":"JSAPI",
+    "functionName": "payCallback",
+    "tradeType": "JSAPI",
   })
   return res
 }

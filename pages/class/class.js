@@ -1,6 +1,7 @@
 // pages/class/class.js
 //引入本地数据
 let classData = require('../../utils/data/classData.js');
+const util = require('../../utils/util.js');
 const app = getApp()
 Page({
 
@@ -61,6 +62,10 @@ Page({
 
   // 点击了加(目前是放进购物车的意思)
   addClick(e) {
+    if (!util.checkLoginStatus()) {
+      return
+    }
+
     const cargoid = e.currentTarget.dataset.cargoid
     console.log(cargoid)
 

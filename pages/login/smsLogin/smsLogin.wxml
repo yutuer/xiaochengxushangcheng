@@ -24,4 +24,6 @@
 		<!-- 同意协议 -->
 		<view class='protocol font28'>登录即代表您已同意<text>京东隐私政策</text></view>
 	</view>
+
+	<view bindtap="">test</view>
 </block>

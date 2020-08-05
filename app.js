@@ -43,7 +43,9 @@ App({
     // 格式:
     // wx:[{cargoid:int, num:int, select:bool}]
     cargosKey: 'cargosKey',
-    ordersKey: 'ordersKey', // 存放所有(TODO 已经完成的)订单. (TODO 所以订单列表是数据库中已完成的+缓存中的)
+    
+    // 存放所有(TODO 已经完成的)订单. (TODO 所以订单列表是数据库中已完成的+缓存中的)
+    ordersKey: 'ordersKey',
     tableName: {
       userInfo: 'userInfo'
     },
@@ -52,11 +54,11 @@ App({
     },
     orderStatus: {
       waitForPay: {
-        name: '待付款',
+        name: '未支付',
         status: 1
       },
       hasPay: {
-        name: '已付款',
+        name: '待发货',
         status: 2
       },
       finish: {

@@ -1,6 +1,7 @@
 // pages/login/smsLogin/smsLogin.js
 let app = getApp()
 const verify = require("../../../utils/verify.js")
+const util = require("../../../utils/util.js")
 Page({
 
   /**
@@ -61,6 +62,9 @@ Page({
           // 存入一个空的购物车
           wx.setStorageSync(app.globalData.cargosKey, [])
           
+          //获取地址信息
+          util.getAddressList()
+
           // 重新加载当前页面
           wx.reLaunch({
             url: '../smsLogin/smsLogin',

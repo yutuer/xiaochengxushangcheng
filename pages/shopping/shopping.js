@@ -12,7 +12,7 @@ Page({
     allIsSelect: false, //全选和全不选 
     allPrice: 0.00, // 选中的商品总价格
     allCount: 0, // 选中的商品总个数
-
+    chooseCargos: [], // 结算时候的物品
   },
 
   // 点击add按钮
@@ -120,22 +120,11 @@ Page({
   countNumTap(e) {
     console.log(e)
     const allPrice = e.currentTarget.dataset.allprice
+    const chooseCargos = this.data.chooseCargos
 
     let priceObj = {
       allPrice: allPrice,
-      cargos: [{
-          cargoid: "1",
-          cargoName: "111",
-          cargoDetail: "cargo1detail",
-          num: 10,
-        },
-        {
-          cargoid: "2",
-          cargoName: "222",
-          cargoDetail: "cargo22222detail",
-          num: 30,
-        },
-      ],
+      cargos: chooseCargos,
     }
 
     let s = JSON.stringify(priceObj)
@@ -154,12 +143,7 @@ Page({
     for (let i = 0; i < classData.length; i++) {
       let cargo = classData[i]
       let numcargo = {
-        cargoid: cargo.cargoid,
-        price: cargo.price,
-        detail: cargo.detail,
-        icon: cargo.icon,
-        type: cargo.type,
-        select: cargo.select,
+        ...cargo,
         num: 0
       }
       cargosData.push(numcargo)
@@ -181,11 +165,12 @@ Page({
   //更新显示界面
   updateShow() {
     let allPrice = 0.00
-
+    let chooseCargos = []
     let allIsSelect = true
 
     let originDatas = classData.allDatas
     let numCargos = this.getNumCargos(originDatas)
+
     // 对数据进行初始化修改
     for (var i = 0; i < numCargos.length; i++) {
       // 获取单个商品
@@ -199,15 +184,21 @@ Page({
       }
 
       if (numCargo.select) {
-        allPrice += (numCargo.price * 100 * numCargo.num) / 100
+        allPrice += (numCargo.price * 100 * numCargo.num)
+        chooseCargos.push(numCargo)
       }
     }
 
-    allPrice = allPrice
+    if(chooseCargos.length == 0){
+      allIsSelect = false
+    }
+
+    allPrice = allPrice / 100
     this.setData({
       shoppingData: numCargos,
       allPrice: allPrice,
       allIsSelect: allIsSelect,
+      chooseCargos: chooseCargos,
     })
   },
 

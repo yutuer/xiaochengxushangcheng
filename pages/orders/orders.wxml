@@ -1,9 +1,31 @@
 <!--pages/orders/orders.wxml-->
-<text>pages/orders/orders.wxml</text>
-
-<view>
-	<block wx:for="orders" wx:key="index">
-    <view>
-    </view>
-  </block>
+<!-- 标题 -->
+<view class="orderTitle">
+	<text>订单列表</text>
 </view>
+
+<!-- 分类 块 -->
+<view class="orderType">
+	<text data-choosestatus="0" catchtap="showByStatus">全部</text>
+	<text data-choosestatus="1" catchtap="showByStatus">未支付</text>
+	<text data-choosestatus="2" catchtap="showByStatus">待发货</text>
+	<text data-choosestatus="3" catchtap="showByStatus">已完成</text>
+</view>
+
+<!-- 显示区域 -->
+<scroll-view class="contentView" scroll-y="true">
+	<block wx:for='{{orders}}' wx:for-item='order' wx:key='index'>
+		<view class="oneOrder" wx:if="{{chooseStatus==0 || order.status == chooseStatus}}">
+			<view class="firstLine">
+				<text>{{order.timeDesc}}</text>
+				<text class="orderStatus">{{order.statusDesc}}</text>
+			</view>
+			<view wx:for='{{order.cargos}}' wx:for-item="cargo" wx:for-index='cargoIndex' wx:key="cIndex">
+				<view class="oneCargo">
+					<text>{{cargo.title}}......{{cargo.num}}份</text>
+					<text wx:if="{{cargoIndex == order.cargos.length - 1}}">¥ {{order.allPrice}}</text>
+				</view>
+			</view>
+		</view>
+	</block>
+</scroll-view>
