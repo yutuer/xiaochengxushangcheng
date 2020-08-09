@@ -52,6 +52,8 @@
 }
 
 .priceShow {
+  display: flex;
+  justify-content: space-between;
   margin: 30rpx 20rpx;
 }
 

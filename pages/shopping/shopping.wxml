@@ -27,6 +27,7 @@
 	<image class='chooseImv' src='{{allIsSelect?"../../images/shopping/select.png":"../../images/shopping/normal.png"}}' catchtap='allClick'>
 	</image>
 	<!-- 这里text 也嵌套使用了 -->
+	<view class="youhuiquanShow" wx:if="{{youhuiquan}}">{{youhuiquan.desc}}</view>
 	<text class='priceTxt'>总计：<text style='color: red'>¥{{allPrice}}</text></text>
 	<view class='countNum' catchtap="countNumTap" data-allprice="{{allPrice}}"  >去结算({{allCount}}件)</view>
 </view>

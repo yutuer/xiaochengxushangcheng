@@ -26,10 +26,13 @@ Page({
     // 判断地址有没有选择
     if (this.data.chooseAddrIndex == -1) {
       wx.showToast({
-        title: '选择配送地址',
+        title: '没有选择配送地址!',
       })
       return
     }
+
+    //确定没有未完成的订单
+    
 
     // !!!! 发起支付请求啦
     this.payStart(1)
@@ -65,7 +68,7 @@ Page({
   },
 
   // 插入订单到数据库
-  insertPaymentToDB(address, cargos, payment, allPrice) {
+  insertPaymentToDB(address, cargos, payment, allPrice, youhuiquan) {
     let phoneNum = wx.getStorageSync(app.globalData.userKey)
     const timestamp = Date.parse(new Date())
     const timeDesc = this.getTimeDesc(timestamp)
@@ -80,6 +83,7 @@ Page({
       time: timestamp,
       timeDesc: timeDesc,
       allPrice: allPrice,
+      youhuiquan: youhuiquan,
     }
 
     // 存库
@@ -108,8 +112,8 @@ Page({
   payStart(money) {
     let that = this
     const allPrice = this.data.orderDetail.allPrice
-    console.log("allPrice:", allPrice)
     const cargos = this.data.orderDetail.cargos
+    const youhuiquan = this.data.youhuiquan
 
     let address = that.data.address
     // 订单号
@@ -134,7 +138,7 @@ Page({
         console.log("payment:", payment);
 
         // 插入数据库
-        that.insertPaymentToDB(address, cargos, payment, allPrice)
+        that.insertPaymentToDB(address, cargos, payment, allPrice, youhuiquan)
         // 缓存设置为无效
         that.updateCache()
         // 轮询处理支付
@@ -149,9 +153,7 @@ Page({
    */
   onLoad: function (options) {
     console.log("ordering  onLoad")
-
-    console.log("ordering: ", options)
-    let orderDetail = JSON.parse(options.orderDetail)
+    let orderDetail = JSON.parse(decodeURIComponent(options.orderDetail))
 
     this.setData({
       orderDetail: orderDetail

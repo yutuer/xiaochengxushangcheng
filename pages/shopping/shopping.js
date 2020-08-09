@@ -12,7 +12,8 @@ Page({
     allIsSelect: false, //全选和全不选 
     allPrice: 0.00, // 选中的商品总价格
     allCount: 0, // 选中的商品总个数
-    chooseCargos: [], // 结算时候的物品
+    chooseCargos: [], // 结算时候的物品,
+    youhuiquan: null,
   },
 
   // 点击add按钮
@@ -121,13 +122,20 @@ Page({
     console.log(e)
     const allPrice = e.currentTarget.dataset.allprice
     const chooseCargos = this.data.chooseCargos
+    if (chooseCargos.length == 0) {
+      wx.showToast({
+        title: '请选择购买物品',
+      })
+      return
+    }
 
     let priceObj = {
       allPrice: allPrice,
       cargos: chooseCargos,
+      youhuiquan: this.data.youhuiquan,
     }
 
-    let s = JSON.stringify(priceObj)
+    let s = encodeURIComponent(JSON.stringify(priceObj))
     wx.navigateTo({
       url: '../ordering/ordering?orderDetail=' + s,
     })
@@ -167,6 +175,7 @@ Page({
     let allPrice = 0.00
     let chooseCargos = []
     let allIsSelect = true
+    let chooseNum = 0
 
     let originDatas = classData.allDatas
     let numCargos = this.getNumCargos(originDatas)
@@ -186,19 +195,43 @@ Page({
       if (numCargo.select) {
         allPrice += (numCargo.price * 100 * numCargo.num)
         chooseCargos.push(numCargo)
+
+        chooseNum += numCargo.num
       }
     }
 
-    if(chooseCargos.length == 0){
+    if (chooseCargos.length == 0) {
       allIsSelect = false
     }
 
     allPrice = allPrice / 100
+
+    // 计算满足的优惠券信息
+    // 满足的优惠券最大钱数 
+    let maxyouhuiquan = null
+    let youhuiquans = wx.getStorageSync(app.globalData.youhuiquanKey)
+    if (youhuiquans && youhuiquans.data && youhuiquans.data.length > 0) {
+      for (let i = 0; i < youhuiquans.data.length; i++) {
+        let youhuiquan = youhuiquans.data[i]
+        if (allPrice >= youhuiquan.needMoney) {
+          if (maxyouhuiquan == null) {
+            maxyouhuiquan = youhuiquan
+          } else {
+            if (youhuiquan.needMoney > maxyouhuiquan.needMoney) {
+              maxyouhuiquan = youhuiquan
+            }
+          }
+        }
+      }
+    }
+
     this.setData({
       shoppingData: numCargos,
       allPrice: allPrice,
       allIsSelect: allIsSelect,
       chooseCargos: chooseCargos,
+      allCount: chooseNum,
+      youhuiquan: maxyouhuiquan,
     })
   },
 

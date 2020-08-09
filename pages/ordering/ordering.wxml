@@ -24,7 +24,8 @@
 	</view>
 	<!-- 价格栏 -->
 	<view class="priceShow">
-		<text class="priceTxt">¥ <text>{{orderDetail.allPrice}}</text></text>
+		<text wx:if='{{orderDetail.youhuiquan}}'>{{orderDetail.youhuiquan.desc}}</text>
+		<text class="priceTxt">    ¥ <text>{{orderDetail.allPrice}}</text></text>
 	</view>
 	<!-- 确认订单 -->
 	<button catchtap="confirm">确认订单</button>
