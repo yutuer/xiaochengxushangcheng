@@ -12,6 +12,17 @@ Page({
     chooseStatus: 0,
   },
 
+  showOrderDetail(e) {
+    let index = e.currentTarget.dataset.index
+    let order = this.data.orders[index]
+
+    // 牛皮, 序列化
+    let orderStr = encodeURIComponent(JSON.stringify(order))
+    wx.navigateTo({
+      url: '../orderDetail/orderDetail?orderDetail=' + orderStr,
+    })
+  },
+
   payFor(e) {
     let payment = e.currentTarget.dataset.pay
     console.log("payment:", payment)

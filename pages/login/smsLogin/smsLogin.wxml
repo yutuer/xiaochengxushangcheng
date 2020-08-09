@@ -25,5 +25,12 @@
 		<view class='protocol font28'>登录即代表您已同意<text>京东隐私政策</text></view>
 	</view>
 
-	<view bindtap="">test</view>
+	<button bindtap="test">testAddYouhuiquan</button>
+	<view>
+		<input bindblur="testName" value="送香蕉" placeholder="优惠券名称"></input>
+		<input bindblur="testDesc" value="满100送1斤香蕉" placeholder="赠送说明"></input>
+		<input type="digit" bindblur="testNeedMoney" value="100.00" placeholder="优惠满足条件(合计金额, 精确到xx)"></input>
+		<input bindblur="testStartTime" value="2020-8-8 10:00:00" placeholder="开始时间(年-月-日 时:分:秒)"></input>
+		<input bindblur="testEndTime" value="2020-10-10 10:10:10" placeholder="结束时间(年-月-日 时:分:秒)"></input>
+	</view>
 </block>

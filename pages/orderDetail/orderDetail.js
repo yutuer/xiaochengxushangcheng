@@ -6,14 +6,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    order: {},
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    // str转化回对象
+    let order = JSON.parse(decodeURIComponent(options.orderDetail))
+    this.setData({
+      order: order
+    })
   },
 
   /**

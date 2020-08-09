@@ -41,8 +41,12 @@ App({
     addressKey: 'addressKey',
     //存放所有cargo,
     // 格式:
-    // wx:[{cargoid:int, num:int, select:bool}]
+    // wx:[{cargoid: 物品id, num:物品数量, select:是否选中}]
     cargosKey: 'cargosKey',
+
+    // 优惠券
+    // 格式  {data: [{id: 唯一标识, name:优惠券名称, desc:赠送说明, needMoney: 优惠满足条件(合计金额, 精确到xx), startTimeDesc:开始时间(年-月-日 时:分:秒), endTimeDesc:结束时间(年-月-日 时:分:秒), startTime:开始时间, endTime:结束时间}] }
+    youhuiquanKey:'youhuiquanKey',
     
     // 存放所有(TODO 已经完成的)订单. (TODO 所以订单列表是数据库中已完成的+缓存中的)
     ordersKey: 'ordersKey',

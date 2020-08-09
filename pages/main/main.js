@@ -4,7 +4,7 @@ let mainDataJs = require('../../utils/data/mainData.js')
 const classDataJs = require('../../utils/data/classData.js')
 const allDatas = require('../../utils/data/classData.js')
 const util = require("../../utils/util.js")
-
+const app = getApp()
 Page({
 
   /**
@@ -16,6 +16,7 @@ Page({
     itemArrayData: [], //猜你喜欢数据
     allDatas: {},
     allSearchData: [],
+    youhuiquan: [],
   },
 
   // 点击banner
@@ -45,12 +46,12 @@ Page({
     let va = e.detail.value
     let allDatas = this.data.allDatas
     let result = []
-    if(va){
+    if (va) {
       // 搜索
       for (let i = 0; i < allDatas.length; i++) {
         let cargo = allDatas[i]
         let title = cargo.title
-  
+
         if (title.indexOf(va) >= 0) {
           result.push(cargo)
         }
@@ -66,11 +67,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    util.loadYouhuiquan()
+
+    let youhuiquanData = wx.getStorageSync(app.globalData.youhuiquanKey)
+
     this.setData({
       banner: mainDataJs.bannerData,
       itemArrayData: mainDataJs.itemArrayData,
       classData: mainDataJs.typeData,
       allDatas: classDataJs.allDatas,
+      youhuiquan: youhuiquanData.data,
     })
   },
 

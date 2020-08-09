@@ -15,7 +15,7 @@
 <!-- 显示区域 -->
 <scroll-view class="contentView" scroll-y="true">
 	<block wx:for='{{orders}}' wx:for-item='order' wx:key='index'>
-		<view class="oneOrder" wx:if="{{chooseStatus==0 || order.status == chooseStatus}}">
+		<view class="oneOrder" wx:if="{{chooseStatus==0 || order.status == chooseStatus}}" data-index="{{index}}" catchtap="showOrderDetail">
 			<view class="firstLine">
 				<text>{{order.timeDesc}}</text>
 				<text class="orderStatus">{{order.statusDesc}}</text>

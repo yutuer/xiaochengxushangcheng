@@ -11,6 +11,17 @@ const formatTime = date => {
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 
+// alert(getDate("2016-6-14 11:20:00"));
+//字符串转时间戳，strDate要转为日期格式的字符串 
+function getDateByStr(strDate) {
+  var st = strDate
+  var a = st.split(" ")
+  var b = a[0].split("-")
+  var c = a[1].split(":")
+  var date = new Date(b[0], b[1], b[2], c[0], c[1], c[2])
+  return Date.parse(date);
+}
+
 const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
@@ -163,6 +174,35 @@ function checkLoginStatus() {
   }
   return phoneNum
 }
+// 起服加载优惠券, 把所有未过期的放入缓存. 以后直接调用缓存
+function loadYouhuiquan() {
+  let now = Date.parse(new Date())
+  wx.cloud.callFunction({
+    name: 'queryAllData',
+    data: {
+      dbName: 'youhuiquan',
+    },
+    success(res) {
+      let datas = res.result.data
+      let nowExpires = []
+
+      for (let i = 0; i < datas.length; i++) {
+        let data = datas[i]
+        if (now < data.endTime) {
+          nowExpires.push(data)
+        }
+      }
+
+      let youhuiquanC = {
+        data: nowExpires,
+      }
+      wx.setStorageSync(app.globalData.youhuiquanKey, youhuiquanC)
+    },
+    fail(res) {
+      console.log(res)
+    }
+  })
+}
 
 module.exports = {
   formatTime: formatTime,
@@ -171,5 +211,7 @@ module.exports = {
   uuid: uuid,
   payForPayment: payForPayment,
   getAddressList: getAddressList,
-  checkLoginStatus: checkLoginStatus
+  checkLoginStatus: checkLoginStatus,
+  getDateByStr: getDateByStr,
+  loadYouhuiquan: loadYouhuiquan,
 }

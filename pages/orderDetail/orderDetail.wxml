@@ -1,2 +1,29 @@
 <!--pages/orderDetail/orderDetail.wxml-->
-<text>pages/orderDetail/orderDetail.wxml</text>
+<view>
+	<view>{{statusDesc}}</view>
+	<view class="address">
+		<view><text>{{order.address.name}}</text><text>  {{order.address.phoneNum}}</text></view>
+		<view><text>{{order.address.area}}</text><text>  {{order.address.areaDetail}}</text></view>
+	</view>
+
+	<view class="cargoList" wx:for="{{order.cargos}}" wx:key="index">
+		<view>{{item.title}} ........ <text>{{item.num}}份</text></view>
+	</view>
+
+	<view class="payInfo">
+		<view>商品小计: <text>¥ {{order.allPrice}}</text></view>
+		<view>优惠金额: <text>¥ {{order.allPrice}}</text></view>
+		<view>实付金额合计: <text>¥ {{order.allPrice}}</text></view>
+	</view>
+
+	<view class="orderInfo">
+		<view>订单编号: {{order.payment.nonceStr}}</view>
+		<view>下单时间: {{order.timeDesc}}</view>
+		<view>客服电话: 18902733626</view>
+	</view>
+
+	<view>
+		<view wx:if="{{order.status == 1}}"><button>去支付</button></view>
+		<view wx:else></view>
+	</view>
+</view>

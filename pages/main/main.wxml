@@ -41,6 +41,18 @@
 	</swiper-item>
 </swiper>
 
+<view>优惠券</view>
+<view wx:for="{{youhuiquan}}" wx:key="index">
+	<view hidden="true">{{item._id}}</view>
+	<view>优惠券名称: {{item.name}}</view>
+	<view>描述: {{item.desc}}</view>
+	<view>满足金额: {{item.needMoney}}</view>
+	<view>开始时间: {{item.startTimeDesc}}</view>
+	<view>结束时间: {{item.endTimeDesc}}</view>
+	<view hidden="true">{{item.startTime}}</view>
+	<view hidden="true">{{item.endTime}}</view>
+</view>
+
 <!-- 猜你喜欢标题 -->
 <view class='cnxhTitle'>猜你喜欢</view>
 <!-- 猜你喜欢内容 -->

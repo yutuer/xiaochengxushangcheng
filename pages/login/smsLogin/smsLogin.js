@@ -11,6 +11,71 @@ Page({
     userInfo: null,
     loginPhoneNum: '',
     verifyCode: '',
+
+    testName: '',
+    testDesc: '',
+    testNeedMoney: '',
+    testStartTimeDesc: '',
+    testEndTimeDesc: '',
+    testStartTime: 0,
+    testEndTime: 0,
+  },
+
+  testName(e) {
+    this.setData({
+      testName: e.detail.value
+    })
+  },
+  testDesc(e) {
+    this.setData({
+      testDesc: e.detail.value
+    })
+  },
+  testNeedMoney(e) {
+    this.setData({
+      testNeedMoney: e.detail.value
+    })
+  },
+  testStartTime(e) {
+    let dataStr = e.detail.value
+    let d = util.getDateByStr(dataStr)
+    this.setData({
+      testStartTime: d,
+      testStartTimeDesc: dataStr,
+    })
+  },
+  testEndTime(e) {
+    let dataStr = e.detail.value
+    let d = util.getDateByStr(dataStr)
+    this.setData({
+      testEndTime: d,
+      testEndTimeDesc: dataStr,
+    })
+  },
+
+  test() {
+    let that = this
+    wx.cloud.callFunction({
+      name: 'addOneData',
+      data: {
+        dbName: 'youhuiquan',
+        dataObj: {
+          name: that.data.testName,
+          desc: that.data.testDesc,
+          needMoney: that.data.testNeedMoney,
+          startTime: that.data.testStartTime,
+          endTime: that.data.testEndTime,
+          startTimeDesc: that.data.testStartTimeDesc,
+          endTimeDesc: that.data.testEndTimeDesc,
+        },
+        success(res) {
+          console.log(res)
+        },
+        fail(e) {
+          console.error(e)
+        }
+      },
+    })
   },
 
   // 点击了获取验证码
@@ -61,7 +126,7 @@ Page({
           wx.setStorageSync(app.globalData.userKey, loginPhoneNum)
           // 存入一个空的购物车
           wx.setStorageSync(app.globalData.cargosKey, [])
-          
+
           //获取地址信息
           util.getAddressList()
 
