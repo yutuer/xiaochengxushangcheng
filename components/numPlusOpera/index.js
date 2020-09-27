@@ -19,6 +19,9 @@ Component({
       type: Number,
       value: 40,
     },
+    cargoId: {
+      type: Number
+    }
   },
 
   /**
@@ -34,6 +37,10 @@ Component({
   methods: {
     operaClick: function (e) {
       console.log(e)
+
+      this.triggerEvent("plusOnClick", {
+        cargoId: this.properties.cargoId
+      }, {})
     }
   }
 })
