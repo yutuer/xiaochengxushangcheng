@@ -92,6 +92,9 @@ Page({
       })
     }
     wx.setStorageSync(app.globalData.cargosKey, cargos)
+    wx.showToast({
+      title: '添加成功',
+    })
   },
 
   /**

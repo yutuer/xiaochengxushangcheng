@@ -1,0 +1,14 @@
+/* components/button/index.wxss */
+.inlineButtonContainer {
+  display: inline-block;
+  background-color: skyblue;
+  /* 上边下边 左边右边 */
+  padding: 20rpx 25rpx;  
+  border-radius: 8rpx;
+}
+
+.inlineButtonContainer text {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: white;
+}

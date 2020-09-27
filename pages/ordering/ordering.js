@@ -31,8 +31,9 @@ Page({
       return
     }
 
-    //确定没有未完成的订单
-    
+    //TODO 确定没有未完成的订单, 如果有未付款的订单, 则不让下单
+
+
 
     // !!!! 发起支付请求啦
     this.payStart(1)
@@ -68,12 +69,13 @@ Page({
   },
 
   // 插入订单到数据库
-  insertPaymentToDB(address, cargos, payment, allPrice, youhuiquan) {
+  insertPaymentToDB(orderNo, address, cargos, payment, allPrice, youhuiquan) {
     let phoneNum = wx.getStorageSync(app.globalData.userKey)
     const timestamp = Date.parse(new Date())
     const timeDesc = this.getTimeDesc(timestamp)
 
     let orderObj = {
+      outTradeNo: orderNo,
       phoneNum: phoneNum,
       cargos: cargos,
       address: address,
@@ -113,7 +115,7 @@ Page({
     let that = this
     const allPrice = this.data.orderDetail.allPrice
     const cargos = this.data.orderDetail.cargos
-    const youhuiquan = this.data.youhuiquan
+    const youhuiquan = this.data.orderDetail.youhuiquan
 
     let address = that.data.address
     // 订单号
@@ -138,14 +140,30 @@ Page({
         console.log("payment:", payment);
 
         // 插入数据库
-        that.insertPaymentToDB(address, cargos, payment, allPrice, youhuiquan)
+        that.insertPaymentToDB(orderNo, address, cargos, payment, allPrice, youhuiquan)
         // 缓存设置为无效
         that.updateCache()
+        // 清除掉购物车中所有选择的物品
+        that.removeCargosBuy()
         // 轮询处理支付
-        util.payForPayment(payment)
+        util.payForPayment(orderNo, payment, youhuiquan)
       },
       fail: console.error,
     })
+  },
+
+  // 清除掉购物车中所有select状态的物品
+  removeCargosBuy() {
+    let cargosCache = wx.getStorageSync(app.globalData.cargosKey)
+
+    for (let i = cargosCache.length - 1; i >= 0; i--) {
+      let cargo = cargosCache[i]
+      if (cargo.select) {
+        cargosCache.splice(i, 1)
+      }
+    }
+
+    wx.setStorageSync(app.globalData.cargosKey, cargosCache)
   },
 
   /**

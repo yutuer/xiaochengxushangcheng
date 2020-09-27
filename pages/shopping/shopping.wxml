@@ -10,7 +10,7 @@
      -->
 		<!-- 单个商品样式 -->
 		<view class='itemView' wx:if="{{subItem.num > 0}}">
-			<image class='choose' src='{{subItem.select?"/images/shopping/select.png":"/images/shopping/normal.png"}}' catchtap='singleSelectClick' data-cargoid='{{subItem.cargoid}}' data-index='{{index}}'></image>
+			<image class='choose' src='{{subItem.select?"/images/shopping/select.png":"/images/shopping/normal.png"}}' catch:tap='singleSelectClick' data-cargoid='{{subItem.cargoid}}' data-index='{{index}}'></image>
 			<image class='icon' src='{{subItem.icon}}'></image>
 			<view class='title'>{{subItem.title}}</view>
 			<view class='detail'>{{subItem.detail}}</view>
@@ -18,6 +18,8 @@
 			<image class='reduce' src='../../images/shopping/reduce.png' catchtap='reduceClick' data-cargoid='{{subItem.cargoid}}' data-index='{{index}}'></image>
 			<view class='number'>{{subItem.num}}</view>
 			<image class='add' src='../../images/shopping/add.png' catchtap='addClick' data-cargoid='{{subItem.cargoid}}' data-index='{{index}}'></image>
+
+			<!-- <shopItem-cmp imgSrc="{{subItem.icon}}" price="{{subItem.price}}" desc="{{subItem.title}}"/> -->
 		</view>
 	</block>
 </scroll-view>
@@ -29,5 +31,6 @@
 	<!-- 这里text 也嵌套使用了 -->
 	<view class="youhuiquanShow" wx:if="{{youhuiquan}}">{{youhuiquan.desc}}</view>
 	<text class='priceTxt'>总计：<text style='color: red'>¥{{allPrice}}</text></text>
+	<!-- <text class='priceTxt'>总计：</text><price-cmp price="{{allPrice}}" /> -->
 	<view class='countNum' catchtap="countNumTap" data-allprice="{{allPrice}}"  >去结算({{allCount}}件)</view>
 </view>

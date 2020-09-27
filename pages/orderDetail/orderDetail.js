@@ -9,6 +9,16 @@ Page({
     order: {},
   },
 
+  payOrder() {
+    let order = this.data.order
+    if (order && order.status == 1) {
+      let payment = order.payment
+      let youhuiquan = order.youhuiquan
+      console.log("payment:", payment)
+      util.payForPayment(order.outTradeNo, payment, youhuiquan)
+    }
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */

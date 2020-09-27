@@ -1,0 +1,3 @@
+<!--components/line/index.wxml-->
+<view class="lineContainer" style="color:{{color}}">
+</view>

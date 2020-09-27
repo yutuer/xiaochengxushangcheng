@@ -1,0 +1,4 @@
+<!--components/price/index.wxml-->
+<view class="container">
+  <text>¥{{price}}</text>
+</view>

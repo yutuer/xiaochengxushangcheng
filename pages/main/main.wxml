@@ -11,7 +11,7 @@
 	</view>
 </view>
 <!-- 顶部banner图 -->
-<swiper class='bannerView' indicator-dots='{{true}}' indicator-color='#afafaf' indicator-active-color='#ffffff' autoplay='{{true}}' circular='{{true}}'>
+<swiper class='bannerView' indicator-dots='true' indicator-color='#afafaf' indicator-active-color='#ffffff' autoplay='true' circular='true'>
 	<block wx:for='{{banner}}' wx:key='index'>
 		<swiper-item>
 			<image src='{{item.src}}' data-cargoid="{{item.cargoid}}" catchtap="bannerTap"></image>
@@ -20,7 +20,7 @@
 </swiper>
 
 <!-- 类别item -->
-<swiper class='itemView' indicator-dots='{{true}}' indicator-color='#afafaf' indicator-active-color='#e6e6e6' circular='{{true}}'>
+<swiper class='itemView' indicator-dots='true' indicator-color='#afafaf' indicator-active-color='#e6e6e6' circular='true'>
 	<swiper-item>
 		<!-- 一个页面 -->
 		<block wx:for='{{classData.onePage}}' wx:key='index'>
@@ -41,25 +41,34 @@
 	</swiper-item>
 </swiper>
 
-<view>优惠券</view>
-<view wx:for="{{youhuiquan}}" wx:key="index">
-	<view hidden="true">{{item._id}}</view>
-	<view>优惠券名称: {{item.name}}</view>
-	<view>描述: {{item.desc}}</view>
-	<view>满足金额: {{item.needMoney}}</view>
-	<view>开始时间: {{item.startTimeDesc}}</view>
-	<view>结束时间: {{item.endTimeDesc}}</view>
-	<view hidden="true">{{item.startTime}}</view>
-	<view hidden="true">{{item.endTime}}</view>
-</view>
+<swiper autoplay='true' circular='true' vertical='true' indicator-dots='true' indicator-color='#afafaf'>
+	<block wx:for="{{youhuiquan}}" wx:key="index">
+		<swiper-item>
+			<!-- <view hidden="true">{{item._id}}</view>
+			<view>优惠券名称: {{item.name}}</view>
+			<view>描述: {{item.desc}}</view>
+			<view>满足金额: {{item.needMoney}}</view>
+			<view>开始时间: {{item.startTimeDesc}}</view>
+			<view>结束时间: {{item.endTimeDesc}}</view>
+			<view hidden="true">{{item.startTime}}</view>
+			<view hidden="true">{{item.endTime}}</view>
+			<view>剩余次数(测试): {{item.leftUseCount}}</view> -->
+
+			<youhuiquan-cmp quan="{{item}}" />
+		</swiper-item>
+	</block>
+</swiper>
 
 <!-- 猜你喜欢标题 -->
 <view class='cnxhTitle'>猜你喜欢</view>
 <!-- 猜你喜欢内容 -->
-<block wx:for='{{itemArrayData}}' wx:key='index'>
-	<view class='detailView' catchtap="cargoDetailTap" data-cargoid="{{item.cargoid}}">
+<view class="itemContainer">
+	<block wx:for='{{itemArrayData}}' wx:key='index'>
+		<mainPageItem-cmp price="{{item.price}}" imgSrc="{{item.icon}}" txt="{{item.detail}}" data-cargoid="{{item.cargoid}}" catchtap="cargoDetailTap" />
+		<!-- <view class='detailView' catchtap="cargoDetailTap" data-cargoid="{{item.cargoid}}">
 		<image class='detailImv' src='{{item.icon}}'></image>
 		<text class='detailTxt'>{{item.detail}}</text>
 		<text class='priceTxt'>¥{{item.price}}</text>
-	</view>
-</block>
+	</view> -->
+	</block>
+</view>

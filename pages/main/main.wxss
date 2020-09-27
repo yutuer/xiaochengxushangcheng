@@ -106,6 +106,13 @@
   /* background-color: red; */
 }
 
+.itemContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: #e4e4e4;
+}
+
 .detailView {
   display: inline-block;
   border: 1px solid #eaeaea;

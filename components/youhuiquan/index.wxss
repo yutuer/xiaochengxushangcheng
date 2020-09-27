@@ -1,0 +1,36 @@
+/* components/youhuiquan/index.wxss */
+.youhuiquanContainer {
+  background-color: gainsboro;
+}
+
+.pad {
+  padding: 26rpx 30rpx;
+}
+
+.txtlineHeight{
+    line-height: 60rpx;
+}
+
+.youhuiquanContainer .desc {
+  height: 80rpx;
+  font-weight: bold;
+}
+
+.youhuiquanContainer .validDate {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-size: 24rpx;
+}
+
+.r {
+  background-color: red;
+}
+
+.g {
+  background-color: green;
+}
+
+.b {
+  background-color: blue;
+}

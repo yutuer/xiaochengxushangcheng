@@ -9,9 +9,9 @@ exports.main = async (event, context) => {
     let dbName = event.dbName
     let cond = event.cond //id主键, 才能使用update
     let dataObj = event.dataObj
+    console.log(dataObj)
     if (cond) {
       let record = cloud.database().collection(dbName).doc(cond)
-      console.log(record)
       return await record.update({
         data: dataObj,
         success: console.log,

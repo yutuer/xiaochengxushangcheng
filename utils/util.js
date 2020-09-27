@@ -18,7 +18,7 @@ function getDateByStr(strDate) {
   var a = st.split(" ")
   var b = a[0].split("-")
   var c = a[1].split(":")
-  var date = new Date(b[0], b[1], b[2], c[0], c[1], c[2])
+  var date = new Date(b[0], b[1] - 1, b[2], c[0], c[1], 0)
   return Date.parse(date);
 }
 
@@ -72,38 +72,80 @@ function uuid(len, radix) {
 }
 
 // 请求支付
-function payForPayment(payment) {
+function payForPayment(outTradeNo, payment, youhuiquan) {
   let _this = this
-  console.log("payment:", payment)
+  console.log("outTradeNo:", outTradeNo, ", payment:", payment, ", youhuiquan:", youhuiquan)
   wx.requestPayment({
     ...payment,
     success(res) {
       console.log('pay success', res)
       //更新状态后跳转
       updateOrderPaySuccess(payment.package)
-      wx.showToast({
-        title: '支付成功',
-      })
+      // 扣除优惠券使用次数
+      subYouhuiquanLeftUseCount(youhuiquan)
+
+      console.log('pay success', res)
+      // 跳转到订单页面
       wx.redirectTo({
         url: '../orders/orders',
+        success: function (res) {
+          wx.reLaunch({
+            url: '../orders/orders',
+          })
+        },
       })
     },
     fail(err) {
       console.error('pay fail', err)
-      wx.showToast({
-        title: '支付失败',
-      })
+      //TODO 如果是超时的时候, 更新超时状态到数据库
+
+      //查询订单
+      queryPayment(outTradeNo, payment)
 
       // 也跳转
       wx.redirectTo({
         url: '../orders/orders',
+        success: function (res) {
+          wx.reLaunch({
+            url: '../orders/orders',
+          })
+        },
       })
     }
   })
 }
 
+// 查询订单
+function queryPayment(outTradeNo, payment) {
+  const dataSend = {
+    outTradeNo: outTradeNo,
+  }
+
+  wx.cloud.callFunction({
+    name: 'payQuery',
+    data: {
+      ...dataSend
+    },
+    success(res) {
+      console.log('pay success', res)
+    },
+    fail(err) {
+      console.error('pay fail', err)
+    }
+  })
+}
+
+function updateOrderPayExpire(_package) {
+  updateOrderPayStatus(_package, app.globalData.orderStatus.expire.status)
+}
+
 // 更新订单支付成功
 function updateOrderPaySuccess(_package) {
+  updateOrderPayStatus(_package, app.globalData.orderStatus.hasPay.status)
+}
+
+// 更新订单支付成功
+function updateOrderPayStatus(_package, _status) {
   let phoneNum = wx.getStorageSync(app.globalData.userKey)
   wx.cloud.callFunction({
     name: 'updateWhereData',
@@ -114,12 +156,35 @@ function updateOrderPaySuccess(_package) {
         "package": _package,
       },
       dataObj: {
-        status: app.globalData.orderStatus.hasPay.status,
+        status: _status,
       },
     },
     success: res => console.log(res),
     fail: err => console.err(err),
   })
+}
+
+// 扣除优惠券使用次数
+function subYouhuiquanLeftUseCount(youhuiquan) {
+  if (youhuiquan && youhuiquan.leftUseCount > 10) {
+    const remain = youhuiquan.leftUseCount - 1
+    // 使用同步更新
+    updateYouhuiquanCacheUpdateKey(false)
+    wx.cloud.callFunction({
+      name: 'updateOneData',
+      data: {
+        dbName: 'youhuiquan',
+        cond: youhuiquan._id,
+        dataObj: {
+          leftUseCount: remain
+        }
+      },
+      success: res => {
+        console.log(res)
+      },
+      fail: err => console.err(err),
+    })
+  }
 }
 
 //  获取地址信息, 并存入缓存
@@ -174,8 +239,24 @@ function checkLoginStatus() {
   }
   return phoneNum
 }
+
+// 更新优惠券缓存值 bool
+function updateYouhuiquanCacheUpdateKey(v) {
+  if (v) {
+    wx.setStorageSync(app.globalData.youhuiquanCacheUpdateKey, v)
+  } else {
+    wx.removeStorageSync(app.globalData.youhuiquanCacheUpdateKey)
+  }
+}
+
 // 起服加载优惠券, 把所有未过期的放入缓存. 以后直接调用缓存
 function loadYouhuiquan() {
+  let youhuiquanCacheUpdateKey = wx.getStorageSync(app.globalData.youhuiquanCacheUpdateKey)
+  if (youhuiquanCacheUpdateKey) {
+    return
+  }
+  updateYouhuiquanCacheUpdateKey(true)
+
   let now = Date.parse(new Date())
   wx.cloud.callFunction({
     name: 'queryAllData',
@@ -184,23 +265,101 @@ function loadYouhuiquan() {
     },
     success(res) {
       let datas = res.result.data
-      let nowExpires = []
+      let nowValids = []
 
       for (let i = 0; i < datas.length; i++) {
         let data = datas[i]
-        if (now < data.endTime) {
-          nowExpires.push(data)
+        if (now < data.endTime && data.leftUseCount > 10) {
+          nowValids.push(data)
         }
       }
 
       let youhuiquanC = {
-        data: nowExpires,
+        data: nowValids,
       }
       wx.setStorageSync(app.globalData.youhuiquanKey, youhuiquanC)
     },
     fail(res) {
       console.log(res)
     }
+  })
+}
+
+// 读取订单数据
+function loadOrders(isQueryCache) {
+  if (isQueryCache) {
+    let ordersObj = wx.getStorageSync(app.globalData.ordersKey)
+    if (ordersObj && ordersObj.isAllFinish) {
+      let orders = ordersObj.orders
+    } else {
+      loadOrdersFromDB()
+    }
+  } else {
+    loadOrdersFromDB()
+  }
+}
+
+function loadOrdersFromDB() {
+  const phoneNum = wx.getStorageSync(app.globalData.userKey)
+  if (!phoneNum) {
+    // 当前没有userKey的话就返回(没有主键查什么)
+    return
+  }
+
+  wx.cloud.callFunction({
+    name: 'queryAllData',
+    data: {
+      dbName: 'orders',
+      cond: {
+        phoneNum: phoneNum
+      }
+    },
+    success(res) {
+      console.log(res)
+      if (res.errMsg == 'cloud.callFunction:ok') {
+        let orders = res.result.data
+        let orderStatus = app.globalData.orderStatus
+
+        for (let i = 0; i < orders.length; i++) {
+          let order = orders[i]
+
+          if (order.status == orderStatus.waitForPay.status) {
+            order.statusDesc = orderStatus.waitForPay.name
+          } else if (order.status == orderStatus.hasPay.status) {
+            order.statusDesc = orderStatus.hasPay.name
+          } else if (order.status == orderStatus.finish.status) {
+            order.statusDesc = orderStatus.finish.name
+          } else if (order.status == orderStatus.expire.status) {
+            order.statusDesc = orderStatus.expire.name
+          }
+        }
+
+        // 遍历下看看是否全部完成
+        let finish = true
+        let waiforPay = false
+        for (let i = 0; i < orders.length; i++) {
+          let order = orders[i]
+          if (order.status < app.globalData.orderStatus.finish.status) {
+            // 还有未完成的
+            finish = false
+            if (order.status == app.globalData.orderStatus.waitForPay.status) {
+              // 还有未完成的
+              waiforPay = true
+            }
+          }
+        }
+
+        // 设置到缓存中
+        const ordersCache = {
+          isAllFinish: finish,
+          waitforPay: waiforPay,
+          orders: orders,
+        }
+        // 加入缓存
+        wx.setStorageSync(app.globalData.ordersKey, ordersCache)
+      }
+    },
+    fail: console.error
   })
 }
 
@@ -214,4 +373,6 @@ module.exports = {
   checkLoginStatus: checkLoginStatus,
   getDateByStr: getDateByStr,
   loadYouhuiquan: loadYouhuiquan,
+  updateYouhuiquanCacheUpdateKey: updateYouhuiquanCacheUpdateKey,
+  loadOrders: loadOrders,
 }

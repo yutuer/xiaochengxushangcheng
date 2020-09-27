@@ -1,3 +1,12 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "price-cmp": "/components/price/index",
+    "youhuiquan-cmp": "/components/youhuiquan/index",
+    "inlineButton-cmp": "/components/inlineButton/index",
+    "mainPageItem-cmp": "/components/mainPageItem/index",
+    "classPageItem-cmp": "/components/classPageItem/index",
+    "line-cmp": "/components/line/index",
+    "shopItem-cmp": "/components/shopItem/index",
+    "numPlusOpera-cmp":"/components/numPlusOpera/index"
+  }
 }

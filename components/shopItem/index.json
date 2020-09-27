@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "price-cmp": "/components/price/index",
+    "line-cmp": "/components/line/index",
+    "numPlusOpera-cmp": "/components/numPlusOpera/index"
+  }
+}

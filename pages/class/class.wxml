@@ -21,17 +21,19 @@
 	<!-- <image src='{{contentArr.image}}' class='topImv' wx:if='{{contentArr.image}}'></image> -->
 	<!-- 标题内内容 -->
 	<block wx:for='{{content}}' wx:for-item='itemName' wx:for-index='indexName' wx:key='indexName'>
-		<view class='itemView' catchtap="cargoDetailTap" data-cargoid="{{itemName.cargoid}}">
+		<!-- <view class='itemView' catchtap="cargoDetailTap" data-cargoid="{{itemName.cargoid}}">
 			<image src='{{itemName.icon}}' class='icon'></image>
 			<view class='detail'>
 				<view class="desc">{{itemName.title}}</view>
 				<view class="count">
-					<text class="price">¥{{itemName.price}}</text>
+					<price-cmp price="{{itemName.price}}" />
 					<view class="opera">
 						<image class='add' src='../../images/shopping/add.png' catchtap='addClick' data-cargoid='{{itemName.cargoid}}'></image>
 					</view>
 				</view>
 			</view>
-		</view>
+		</view> -->
+
+		<classPageItem-cmp imgSrc="{{itemName.icon}}" price="{{itemName.price}}" desc="{{itemName.title}}" data-cargoid="{{itemName.cargoid}}" catchtap="" cargoId="{{itemName.cargoid}}"/>
 	</block>
 </scroll-view>

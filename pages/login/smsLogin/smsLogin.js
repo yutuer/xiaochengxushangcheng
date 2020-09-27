@@ -14,11 +14,20 @@ Page({
 
     testName: '',
     testDesc: '',
-    testNeedMoney: '',
+    testNeedMoney: 0,
     testStartTimeDesc: '',
     testEndTimeDesc: '',
     testStartTime: 0,
     testEndTime: 0,
+    leftUseCount: 0,
+
+
+    youhuiquan: {
+      desc: "购满100元赠送西瓜1个",
+      startTimeDesc: "2020-02-02 10:10",
+      endTimeDesc: "2020-02-02 10:10",
+      leftUseCount: 100,
+    }
   },
 
   testName(e) {
@@ -32,8 +41,11 @@ Page({
     })
   },
   testNeedMoney(e) {
+    let value = e.detail.value
+    let v1 = parseFloat(value)
+    let v2 = (v1 * 100) / 100
     this.setData({
-      testNeedMoney: e.detail.value
+      testNeedMoney: v2
     })
   },
   testStartTime(e) {
@@ -52,27 +64,82 @@ Page({
       testEndTimeDesc: dataStr,
     })
   },
+  maxUseCount(e) {
+    let maxUseCount = parseInt(e.detail.value)
+    this.setData({
+      leftUseCount: maxUseCount,
+    })
+  },
 
   test() {
     let that = this
+
+    let dataParam = {
+      name: that.data.testName,
+      desc: that.data.testDesc,
+      needMoney: that.data.testNeedMoney,
+      startTime: that.data.testStartTime,
+      endTime: that.data.testEndTime,
+      startTimeDesc: that.data.testStartTimeDesc,
+      endTimeDesc: that.data.testEndTimeDesc,
+      leftUseCount: that.data.leftUseCount,
+    }
+
+    if (!dataParam.name) {
+      wx.showToast({
+        title: '名称未填写',
+      })
+      return
+    }
+    if (!dataParam.desc) {
+      wx.showToast({
+        title: '描述未填写',
+      })
+      return
+    }
+    if (dataParam.needMoney == 0) {
+      wx.showToast({
+        title: '金额未填写',
+      })
+      return
+    }
+    if (!dataParam.startTimeDesc) {
+      wx.showToast({
+        title: '开始日期未填写',
+      })
+      return
+    }
+    if (!dataParam.endTimeDesc) {
+      wx.showToast({
+        title: '结束日期未填写',
+      })
+      return
+    }
+    if (dataParam.leftUseCount == 0) {
+      wx.showToast({
+        title: '剩余数量未填写',
+      })
+      return
+    }
+
     wx.cloud.callFunction({
       name: 'addOneData',
       data: {
         dbName: 'youhuiquan',
-        dataObj: {
-          name: that.data.testName,
-          desc: that.data.testDesc,
-          needMoney: that.data.testNeedMoney,
-          startTime: that.data.testStartTime,
-          endTime: that.data.testEndTime,
-          startTimeDesc: that.data.testStartTimeDesc,
-          endTimeDesc: that.data.testEndTimeDesc,
-        },
+        dataObj: dataParam,
         success(res) {
           console.log(res)
+
+          wx.showToast({
+            title: '添加记录成功',
+          })
         },
         fail(e) {
           console.error(e)
+
+          wx.showToast({
+            title: '添加记录失败',
+          })
         }
       },
     })
@@ -129,7 +196,8 @@ Page({
 
           //获取地址信息
           util.getAddressList()
-
+          // 获取订单信息
+          util.loadOrders(false)
           // 重新加载当前页面
           wx.reLaunch({
             url: '../smsLogin/smsLogin',

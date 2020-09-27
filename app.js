@@ -45,9 +45,11 @@ App({
     cargosKey: 'cargosKey',
 
     // 优惠券
-    // 格式  {data: [{id: 唯一标识, name:优惠券名称, desc:赠送说明, needMoney: 优惠满足条件(合计金额, 精确到xx), startTimeDesc:开始时间(年-月-日 时:分:秒), endTimeDesc:结束时间(年-月-日 时:分:秒), startTime:开始时间, endTime:结束时间}] }
-    youhuiquanKey:'youhuiquanKey',
-    
+    // 格式  {data: [{id: 唯一标识, name:优惠券名称, desc:赠送说明, needMoney: 优惠满足条件(合计金额, 精确到xx), startTimeDesc:开始时间(年-月-日 时:分:秒), endTimeDesc:结束时间(年-月-日 时:分:秒), startTime:开始时间, endTime:结束时间, leftUseCount:剩余使用次数}] }
+    youhuiquanKey: 'youhuiquanKey',
+    // 优惠券缓存更新key,  onLoad的时候,或者提交订单后设置为false. 从数据库加载后设置为true  false才会从云数据库中加载数据
+    youhuiquanCacheUpdateKey: 'youhuiquanCacheUpdateKey',
+
     // 存放所有(TODO 已经完成的)订单. (TODO 所以订单列表是数据库中已完成的+缓存中的)
     ordersKey: 'ordersKey',
     tableName: {
@@ -68,6 +70,10 @@ App({
       finish: {
         name: '已完成',
         status: 3
+      },
+      expire: {
+        name: '已超时',
+        status: 4
       },
     }
   }

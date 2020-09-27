@@ -1,0 +1,4 @@
+<!--components/button/index.wxml-->
+<view class="inlineButtonContainer">
+	<text>{{content}}</text>
+</view>

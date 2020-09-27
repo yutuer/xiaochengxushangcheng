@@ -1,7 +1,11 @@
 // pages/shopping/shopping.js
 //引入本地数据
 let classData = require('../../utils/data/classData.js');
+import {NumOpera} from '../../utils/tools.js';
+let numOpera = new NumOpera()
+
 const app = getApp()
+
 Page({
 
   /**
@@ -19,58 +23,16 @@ Page({
   // 点击add按钮
   addClick(e) {
     let cargoid = e.currentTarget.dataset.cargoid
-
-    let findcargoIndex = -1
-    let cargoCache = wx.getStorageSync(app.globalData.cargosKey)
-    // 查找
-    if (cargoCache) {
-      for (let i = 0; i < cargoCache.length; i++) {
-        let cargo = cargoCache[i]
-        if (cargo.cargoid == cargoid) {
-          findcargoIndex = i
-          break
-        }
-      }
-    }
-    if (findcargoIndex >= 0) {
-      let cargo = cargoCache[findcargoIndex]
-      cargo.num += 1
-    } else {
-      cargos.push({
-        cargoid: cargoid,
-        num: 1
-      })
-    }
-    wx.setStorageSync(app.globalData.cargosKey, cargoCache)
+    numOpera.addClick(cargoid)
 
     this.updateShow()
   },
 
+  // 点击 减 按钮
   reduceClick(e) {
     let cargoid = e.currentTarget.dataset.cargoid
-
-    let findcargoIndex = -1
-    let cargoCache = wx.getStorageSync(app.globalData.cargosKey)
-    // 查找
-    if (cargoCache) {
-      for (let i = 0; i < cargoCache.length; i++) {
-        let cargo = cargoCache[i]
-        if (cargo.cargoid == cargoid && cargo.num > 0) {
-          findcargoIndex = i
-          break
-        }
-      }
-    }
-    if (findcargoIndex >= 0) {
-      let cargo = cargoCache[findcargoIndex]
-      cargo.num -= 1
-      if (cargo.num == 0) {
-        // 如果减到0 , 去掉选中状态
-        cargo.select = false
-      }
-    }
-    wx.setStorageSync(app.globalData.cargosKey, cargoCache)
-
+    numOpera.reduceClick(cargoid)
+    
     this.updateShow()
   },
 
@@ -150,18 +112,17 @@ Page({
 
     for (let i = 0; i < classData.length; i++) {
       let cargo = classData[i]
-      let numcargo = {
-        ...cargo,
-        num: 0
-      }
-      cargosData.push(numcargo)
 
       if (cargosCache && cargosCache.length > 0) {
         for (let i = 0; i < cargosCache.length; i++) {
           let cargoCache = cargosCache[i]
-          if (cargoCache.cargoid == numcargo.cargoid) {
-            numcargo.num = cargoCache.num
+          if (cargoCache.cargoid == cargo.cargoid) {
+            let numcargo = {
+              ...cargo,
+              num: cargoCache.num
+            }
             numcargo.select = cargoCache.select
+            cargosData.push(numcargo)
             break
           }
         }
@@ -206,7 +167,8 @@ Page({
 
     allPrice = allPrice / 100
 
-    // 计算满足的优惠券信息
+    let now = Date.parse(new Date())
+    // 计算满足的优惠券信息(注意开始时间和结束时间)
     // 满足的优惠券最大钱数 
     let maxyouhuiquan = null
     let youhuiquans = wx.getStorageSync(app.globalData.youhuiquanKey)
@@ -214,11 +176,13 @@ Page({
       for (let i = 0; i < youhuiquans.data.length; i++) {
         let youhuiquan = youhuiquans.data[i]
         if (allPrice >= youhuiquan.needMoney) {
-          if (maxyouhuiquan == null) {
-            maxyouhuiquan = youhuiquan
-          } else {
-            if (youhuiquan.needMoney > maxyouhuiquan.needMoney) {
+          if (youhuiquan.startTime < now && now < youhuiquan.endTime && youhuiquan.leftUseCount > 10) {
+            if (maxyouhuiquan == null) {
               maxyouhuiquan = youhuiquan
+            } else {
+              if (youhuiquan.needMoney > maxyouhuiquan.needMoney) {
+                maxyouhuiquan = youhuiquan
+              }
             }
           }
         }

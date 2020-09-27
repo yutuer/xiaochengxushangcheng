@@ -23,12 +23,6 @@ Page({
     })
   },
 
-  payFor(e) {
-    let payment = e.currentTarget.dataset.pay
-    console.log("payment:", payment)
-    util.payForPayment(payment)
-  },
-
   showByStatus(e) {
     let choosestatus = e.currentTarget.dataset.choosestatus
     this.setData({
@@ -54,7 +48,8 @@ Page({
     let that = this
 
     let ordersObj = wx.getStorageSync(app.globalData.ordersKey)
-    if (ordersObj && ordersObj.isAllFinish) {
+    // if (ordersObj && ordersObj.isAllFinish) {
+    if (false) {
       // 从缓存中拿
       this.setData({
         orders: ordersObj.orders
@@ -85,6 +80,8 @@ Page({
                 order.statusDesc = orderStatus.hasPay.name
               } else if (order.status == orderStatus.finish.status) {
                 order.statusDesc = orderStatus.finish.name
+              } else if (order.status == orderStatus.expire.status) {
+                order.statusDesc = orderStatus.expire.name
               }
             }
 
@@ -92,20 +89,26 @@ Page({
             that.setData({
               orders: orders,
             })
+
             // 遍历下看看是否全部完成
             let finish = true
+            let waiforPay = false
             for (let i = 0; i < orders.length; i++) {
               let order = orders[i]
               if (order.status < app.globalData.orderStatus.finish.status) {
                 // 还有未完成的
                 finish = false
-                break
+                if (order.status == app.globalData.orderStatus.waitForPay.status) {
+                  // 还有未完成的
+                  waiforPay = true
+                }
               }
             }
 
             // 设置到缓存中
             const ordersCache = {
               isAllFinish: finish,
+              waitforPay: waiforPay,
               orders: orders
             }
             // 加入缓存

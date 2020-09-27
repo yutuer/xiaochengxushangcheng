@@ -1,3 +1,7 @@
 {
-  "navigationBarTitleText": "商品分类"
+  "navigationBarTitleText": "商品分类",
+  "usingComponents": {
+    "price-cmp": "/components/price/index",
+    "classPageItem-cmp": "/components/classPageItem/index"
+  }
 }

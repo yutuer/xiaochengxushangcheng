@@ -23,3 +23,48 @@
   top: 420rpx;
   right: 40rpx;
 }
+
+.itemContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: #999999;
+}
+
+.choose{
+  width: 40rpx;
+  height: 40rpx;
+}
+
+
+.container {
+  /* 
+  块状元素加了flex后, 会被转成行内元素 inline-block
+  行内元素是不能加宽高的, 所以要用inline-block
+  */
+  /* display: inline-block; */
+  width: 200rpx;
+}
+
+.chunk {
+  /* 这里的100%, 只是inline-block平分后的宽度, 而不是原来的块的宽度 */
+  display: inline-block;
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.r {
+  background-color: red;
+}
+
+.g {
+  background-color: green;
+}
+
+.b {
+  background-color: blue;
+}
+
+.sky {
+  background-color: skyblue;
+}

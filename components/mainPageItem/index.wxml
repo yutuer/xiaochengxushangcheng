@@ -1,0 +1,13 @@
+<!--components/mainItem/index.wxml-->
+<view class="mainPageItemContainer widthRange pad">
+	<view>
+		<image class="widthRange heightRange" src="{{imgSrc}}"></image>
+	</view>
+	<!-- <view class="widthRange"> -->
+		<text>{{txt}}</text>
+	<!-- </view> -->
+	<view class="opera">
+		<price-cmp price="{{price}}" />
+		<image src="../images/add.png"/>
+	</view>
+</view>

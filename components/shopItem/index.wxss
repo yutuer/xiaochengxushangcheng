@@ -1,0 +1,54 @@
+.classPageItemContainer {
+  display: flex;
+  /* border-bottom: solid 1rpx #999999; */
+}
+
+.padButtom {
+  padding-bottom: 30rpx;
+}
+
+.margin {
+  /* 上边 | 右边 | 下边 | 左边 */
+  margin: 30rpx 20rpx 0 10rpx;
+}
+
+.imgWidth {
+  width: 200rpx;
+}
+
+.widthRange {
+  width: 100%;
+}
+
+.heightRange {
+  height: 180rpx;
+}
+
+.classPageItemContainer .right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 30rpx;
+}
+
+.right .opera {
+  display: flex;
+  justify-content: space-between;
+  height: 50rpx;
+  align-items: center;
+}
+.opera .status{
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.opera .status image {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.status .num {
+  min-width: 120rpx;
+  text-align: center;
+}

@@ -67,17 +67,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    util.loadYouhuiquan()
+    util.updateYouhuiquanCacheUpdateKey(false)
 
-    let youhuiquanData = wx.getStorageSync(app.globalData.youhuiquanKey)
+    util.loadYouhuiquan()
 
     this.setData({
       banner: mainDataJs.bannerData,
       itemArrayData: mainDataJs.itemArrayData,
       classData: mainDataJs.typeData,
       allDatas: classDataJs.allDatas,
-      youhuiquan: youhuiquanData.data,
     })
+
+    util.loadOrders(false)
   },
 
   /**
@@ -90,7 +91,14 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {},
+  onShow: function () {
+    util.loadYouhuiquan()
+
+    let youhuiquanData = wx.getStorageSync(app.globalData.youhuiquanKey)
+    this.setData({
+      youhuiquan: youhuiquanData.data,
+    })
+  },
 
   /**
    * 生命周期函数--监听页面隐藏

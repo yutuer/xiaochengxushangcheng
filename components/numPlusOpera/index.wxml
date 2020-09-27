@@ -1,0 +1,4 @@
+<!--components/numOpera/index.wxml-->
+<view class="numPlusOpera">
+	<image src="{{isPlus == 1?'../images/add.png':'../images/reduce.png'}}" style="height:{{height}}rpx;width:{{width}}rpx;" bindtap="operaClick"></image>
+</view>

@@ -1,0 +1,39 @@
+/* components/mainItem/index.wxss */
+.mainPageItemContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.pad {
+  padding: 20rpx 12rpx;
+}
+
+.widthRange {
+  width: 350rpx;
+}
+
+.heightRange {
+  height: 375rpx;
+}
+
+.mainPageItemContainer text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+}
+
+.mainPageItemContainer image {
+  background-color: #999999;
+}
+
+.mainPageItemContainer .opera {
+  display: flex;
+  justify-content: space-between;
+}
+
+.opera image {
+  width: 40rpx;
+  height: 40rpx;
+}

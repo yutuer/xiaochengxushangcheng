@@ -25,12 +25,38 @@
 		<view class='protocol font28'>登录即代表您已同意<text>京东隐私政策</text></view>
 	</view>
 
-	<button bindtap="test">testAddYouhuiquan</button>
+	<!-- <button bindtap="test">测试优惠券, 添加按钮</button>
 	<view>
 		<input bindblur="testName" value="送香蕉" placeholder="优惠券名称"></input>
 		<input bindblur="testDesc" value="满100送1斤香蕉" placeholder="赠送说明"></input>
 		<input type="digit" bindblur="testNeedMoney" value="100.00" placeholder="优惠满足条件(合计金额, 精确到xx)"></input>
-		<input bindblur="testStartTime" value="2020-8-8 10:00:00" placeholder="开始时间(年-月-日 时:分:秒)"></input>
-		<input bindblur="testEndTime" value="2020-10-10 10:10:10" placeholder="结束时间(年-月-日 时:分:秒)"></input>
-	</view>
+		<input bindblur="testStartTime" value="2020-8-8 10:00" placeholder="开始时间(年-月-日 时:分)"></input>
+		<input bindblur="testEndTime" value="2020-10-10 10:10" placeholder="结束时间(年-月-日 时:分)"></input>
+		<input type="number" bindblur="maxUseCount" value="100" placeholder="最大使用次数"></input>
+	</view> -->
 </block>
+
+<!-- <view class="container">
+	<view class="r chunk">1</view>
+	<view class="g chunk">2</view>
+	<view class="b chunk">3</view>
+</view> -->
+
+<!-- <inlineButton-cmp content="测试高度" /> -->
+<!-- <price-cmp price="100.00"/> -->
+<!-- <youhuiquan-cmp quan="{{youhuiquan}}"/> -->
+<!-- <view class="itemContainer">
+	<mainPageItem-cmp price="20.0" imgSrc="/images/getImages/ef747eda057cd778.jpg!q70.jpg" txt="华嘉 阳台 12夹水蓝色" />
+	<mainPageItem-cmp price="20.0" imgSrc="/images/getImages/ef747eda057cd778.jpg!q70.jpg" txt="华嘉 圆形塑料夹子18夹防风多功能折叠内衣袜子架加粗卧室阳台 12夹水蓝色" />
+	<mainPageItem-cmp price="20.0" imgSrc="/images/getImages/dc2268445a844a54.jpg!q70.jpg" txt="华嘉 圆形塑料夹子1阳台 12夹水蓝色" />
+</view>
+
+ <classPageItem-cmp imgSrc="/images/getImages/5be6ebd8Nb07ef492.png" price="0.01" desc="西瓜一箱6颗" />
+<line-cmp color="#999999"/>
+ -->
+<!-- <view>
+	<image class='choose' src='{{subItem.select?"/images/shopping/select.png":"/images/shopping/normal.png"}}' catchtap='singleSelectClick' data-cargoid='{{subItem.cargoid}}' data-index='{{index}}'></image>
+	<shopItem-cmp imgSrc="/images/getImages/5be6ebd8Nb07ef492.png" price="0.01" desc="西瓜一箱6颗" />
+
+	<numPlusOpera-cmp width="50" height="50"/>
+</view> -->

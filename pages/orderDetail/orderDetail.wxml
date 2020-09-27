@@ -12,7 +12,7 @@
 
 	<view class="payInfo">
 		<view>商品小计: <text>¥ {{order.allPrice}}</text></view>
-		<view>优惠金额: <text>¥ {{order.allPrice}}</text></view>
+		<view>优惠券: <text> {{order.youhuiquan.desc}}</text></view>
 		<view>实付金额合计: <text>¥ {{order.allPrice}}</text></view>
 	</view>
 
@@ -23,7 +23,7 @@
 	</view>
 
 	<view>
-		<view wx:if="{{order.status == 1}}"><button>去支付</button></view>
+		<view wx:if="{{order.status == 1}}" bindtap="payOrder"><button>去支付</button></view>
 		<view wx:else></view>
 	</view>
 </view>

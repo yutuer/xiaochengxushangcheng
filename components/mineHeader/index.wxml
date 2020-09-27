@@ -1,0 +1,8 @@
+<!--components/mineHeader/index.wxml-->
+<view class="mineHeaderContainer">
+	<view class="mineContainer">
+		<image class="" src="{{headerIcon}}" />
+		<text>{{name}}</text>
+	</view>
+	<image class="" src="images/zzk_type.png"></image>
+</view>
