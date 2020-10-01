@@ -2,6 +2,7 @@
   "component": true,
   "usingComponents": {
     "price-cmp": "/components/price/index",
-    "line-cmp": "/components/line/index"
+    "line-cmp": "/components/line/index",
+    "numOpera-cmp":"/components/numOpera/index"
   }
 }

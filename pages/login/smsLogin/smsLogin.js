@@ -309,5 +309,9 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  plusOnClickFunc: function (e) {
+    console.log(e)
   }
 })

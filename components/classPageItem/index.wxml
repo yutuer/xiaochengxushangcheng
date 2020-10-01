@@ -1,11 +1,11 @@
 <!--components/classPageItem/index.wxml-->
 <view class="classPageItemContainer heightRange margin padButtom">
-	<image class="imgWidth heightRange" src="{{imgSrc}}"></image>
-	<view class="right heightRange widthRange">
+	<image style="width:{{imgWidth}}rpx; height:{{heightRange}}rpx" src="{{imgSrc}}"></image>
+	<view class="right widthRange" style="height:{{heightRange}}rpx">
 		<text class="textHeight">{{desc}}</text>
-		<view class="opera">
+		<view class="bottomer">
 			<price-cmp price="{{price}}" />
-			<image src="../images/add.png" bindtap="addClick" />
+			
 		</view>
 	</view>
 </view>

@@ -1,4 +1,4 @@
 <!--components/price/index.wxml-->
 <view class="container">
-  <text>¥{{price}}</text>
+  <text style="font-size:{{fontSize}}rpx">¥{{price}}</text>
 </view>

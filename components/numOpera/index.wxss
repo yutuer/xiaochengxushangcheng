@@ -1,4 +1,8 @@
 /* components/numOpera/index.wxss */
-.numPlusOpera {
+.numOpera {
   display: flex;
+}
+
+.numOpera text {
+  text-align: center;
 }

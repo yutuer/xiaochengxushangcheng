@@ -6,9 +6,9 @@
 		<view class="opera">
 			<price-cmp price="{{price}}" />
 			<view class="status">
-				<numPlusOpera-cmp isPlus="0" width="50" height="50"/>
+				<numOpera-cmp isPlus="0" width="50" height="50"/>
 				<text class="num">{{num}}</text>
-				<numPlusOpera-cmp width="50" height="50"/>
+				<numOpera-cmp width="50" height="50"/>
 			</view>
 		</view>
 	</view>

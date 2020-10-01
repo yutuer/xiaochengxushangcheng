@@ -5,6 +5,6 @@
 
 .container text {
   color: red;
-  font-size: 32rpx;
+  /* font-size: 32rpx; */
   font-weight: bolder;
 }

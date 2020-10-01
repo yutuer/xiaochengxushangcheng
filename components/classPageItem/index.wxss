@@ -14,10 +14,6 @@
   margin: 30rpx 20rpx 0 10rpx;
 }
 
-.imgWidth {
-  width: 200rpx;
-}
-
 .widthRange {
   width: 100%;
 }
@@ -33,12 +29,14 @@
   padding-left: 30rpx;
 }
 
-.right .opera {
+.right .bottomer {
   display: flex;
   justify-content: space-between;
 }
 
-.opera image {
+
+
+.bottomer image {
   height: 40rpx;
   width: 40rpx;
 }

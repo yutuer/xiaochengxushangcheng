@@ -1,0 +1,6 @@
+<!--components/numOpera/index.wxml-->
+<view class="numOpera">
+	<image src="images/reduce.png" bindtap="subClick" style="height:{{imgHeight}}rpx;width:{{imgWidth}}rpx;" wx:if="{{subImgShow}}" />
+	<text wx:if="{{numShow}}" style="width:{{textWidth}}rpx; line-height:{{imgHeight}}rpx">{{showNum}}</text>
+	<image src="images/add.png" style="height:{{imgHeight}}rpx;width:{{imgWidth}}rpx;" bindtap="addClick" />
+</view>

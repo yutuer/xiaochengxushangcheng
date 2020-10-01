@@ -7,6 +7,6 @@
     "classPageItem-cmp": "/components/classPageItem/index",
     "line-cmp": "/components/line/index",
     "shopItem-cmp": "/components/shopItem/index",
-    "numPlusOpera-cmp":"/components/numPlusOpera/index"
+    "numOpera-cmp":"/components/numOpera/index"
   }
 }

@@ -3,6 +3,6 @@
   "usingComponents": {
     "price-cmp": "/components/price/index",
     "line-cmp": "/components/line/index",
-    "numPlusOpera-cmp": "/components/numPlusOpera/index"
+    "numOpera-cmp": "/components/numOpera/index"
   }
 }
