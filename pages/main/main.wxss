@@ -95,7 +95,7 @@
 }
 
 /* 猜你喜欢标题 */
-.cnxhTitle {
+.cnxhTitle { 
   width: 100%;
   line-height: 70rpx;
   padding-left: 40rpx;

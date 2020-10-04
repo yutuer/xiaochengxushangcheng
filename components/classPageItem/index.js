@@ -24,7 +24,8 @@ Component({
     },
     // 物品id
     cargoId: {
-      type: Number
+      type: Number,
+      value: 100
     },
     //图片链接
     imgSrc: {
@@ -63,8 +64,8 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    addClick(e) {
-      numOpera.addClick(this.properties.cargoId)
+    plusOnClickFunc(e){
+      numOpera.addClick(e.detail.cargoId)
     }
   }
 })

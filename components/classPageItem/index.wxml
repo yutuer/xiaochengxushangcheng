@@ -5,7 +5,7 @@
 		<text class="textHeight">{{desc}}</text>
 		<view class="bottomer">
 			<price-cmp price="{{price}}" />
-			
+			<numOpera-cmp imgWidth="40" imgHeight="40" cargoId="{{cargoId}}" textWidth="100" bind:plusOnClickEvent="plusOnClickFunc"/>
 		</view>
 	</view>
 </view>
