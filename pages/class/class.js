@@ -1,8 +1,10 @@
 // pages/class/class.js
 //引入本地数据
 let classData = require('../../utils/data/classData.js');
+const allCargoDatas = require('../../utils/data/allCargoData.js')
 const util = require('../../utils/util.js');
 const app = getApp()
+
 Page({
 
   /**
@@ -101,10 +103,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.updateOriginDatas(1)
-
     this.setData({
-      titleArray: classData.titleArray,
+      typeArray: allCargoDatas.typeArray,
     })
   },
   /**
@@ -118,7 +118,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let switchType =  app.globalData.switchType
+    this.updateOriginDatas(switchType)
+    app.globalData.switchType = 1
   },
 
   /**
@@ -154,5 +156,6 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+
 })

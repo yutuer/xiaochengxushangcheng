@@ -3,5 +3,5 @@
 	<image hidden="{{!subImgShow}}" src="images/reduce.png" bindtap="subClick"
 		style="height:{{imgHeight}}rpx;width:{{imgWidth}}rpx;" />
 	<text hidden="{{!numShow}}" style="width:{{textWidth}}rpx; line-height:{{imgHeight}}rpx">{{showNum}}</text>
-	<image src="images/add.png" style="height:{{imgHeight}}rpx;width:{{imgWidth}}rpx;" bindtap="addClick" />
+	<image src="images/add.png" style="height:{{imgHeight}}rpx;width:{{imgWidth}}rpx;" catch:tap="addClick" />
 </view>

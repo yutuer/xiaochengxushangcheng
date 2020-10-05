@@ -75,7 +75,7 @@
 <view class="itemContainer">
 	<block wx:for='{{likesData}}' wx:key='index'>
 		<mainPageItem-cmp price="{{item.price}}" imgSrc="{{item.icon}}" txt="{{item.detail}}"
-			data-cargoid="{{item.cargoid}}" catchtap="cargoDetailTap" />
+			data-cargoid="{{item.cargoid}}" catch:tap="cargoDetailTap" />
 		<!-- <view class='detailView' catchtap="cargoDetailTap" data-cargoid="{{item.cargoid}}">
 		<image class='detailImv' src='{{item.icon}}'></image>
 		<text class='detailTxt'>{{item.detail}}</text>

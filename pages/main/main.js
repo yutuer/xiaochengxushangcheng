@@ -32,7 +32,7 @@ Page({
     console.log(e)
     let type = e.currentTarget.dataset.typeid
     //调到分类页
-
+    util.navigateToType(type)
   },
 
   // 点击了查看详情

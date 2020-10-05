@@ -42,6 +42,20 @@ function navigateToDetail(cargoid) {
   })
 }
 
+// 跳转到分类页
+function navigateToType(type) {
+  app.globalData.switchType = type
+  wx.switchTab({
+    url: '../class/class',
+    success() {
+
+    },
+    fail() {
+
+    }
+  })
+}
+
 function uuid(len, radix) {
   var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
   var uuid = [],
@@ -367,6 +381,7 @@ module.exports = {
   formatTime: formatTime,
   getCloudDB: getCloudDB,
   navigateToDetail: navigateToDetail,
+  navigateToType: navigateToType,
   uuid: uuid,
   payForPayment: payForPayment,
   getAddressList: getAddressList,

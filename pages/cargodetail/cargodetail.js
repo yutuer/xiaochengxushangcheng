@@ -1,5 +1,9 @@
 // pages/cargodetail/cargodetail.js
 let allCargosData = require('../../utils/data/allCargoData.js');
+import {
+  NumOpera
+} from "../../utils/tools.js"
+let numOpera = new NumOpera()
 const app = getApp()
 
 Page({
@@ -108,5 +112,11 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  plusOnClickFunc(e){
+    console.log(e);
+    
+    numOpera.addClick(e.detail.cargoId)
   }
 })

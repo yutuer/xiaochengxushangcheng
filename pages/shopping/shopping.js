@@ -1,6 +1,7 @@
 // pages/shopping/shopping.js
 //引入本地数据
 let classData = require('../../utils/data/classData.js');
+
 import {NumOpera} from '../../utils/tools.js';
 let numOpera = new NumOpera()
 
@@ -255,5 +256,11 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  plusOnClickFunc(e){
+    console.log(e);
+    
+    numOpera.addClick(e.detail.cargoId)
   }
 })

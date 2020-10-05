@@ -10,8 +10,8 @@
 <!-- 底部分类 -->
 <!-- 分类左侧标签 -->
 <scroll-view class='leftTitle overflow' scroll-y="true" bindscrolltoupper="upper" bindscrolltolower="lower">
-	<block wx:for='{{titleArray}}' wx:key='index'>
-		<view class='titleView {{index+1==selectType?"selectTitleView":""}}' data-index='{{index}}' bindtap='titleViewClick'>{{item.desc}}</view>
+	<block wx:for='{{typeArray}}' wx:key='index'>
+		<view class='titleView {{index+1==selectType?"selectTitleView":""}}' data-index='{{index}}' bind:tap='titleViewClick'>{{item.desc}}</view>
 	</block>
 </scroll-view>
 
@@ -34,6 +34,6 @@
 			</view>
 		</view> -->
 
-		<classPageItem-cmp imgSrc="{{itemName.icon}}" price="{{itemName.price}}" desc="{{itemName.title}}" subImgShow="{{false}}" numShow="{{false}}" bind:tap="cargoDetailTap" cargoId="{{itemName.cargoid}}" data-cargoid="{{itemName.cargoid}}"/>
+		<classPageItem-cmp imgSrc="{{itemName.icon}}" price="{{itemName.price}}" desc="{{itemName.title}}" subImgShow="{{false}}" numShow="{{false}}" catch:tap="cargoDetailTap" cargoId="{{itemName.cargoid}}" data-cargoid="{{itemName.cargoid}}" />
 	</block>
 </scroll-view>
