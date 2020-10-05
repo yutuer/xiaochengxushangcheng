@@ -51,11 +51,12 @@
 	<mainPageItem-cmp price="20.0" imgSrc="/images/getImages/dc2268445a844a54.jpg!q70.jpg" txt="华嘉 圆形塑料夹子1阳台 12夹水蓝色" />
 </view> -->
 
-<classPageItem-cmp imgSrc="/images/getImages/5be6ebd8Nb07ef492.png" price="0.01" desc="西瓜一箱6颗" imgWidth="200" heightRange="180" />
+<classPageItem-cmp imgSrc="/images/getImages/5be6ebd8Nb07ef492.png" price="0.01" desc="西瓜一箱6颗" imgWidth="200" heightRange="200"
+subImgShow="{{true}}" numShow="{{true}}"/>
 <!-- <line-cmp color="#999999"/> -->
 
 <view>
 	<!-- <image class='choose' src='{{subItem.select?"/images/shopping/select.png":"/images/shopping/normal.png"}}' catchtap='singleSelectClick' data-cargoid='{{subItem.cargoid}}' data-index='{{index}}'></image>
 	<shopItem-cmp imgSrc="/images/getImages/5be6ebd8Nb07ef492.png" price="0.01" desc="西瓜一箱6颗" /> -->
 </view>
-<numOpera-cmp imgWidth="50" imgHeight="50" cargoId="100" subImgShow="true" numShow="true" showNum="0" textWidth="100" bind:plusOnClickEvent="plusOnClickFunc"/>
+<numOpera-cmp imgWidth="50" imgHeight="50" cargoId="100" subImgShow="{{false}}" numShow="{{false}}" showNum="100" textWidth="100" bind:plusOnClickEvent="plusOnClickFunc"/>

@@ -1,5 +1,5 @@
 // pages/cargodetail/cargodetail.js
-let classData = require('../../utils/data/classData.js');
+let allCargosData = require('../../utils/data/allCargoData.js');
 const app = getApp()
 
 Page({
@@ -39,8 +39,6 @@ Page({
       })
     }
     wx.setStorageSync(app.globalData.cargosKey, cargos)
-
-
   },
 
   /**
@@ -51,7 +49,7 @@ Page({
 
     let cargoid = options.cargoid
     // 遍历查找数据
-    let cargodatas = classData.allDatas
+    let cargodatas = allCargosData.allDatas
     for (let i = 0; i < cargodatas.length; i++) {
       let cargo = cargodatas[i]
       if (cargo && cargo.cargoid == cargoid) {

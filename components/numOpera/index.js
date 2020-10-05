@@ -1,5 +1,12 @@
 // components/numOpera/index.js
 Component({
+
+  lifetimes: {
+    attached: function() {
+      // 在组件实例进入页面节点树时执行
+    },
+  },
+
   /**
    * 组件的属性列表
    */
@@ -23,21 +30,19 @@ Component({
       type: Number,
       value: 0
     },
-
     // 减号符是否显示
     subImgShow: {
       type: Boolean,
-      value: false
+      value: true
     },
     // 数字符号是否显示
     numShow: {
       type: Boolean,
-      value: false
+      value: true
     },
     // 显示数字
     showNum: {
       type: Number,
-      value: 0
     }
   },
 
@@ -45,7 +50,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-
+    
   },
 
   /**

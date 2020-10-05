@@ -34,6 +34,6 @@
 			</view>
 		</view> -->
 
-		<classPageItem-cmp imgSrc="{{itemName.icon}}" price="{{itemName.price}}" desc="{{itemName.title}}" data-cargoid="{{itemName.cargoid}}" catchtap="" cargoId="{{itemName.cargoid}}"/>
+		<classPageItem-cmp imgSrc="{{itemName.icon}}" price="{{itemName.price}}" desc="{{itemName.title}}" subImgShow="{{false}}" numShow="{{false}}" bind:tap="cargoDetailTap" cargoId="{{itemName.cargoid}}" data-cargoid="{{itemName.cargoid}}"/>
 	</block>
 </scroll-view>

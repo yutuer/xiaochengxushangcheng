@@ -11,35 +11,45 @@
 	</view>
 </view>
 <!-- 顶部banner图 -->
-<swiper class='bannerView' indicator-dots='true' indicator-color='#afafaf' indicator-active-color='#ffffff' autoplay='true' circular='true'>
+<swiper class='bannerView' indicator-dots='true' indicator-color='#afafaf' indicator-active-color='#ffffff'
+	autoplay='true' circular='true'>
 	<block wx:for='{{banner}}' wx:key='index'>
 		<swiper-item>
-			<image src='{{item.src}}' data-cargoid="{{item.cargoid}}" catchtap="bannerTap"></image>
+			<image src='{{item.icon}}' data-cargoid="{{item.cargoid}}" catchtap="bannerTap"></image>
 		</swiper-item>
 	</block>
 </swiper>
 
 <!-- 类别item -->
-<swiper class='itemView' indicator-dots='true' indicator-color='#afafaf' indicator-active-color='#e6e6e6' circular='true'>
+<!-- 一个页面 -->
+<view class="typeView">
+	<block wx:for='{{classData}}' wx:key='index'>
+		<view class='item' catchtap="typeTap" data-typeid="{{item.type}}">
+			<image class='iconView' src='{{item.icon}}'></image>
+			<text class='titleView'>{{item.desc}}</text>
+		</view>
+	</block>
+</view>
+
+<!-- <swiper class='itemView' indicator-dots='true' indicator-color='#afafaf' indicator-active-color='#e6e6e6'
+	circular='true'>
 	<swiper-item>
-		<!-- 一个页面 -->
-		<block wx:for='{{classData.onePage}}' wx:key='index'>
+		<block wx:for='{{classData}}' wx:key='index'>
 			<view class='item' catchtap="typeTap" data-typeid="{{item.type}}">
 				<image class='iconView' src='{{item.icon}}'></image>
-				<view class='titleView'>{{item.title}}</view>
+				<view class='titleView'>{{item.desc}}</view>
 			</view>
 		</block>
 	</swiper-item>
 	<swiper-item>
-		<!-- 一个页面 -->
 		<block wx:for='{{classData.twoPage}}' wx:key='index'>
 			<view class='item' catchtap="typeTap" data-typeid="{{item.type}}">
 				<image class='iconView' src='{{item.icon}}'></image>
 				<view class='titleView'>{{item.title}}</view>
 			</view>
 		</block>
-	</swiper-item>
-</swiper>
+	</swiper-item> 
+</swiper>-->
 
 <swiper autoplay='true' circular='true' vertical='true' indicator-dots='true' indicator-color='#afafaf'>
 	<block wx:for="{{youhuiquan}}" wx:key="index">
@@ -63,8 +73,9 @@
 <view class='cnxhTitle'>猜你喜欢</view>
 <!-- 猜你喜欢内容 -->
 <view class="itemContainer">
-	<block wx:for='{{itemArrayData}}' wx:key='index'>
-		<mainPageItem-cmp price="{{item.price}}" imgSrc="{{item.icon}}" txt="{{item.detail}}" data-cargoid="{{item.cargoid}}" catchtap="cargoDetailTap" />
+	<block wx:for='{{likesData}}' wx:key='index'>
+		<mainPageItem-cmp price="{{item.price}}" imgSrc="{{item.icon}}" txt="{{item.detail}}"
+			data-cargoid="{{item.cargoid}}" catchtap="cargoDetailTap" />
 		<!-- <view class='detailView' catchtap="cargoDetailTap" data-cargoid="{{item.cargoid}}">
 		<image class='detailImv' src='{{item.icon}}'></image>
 		<text class='detailTxt'>{{item.detail}}</text>

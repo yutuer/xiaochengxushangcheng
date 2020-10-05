@@ -33,10 +33,3 @@
   display: flex;
   justify-content: space-between;
 }
-
-
-
-.bottomer image {
-  height: 40rpx;
-  width: 40rpx;
-}

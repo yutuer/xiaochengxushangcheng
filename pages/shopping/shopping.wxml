@@ -11,7 +11,7 @@
 		<!-- 单个商品样式 -->
 		<view class='itemView' wx:if="{{subItem.num > 0}}">
 			<image class='choose' src='{{subItem.select?"/images/shopping/select.png":"/images/shopping/normal.png"}}' catch:tap='singleSelectClick' data-cargoid='{{subItem.cargoid}}' data-index='{{index}}'></image>
-			<view class="outer">
+			<!-- <view class="outer">
 				<image class='icon' src='{{subItem.icon}}'></image>
 				<view class="righter">
 					<view class='title'>{{subItem.title}}</view>
@@ -23,9 +23,11 @@
 						<image class='add' src='../../images/shopping/add.png' catchtap='addClick' data-cargoid='{{subItem.cargoid}}' data-index='{{index}}' />
 					</view>
 				</view>
-			</view>
+			</view> -->
 
 			<!-- <shopItem-cmp imgSrc="{{subItem.icon}}" price="{{subItem.price}}" desc="{{subItem.title}}"/> -->
+
+			<classPageItem-cmp class="right" imgSrc="{{subItem.icon}}" price="{{subItem.price}}" desc="{{subItem.title}}" imgWidth="200" cargoId="{{subItem.cargoid}}" heightRange="200" subImgShow="true" numShow="true" showNum="{{subItem.num}}" />
 		</view>
 	</block>
 </scroll-view>

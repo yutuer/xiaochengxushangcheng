@@ -1,36 +1,59 @@
 /* pages/cargodetail/cargodetail.wxss */
-.detailView {}
-
-.detailView .imageView {
+.detailView {
   display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.detailView .detailImv {
-  width: 90%;
-  justify-content: center;
+.detailView .imageView {
+  width: 100%;
 }
 
 .detailView .content {
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
   padding: 20rpx;
 }
 
-.title {
+.basic {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 260rpx;
+}
+
+.basic .title {
   height: 100rpx;
-  font-size: 40rpx;
+  font-size: 50rpx;
   font-weight: bold;
-  flex-wrap: wrap;
-  line-height: 40rpx;
 }
 
-.price {
-  color: red;
-  font-size: 34rpx;
+.productDetail {
+  display: flex;
+  flex-direction: column;
+  background-color: #eeeeee;
+  height: 500rpx;
+  margin-top: 20rpx;
+  padding: 20rpx;
 }
 
-.detailView .add {
-  right: 40rpx;
-  bottom: 20rpx;
-  width: 40rpx;
-  height: 40rpx;
+.productDetail .xiangqing {
+  align-self: center;
+}
+
+.bottomer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bottomer .price {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.heightRow {
+  height: 80rpx;
+  margin-top: 20rpx;
 }

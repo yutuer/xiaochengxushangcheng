@@ -1,25 +1,29 @@
 <!--pages/cargodetail/cargodetail.wxml-->
 <view class='detailView' catchtap="cargoDetailTap" data-cargoid="{{item.cargoid}}">
-	<view class="imageView">
-		<image class='detailImv' src='{{item.icon}}'></image>
-	</view>
+	<image class='imageView' src='{{item.icon}}'></image>
 	<view class="content">
-		<view>
-			<view>
-				<text class='title'>{{item.title}}</text>
-			</view>
-			<!-- 规格 -->
-			<text class="weightTxt">{{item.weight}}</text>
-			<view>
-				<!-- 详情 -->
-				<text class="detail">{{item.detail}}</text>
+		<view class="basic">
+			<text class='title'>{{item.title}}</text>
+			<!-- 详情 -->
+			<text class="detail">{{item.detail}}</text>
+			<!-- 价格 -->
+			<view class="bottomer">
+				<view class="price">
+					<price-cmp price="{{item.price}}" fontSize="40" />
+					<text class="weightTxt">/瓶</text>
+				</view>
+				<numOpera-cmp imgWidth="50" imgHeight="50" cargoId="{{item.cargoid}}" textWidth="100" subImgShow="{{false}}"
+					numShow="{{false}}" bind:plusOnClickEvent="plusOnClickFunc" />
 			</view>
 		</view>
-		<view class="">
-			<text>最快 <text>{{leftTime}}</text> 分钟送达</text>
-			<text class='price'>¥{{item.price}}</text>
+		<view class="productDetail">
+			<text class="xiangqing">详情</text>
+			<text class="heightRow">产地</text>
+			<text class="heightRow">规格</text>
+			<text class="heightRow">重量</text>
 			<!-- 配送时间预估 -->
-			<image class='add' src='../../images/shopping/add.png' catchtap='addClick' data-cargoid='{{itemName.cargoid}}'></image>
+			<!-- <text>最快 <text>{{leftTime}}</text> 分钟送达</text> -->
+			<!-- <image class='add' src='../../images/shopping/add.png' catchtap='addClick' data-cargoid='{{itemName.cargoid}}'/> -->
 		</view>
 	</view>
 </view>

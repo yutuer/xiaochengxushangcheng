@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "price-cmp": "/components/price/index",
+    "numOpera-cmp": "/components/numOpera/index"
+  }
 }

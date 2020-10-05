@@ -95,7 +95,7 @@
 }
 
 /* 猜你喜欢标题 */
-.cnxhTitle { 
+.cnxhTitle {
   width: 100%;
   line-height: 70rpx;
   padding-left: 40rpx;
@@ -148,4 +148,29 @@
 .detailView .priceTxt {
   color: red;
   font-size: 34rpx;
+}
+
+.typeView {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.typeView .item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25%;
+  padding: 10rpx 0;
+}
+
+.typeView .item .titleView {
+  text-align: center;
+}
+
+.typeView .item .iconView {
+  width: 102rpx;
+  height: 102rpx;
+  background-color: #eaeaea;
+  border-radius: 51rpx;
 }

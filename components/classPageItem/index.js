@@ -65,6 +65,8 @@ Component({
    */
   methods: {
     plusOnClickFunc(e){
+      console.log(e);
+      
       numOpera.addClick(e.detail.cargoId)
     }
   }

@@ -3,6 +3,7 @@
 let mainDataJs = require('../../utils/data/mainData.js')
 const classDataJs = require('../../utils/data/classData.js')
 const allDatas = require('../../utils/data/classData.js')
+const allCargoDatas = require('../../utils/data/allCargoData.js')
 const util = require("../../utils/util.js")
 const app = getApp()
 Page({
@@ -13,7 +14,7 @@ Page({
   data: {
     banner: [], //图片轮播数据
     classData: {}, //分类数据
-    itemArrayData: [], //猜你喜欢数据
+    likesData: [], //猜你喜欢数据
     allDatas: {},
     allSearchData: [],
     youhuiquan: [],
@@ -71,14 +72,63 @@ Page({
 
     util.loadYouhuiquan()
 
-    this.setData({
-      banner: mainDataJs.bannerData,
-      itemArrayData: mainDataJs.itemArrayData,
-      classData: mainDataJs.typeData,
-      allDatas: classDataJs.allDatas,
-    })
+    // this.loadBannerData()
+    // this.loadClassData()
+    // this.loadLikeItemData()
+    // this.loadAllData()
+
+    this.loadAllCargoData()
 
     util.loadOrders(false)
+  },
+
+  loadAllCargoData: function () {
+    let allCargos = allCargoDatas.allDatas
+
+    let types = allCargoDatas.typeArray
+    let banners = []
+    let likes = []
+
+    for (let i = 0; i < allCargos.length; i++) {
+      let cargo = allCargos[i]
+      if (cargo.isBanner) {
+        banners.push(cargo)
+      }
+      if (cargo.isLike) {
+        likes.push(cargo)
+      }
+    }
+
+    this.setData({
+      banner: banners,
+      classData: types,
+      likesData: likes,
+      allDatas: allCargos,
+    })
+  },
+
+  loadBannerData: function () {
+    this.setData({
+      banner: mainDataJs.bannerData
+    })
+  },
+
+  loadLikeItemData: function () {
+    this.setData({
+      itemArrayData: mainDataJs.itemArrayData
+    })
+  },
+
+  loadClassData: function () {
+    this.setData({
+      classData: mainDataJs.typeData
+    })
+  },
+
+  loadAllData: function () {
+    this.setData({
+      allDatas: classDataJs.allDatas,
+    })
   },
 
   /**
