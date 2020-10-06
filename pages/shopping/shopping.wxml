@@ -27,7 +27,7 @@
 
 			<!-- <shopItem-cmp imgSrc="{{subItem.icon}}" price="{{subItem.price}}" desc="{{subItem.title}}"/> -->
 
-			<classPageItem-cmp class="right" imgSrc="{{subItem.icon}}" price="{{subItem.price}}" desc="{{subItem.title}}" imgWidth="200" cargoId="{{subItem.cargoid}}" heightRange="200" subImgShow="true" numShow="true" showNum="{{subItem.num}}" bind:plusOnClickEvent="plusOnClickFunc"/>
+			<classPageItem-cmp class="right" imgSrc="{{subItem.icon}}" price="{{subItem.price}}" desc="{{subItem.title}}" imgWidth="200" cargoId="{{subItem.cargoid}}" heightRange="200" subImgShow="true" numShow="true" showNum="{{subItem.num}}" catch:plusOnClickEvent="plusOnClickFun" catch:reduceOnClickEvent="reduceOnClickFun"/>
 		</view>
 	</block>
 </scroll-view>

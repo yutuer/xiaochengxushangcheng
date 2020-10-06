@@ -1,0 +1,17 @@
+/* components/tipButton/index.wxss */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.alert {
+  position: relative;
+  left: 20rpx;
+  bottom: 20rpx;
+  background-color: red;
+  height: 10rpx;
+  width: 10rpx;
+  color: white;
+}

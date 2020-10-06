@@ -12,6 +12,7 @@ Page({
     chooseStatus: 0,
   },
 
+  // 显示订单详情
   showOrderDetail(e) {
     let index = e.currentTarget.dataset.index
     let order = this.data.orders[index]
@@ -25,6 +26,10 @@ Page({
 
   showByStatus(e) {
     let choosestatus = e.currentTarget.dataset.choosestatus
+    this.setChooseStatus(choosestatus)
+  },
+
+  setChooseStatus(choosestatus) {
     this.setData({
       chooseStatus: choosestatus
     })
@@ -34,9 +39,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log("orders onLoad")
-
-    this.loadOrders()
+    console.log("orders onLoad:", options)
+    let choosestatus = options.chooseStatus
+    this.loadOrders(choosestatus)
   },
 
   // 移动到utils中
@@ -44,7 +49,7 @@ Page({
   // 1. 先从wx缓存拿, 如果发现wx缓存里没有, 或者说需要获取全部数据(这种情况是用户发起了新订单, 或者有订单没有完成), 就从数据库中取
   // 获取到后先检查下. 如果全部完成, 则下次从缓存拿
   // 2. 否则使用缓存数据.
-  loadOrders() {
+  loadOrders(chooseStatus) {
     let that = this
 
     let ordersObj = wx.getStorageSync(app.globalData.ordersKey)
@@ -88,6 +93,7 @@ Page({
             // 所有订单
             that.setData({
               orders: orders,
+              chooseStatus: chooseStatus,
             })
 
             // 遍历下看看是否全部完成

@@ -313,5 +313,29 @@ Page({
 
   plusOnClickFunc: function (e) {
     console.log(e)
-  }
+  }, 
+
+  click1(e){
+    this.ordersTapChoose(1)
+  },
+  click2(e){
+    this.ordersTapChoose(2)
+  },
+  click3(e){
+    this.ordersTapChoose(3)
+  },
+  click4(e){
+    this.ordersTapChoose(0)
+  },
+  click11(e){
+    this.addressTap()
+  },
+  click12(e){
+    console.log("click12")
+  },
+  ordersTapChoose(chooseStatus) {
+    wx.navigateTo({
+      url: '../../orders/orders?chooseStatus=' + chooseStatus,
+    })
+  },
 })

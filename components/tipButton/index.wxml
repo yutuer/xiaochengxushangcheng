@@ -1,0 +1,6 @@
+<!--components/tipButton/index.wxml-->
+<view class="container" style="height:{{containerHeight}}rpx;width:{{containerWidth}}rpx"> 
+  <image style="width:{{imgWidth}}rpx; height:{{imgHeight}}rpx" src="{{imgSrc}}" catch:tap="imgClick"/>
+  <text style="font-size:{{fontSize}}rpx">{{txt}}</text>
+  <view wx:if="{{alertShow}}" class="alert">1</view>
+</view>

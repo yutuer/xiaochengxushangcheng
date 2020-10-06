@@ -145,3 +145,9 @@
   line-height: 100rpx;
   text-align: center;
 }
+
+.bottomView .youhuiquanShow{
+  position: absolute;
+  left: 70rpx;
+  top: 30rpx;
+}

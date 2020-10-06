@@ -64,10 +64,21 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    plusOnClickFunc(e){
-      console.log(e);
-      
+    plusOnClickFunc(e) {
+      console.log("plusOnClickFunc:", e);
       numOpera.addClick(e.detail.cargoId)
+
+      this.triggerEvent("plusOnClickEvent", {
+        cargoId: e.detail.cargoId
+      }, {})
+    },
+    reduceOnClickFunc(e) {
+      console.log("reduceOnClickFunc:", e);
+      numOpera.reduceClick(e.detail.cargoId)
+
+      this.triggerEvent("reduceOnClickEvent", {
+        cargoId: e.detail.cargoId
+      }, {})
     }
   }
 })

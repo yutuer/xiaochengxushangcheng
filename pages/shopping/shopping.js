@@ -1,8 +1,9 @@
 // pages/shopping/shopping.js
 //引入本地数据
-let classData = require('../../utils/data/classData.js');
-
-import {NumOpera} from '../../utils/tools.js';
+const allCargoDatas = require('../../utils/data/allCargoData.js')
+import {
+  NumOpera
+} from '../../utils/tools.js';
 let numOpera = new NumOpera()
 
 const app = getApp()
@@ -33,7 +34,7 @@ Page({
   reduceClick(e) {
     let cargoid = e.currentTarget.dataset.cargoid
     numOpera.reduceClick(cargoid)
-    
+
     this.updateShow()
   },
 
@@ -139,7 +140,7 @@ Page({
     let allIsSelect = true
     let chooseNum = 0
 
-    let originDatas = classData.allDatas
+    let originDatas = allCargoDatas.allDatas
     let numCargos = this.getNumCargos(originDatas)
 
     // 对数据进行初始化修改
@@ -258,9 +259,11 @@ Page({
 
   },
 
-  plusOnClickFunc(e){
-    console.log(e);
-    
-    numOpera.addClick(e.detail.cargoId)
-  }
+  plusOnClickFun: function (e) {
+    this.updateShow()
+  },
+  reduceOnClickFun: function (e) {
+    this.updateShow()
+  },
+
 })

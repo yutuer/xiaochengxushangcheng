@@ -31,7 +31,7 @@
   background-color: #999999;
 }
 
-.choose{
+.choose {
   width: 40rpx;
   height: 40rpx;
 }
@@ -67,4 +67,34 @@
 
 .sky {
   background-color: skyblue;
+}
+
+.userInfo {
+  height: 160rpx;
+  display: flex;
+}
+
+.orderInfo {
+  display: flex;
+  flex-direction: column;
+  background-color: gainsboro;
+  width: 96%;
+  align-items: center;
+  justify-content: space-around;
+  height: 300rpx;
+  margin: 40rpx 2%;
+}
+
+.orderInfo .title {
+  display: flex;
+  justify-content: space-between;
+  width: 96%;
+  font-size: 36rpx;
+}
+
+.orderInfo .infoContent {
+  display: flex;
+  align-items: center;
+  height: 200rpx;
+  width: 96%;
 }
