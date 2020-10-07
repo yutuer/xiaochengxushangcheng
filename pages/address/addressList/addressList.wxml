@@ -1,23 +1,28 @@
 <!--pages/address/addressList/addressList.wxml-->
 <!--地址显示-->
-<view>
-	<block wx:for="{{address}}" wx:key='index'>
-		<view class="addrBlock">
-			<view>
-				<text class="name checked">{{item.name}}</text>
-				<text class="phoneNum checked">{{item.phoneNum}}</text>
-				<text class="switch checked" hidden="{{index != defaultIndex}}">默认</text>
+<view class="container">
+	<view class="outer">
+		<block wx:for="{{address}}" wx:key='index'>
+			<view class="addrBlock">
+				<view class="addrInfo">
+					<view class="areaView">
+						<text class="areaTxt">{{item.area}}</text>
+						<text class="areaDetailTxt">{{item.areaDetail}}</text>
+						<text catchtap="chooseTap" hidden="{{!isChoose && index == chooseAddrIndex}}"
+							data-index="{{index}}">选择</text>
+					</view>
+					<view class="addrUser">
+						<text class="name checked">{{item.name}}</text>
+						<text class="phoneNum checked">{{item.phoneNum}}</text>
+						<text class="switch checked" hidden="{{index != defaultIndex}}">默认</text>
+					</view>
+				</view>
+				<image class="changeImg" src="images/add.png" bindtap="changeTap" data-item="{{item}}" data-name="{{item.name}}"
+					data-phoneNum="{{item.phoneNum}}" data-index="{{index}}" data-area="{{item.area}}"
+					data-areaDetail="{{item.areaDetail}}" data-checked="{{index == defaultIndex}}" />
 			</view>
-			<view class="areaView">
-				<text class="areaTxt">{{item.area}}</text>
-				<text class="areaDetailTxt">{{item.areaDetail}}</text>
-				<text class="changeTxt" bindtap="changeTap"
-					data-name="{{item.name}}" data-phoneNum="{{item.phoneNum}}" data-index="{{index}}"
-					data-area="{{item.area}}" data-areaDetail="{{item.areaDetail}}" data-checked="{{index == defaultIndex}}">修改</text>
-			</view>
-			<view class="chooseTxt" hidden="{{!isChoose}}"> <text catchtap="chooseTap" hidden="{{index == chooseAddrIndex}}"  data-index="{{index}}">选择</text></view>
-		</view>
-	</block>
+		</block>
+	</view>
+	<!-- 新增按钮 -->
+	<button type="primary" catchtap="addressAddTap">新增收货地址</button>
 </view>
-<!-- 新增按钮 -->
-<button type="primary" catchtap="addressAddTap">新 增</button>

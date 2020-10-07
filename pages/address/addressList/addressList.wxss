@@ -1,31 +1,50 @@
 /* pages/address/addressList/addressList.wxss */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 800rpx;
+  align-items: center;
+}
+
+.container .outer {
+  width: 96%;
+}
+
+.container button {
+  width: 400rpx;
+  align-self: center;
+}
+
 .addrBlock {
   margin-bottom: 20rpx;
+  display: flex;
+  height: 120rpx;
+  align-items: center;
+  border-bottom: solid 1rpx #999999;
 }
 
 .checked {
   font-weight: bold;
 }
 
-.name {
-  display: inline-block;
-  width: 30%;
-  padding-left: 20rpx;
-}
-
-.phoneNum {
-  display: inline-block;
-  width: 50%;
-  padding-left: 20rpx;
+.addrInfo {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
 }
 
 .areaView {
   display: flex;
   justify-content: space-between;
+  font-size: 28rpx;
 }
 
-.areaView .areaTxt {
-  padding-left: 20rpx;
+.addrUser {
+  display: flex;
+  justify-content: space-between;
+  font-size: 30rpx;
 }
 
 .areaDetailTxt {
@@ -33,6 +52,8 @@
   margin-left: 20rpx; */
 }
 
-.changeTxt {
+.changeImg {
   padding-right: 20rpx;
+  width: 80rpx;
+  height: 80rpx;
 }
