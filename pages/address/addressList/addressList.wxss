@@ -47,6 +47,8 @@
   font-size: 30rpx;
 }
 
+.addrUser .name {}
+.addrUser .phoneNum
 .areaDetailTxt {
   /* display: inline-block;
   margin-left: 20rpx; */
