@@ -19,9 +19,9 @@ Page({
 
     // 牛皮, 序列化
     let orderStr = encodeURIComponent(JSON.stringify(order))
-    wx.navigateTo({
-      url: '../orderDetail/orderDetail?orderDetail=' + orderStr,
-    })
+    // wx.navigateTo({
+    //   url: '../orderDetail/orderDetail?orderDetail=' + orderStr,
+    // })
   },
 
   showByStatus(e) {

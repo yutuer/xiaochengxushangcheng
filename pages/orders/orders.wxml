@@ -1,32 +1,38 @@
 <!--pages/orders/orders.wxml-->
 <!-- 标题 -->
-<view class="orderTitle">
-	<text>订单列表</text>
-</view>
+<view class="container">
+	<text class="orderTitle">订单列表</text>
 
-<!-- 分类 块 -->
-<view class="orderType">
-	<text data-choosestatus="0" catchtap="showByStatus">全部</text>
-	<text data-choosestatus="1" catchtap="showByStatus">未支付</text>
-	<text data-choosestatus="2" catchtap="showByStatus">待发货</text>
-	<text data-choosestatus="3" catchtap="showByStatus">已完成</text>
-</view>
+	<!-- 分类 块 -->
+	<view class="orderType">
+		<text data-choosestatus="0" catchtap="showByStatus">全部</text>
+		<text data-choosestatus="1" catchtap="showByStatus">未支付</text>
+		<text data-choosestatus="2" catchtap="showByStatus">待发货</text>
+		<text data-choosestatus="3" catchtap="showByStatus">已完成</text>
+	</view>
 
-<!-- 显示区域 -->
-<scroll-view class="contentView" scroll-y="true">
-	<block wx:for='{{orders}}' wx:for-item='order' wx:key='index'>
-		<view class="oneOrder" wx:if="{{chooseStatus==0 || order.status == chooseStatus}}" data-index="{{index}}"
-			catchtap="showOrderDetail">
-			<view class="firstLine">
-				<text>{{order.timeDesc}}</text>
-				<text class="orderStatus">{{order.statusDesc}}</text>
-			</view>
-			<view wx:for='{{order.cargos}}' wx:for-item="cargo" wx:for-index='cargoIndex' wx:key="cIndex">
-				<view class="oneCargo">
-					<text>{{cargo.title}}......{{cargo.num}}份</text>
-					<text wx:if="{{cargoIndex == order.cargos.length - 1}}">¥ {{order.allPrice}}</text>
+	<!-- 显示区域 -->
+	<scroll-view class="contentView" scroll-y="true">
+		<block wx:for='{{orders}}' wx:for-item='order' wx:key='index'>
+			<view class="oneOrder" wx:if="{{chooseStatus==0 || order.status == chooseStatus}}" data-index="{{index}}" catch:tap="showOrderDetail">
+				<view class="firstLine">
+					<text class="time">{{order.timeDesc}}</text>
+					<text class="orderStatus">{{order.statusDesc}}</text>
+				</view>
+				<view wx:for='{{order.cargos}}' wx:for-item="cargo" wx:for-index='cargoIndex' wx:key="cIndex">
+					<view class="oneCargo">
+						<text>{{cargo.title}}.......*{{cargo.num}}</text>
+						<view class="heji" wx:if="{{cargoIndex == order.cargos.length - 1}}">
+							<text>合计:</text>
+							<price-cmp price="{{order.allPrice}}" fontSize="32" />
+						</view>
+						<!-- <text wx:if="{{cargoIndex == order.cargos.length - 1}}">合计:¥ {{order.allPrice}}</text> -->
+					</view>
+				</view>
+				<view class="pay" wx:if="{{order.status == 1}}">
+					<text class="" catchtap="">去结算</text>
 				</view>
 			</view>
-		</view>
-	</block>
-</scroll-view>
+		</block>
+	</scroll-view>
+</view>

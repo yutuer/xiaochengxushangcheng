@@ -1,0 +1,13 @@
+<!--components/orderItem/index.wxml-->
+<view class="container">
+	<view class="firstLine">
+		<text>{{order.timeDesc}}</text>
+		<text class="orderStatus">{{order.statusDesc}}</text>
+	</view>
+	<view wx:for='{{order.cargos}}' wx:for-item="cargo" wx:for-index='cargoIndex' wx:key="cIndex">
+		<view class="oneCargo">
+			<text>{{cargo.title}}......*{{cargo.num}}</text>
+			<text wx:if="{{cargoIndex == order.cargos.length - 1}}">合计: ¥ {{order.allPrice}}</text>
+		</view>
+	</view>
+</view>

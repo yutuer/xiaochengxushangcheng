@@ -1,17 +1,22 @@
 /* pages/orders/orders.wxss */
-.orderTitle {
+.container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.orderTitle {
   font-size: 60rpx;
   font-weight: bold;
+  margin: 30rpx 0;
 }
 
 .orderType {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   border-radius: 10rpx;
-  width: 100%;
-  padding: 0 30rpx;
+  width: 96%;
+  font-size: 40rpx;
 }
 
 .contentView {
@@ -24,14 +29,24 @@
 }
 
 .oneOrder {
-  background-color: gray;
+  background-color: whitesmoke;
   margin: 30rpx 30rpx;
   border-radius: 8rpx;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10rpx;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
 }
 
 .oneOrder .firstLine {
   display: flex;
   justify-content: space-between;
+  margin: 10rpx 0;
+}
+
+.firstLine .time {
+  font-size: 26rpx;
 }
 
 .oneOrder .orderStatus {
@@ -41,6 +56,10 @@
 .oneOrder .oneCargo {
   display: flex;
   justify-content: space-between;
+}
+
+.heji {
+  display: flex;
 }
 
 .block1 {
@@ -55,4 +74,21 @@
 .img {
   width: 100rpx;
   height: 100rpx;
+}
+
+.pay {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 180rpx;
+  height: 70rpx;
+  align-self: flex-end;
+  background-color: skyblue;
+  border-radius: 10rpx;
+  align-items: center;
+}
+
+.pay text {
+  font-size: 30rpx;
+  color: white;
 }
