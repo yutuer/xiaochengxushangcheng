@@ -1,22 +1,25 @@
 <!--pages/ordering/ordering.wxml-->
-<view>
+<view class="container">
 	<!-- 展示栏 -->
 	<!-- 地址展示 -->
 	<view class="address">
-		<text class="area">{{address.area}}</text>
-		<text class="areaDetail">{{address.areaDetail}}</text>
-		<text class="name">{{address.name}} <text>{{address.phoneNum}}</text></text>
-		<text class="changeAddr" bindtap="changeAddrTap">修改地址</text>
+		<view>
+			<text class="area">{{address.area}}</text>
+			<text class="areaDetail">{{address.areaDetail}}</text>
+		</view>
+		<view>
+			<text class="name">{{address.name}}</text>
+			<text>{{address.phoneNum}}</text>
+		</view>
+		<text class="changeAddr" bindtap="changeAddrTap">修改送货地址</text>
 	</view>
 	<!-- 购买货物展示 -->
 	<view class="cargoShow">
 		<block wx:for="{{orderDetail.cargos}}" wx:key="index">
 			<view class="cargo">
-				<view>
-					<text class="cargoName">{{item.title}}</text>
-				</view>
+				<image class="cargoImg" src='{{item.icon}}'></image>
 				<view class="cargoDetail">
-					<image class="cargoImg" src='{{item.icon}}'></image>
+					<text class="cargoName">{{item.title}}</text>
 					<text class="cargoNum">数量: <text>{{item.num}}</text></text>
 				</view>
 			</view>
@@ -25,8 +28,9 @@
 	<!-- 价格栏 -->
 	<view class="priceShow">
 		<text wx:if='{{orderDetail.youhuiquan}}'>{{orderDetail.youhuiquan.desc}}</text>
-		<text class="priceTxt">    ¥ <text>{{orderDetail.allPrice}}</text></text>
+		<!-- <text class="priceTxt">    ¥ <text>{{orderDetail.allPrice}}</text></text> -->
+		<price-cmp price="{{orderDetail.allPrice}}" fontSize="32" />
 	</view>
 	<!-- 确认订单 -->
-	<button catchtap="confirm">确认订单</button>
+	<button catch:tap="confirm">确认订单</button>
 </view>

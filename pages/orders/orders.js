@@ -1,5 +1,9 @@
 const util = require("../../utils/util")
 
+import {
+  Pay
+} from '../../utils/pay.js'
+let pay = new Pay()
 // pages/orders/orders.js
 const app = getApp()
 Page({
@@ -124,6 +128,18 @@ Page({
         fail: console.error
       })
     }
+  },
+
+  countNumTap(e) {
+    let order = e.currentTarget.dataset.order
+
+    console.log("order :", order)
+
+    const allPrice = order.allPrice
+    const chooseCargos = order.cargos
+    const youhuiquan = order.youhuiquan
+
+    pay.countNumTap(allPrice, chooseCargos, youhuiquan)
   },
 
   /**

@@ -4,8 +4,12 @@ const allCargoDatas = require('../../utils/data/allCargoData.js')
 import {
   NumOpera
 } from '../../utils/tools.js';
-let numOpera = new NumOpera()
+import {
+  Pay
+} from '../../utils/pay.js'
 
+let numOpera = new NumOpera()
+let pay = new Pay()
 const app = getApp()
 
 Page({
@@ -83,26 +87,31 @@ Page({
 
   // 点击结算按钮
   countNumTap(e) {
-    console.log(e)
+    console.log("countNumTap:", e)
+
     const allPrice = e.currentTarget.dataset.allprice
     const chooseCargos = this.data.chooseCargos
-    if (chooseCargos.length == 0) {
-      wx.showToast({
-        title: '请选择购买物品',
-      })
-      return
-    }
+    const youhuiquan = this.data.youhuiquan
 
-    let priceObj = {
-      allPrice: allPrice,
-      cargos: chooseCargos,
-      youhuiquan: this.data.youhuiquan,
-    }
+    pay.countNumTap(allPrice, chooseCargos, youhuiquan)
 
-    let s = encodeURIComponent(JSON.stringify(priceObj))
-    wx.navigateTo({
-      url: '../ordering/ordering?orderDetail=' + s,
-    })
+    // if (chooseCargos.length == 0) {
+    //   wx.showToast({
+    //     title: '请选择购买物品',
+    //   })
+    //   return
+    // }
+
+    // let priceObj = {
+    //   allPrice: allPrice,
+    //   cargos: chooseCargos,
+    //   youhuiquan: youhuiquan,
+    // }
+
+    // let s = encodeURIComponent(JSON.stringify(priceObj))
+    // wx.navigateTo({
+    //   url: '../ordering/ordering?orderDetail=' + s,
+    // })
   },
 
   // 拷贝原始数据到一个新的带有num的对象中

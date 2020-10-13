@@ -1,47 +1,45 @@
 /* pages/ordering/ordering.wxss */
+.container {
+  display: flex;
+  flex-direction: column;
+
+}
+
 .cargoShow {}
 
 .address {
   margin: 30rpx 20rpx;
-}
-
-.address .area {
-  display: block;
-}
-
-.address .areaDetail {
-  display: block;
-}
-
-.address .name {
-  display: block;
-}
-
-.address .changeAddr {
-  display: block;
-}
-
-.cargo {
-  margin: 30rpx 20rpx;
-}
-
-.cargo {
   display: flex;
   flex-direction: column;
 }
 
-.cargo .cargoDetail {
+.address .area {}
+
+.address .areaDetail {}
+
+.address .name {}
+
+.address .changeAddr {}
+
+
+.cargo {
   display: flex;
+  flex-direction: row;
+  margin: 30rpx 20rpx;
 }
 
-.cargo .cargoName {
-  display: block;
-  font-size: 40rpx;
-  font-weight: bold;
+.cargo .cargoDetail {
+  display: flex;
+  flex-direction: column;
   padding-left: 20rpx;
 }
 
-.cargo .cargoDetail .cargoImg {
+.cargo .cargoName {
+  font-size: 40rpx;
+  font-weight: bold;
+}
+
+.cargo .cargoImg {
   /* display: block; */
   height: 200rpx;
   width: 200rpx;

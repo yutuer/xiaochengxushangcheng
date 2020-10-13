@@ -29,8 +29,8 @@
 						<!-- <text wx:if="{{cargoIndex == order.cargos.length - 1}}">合计:¥ {{order.allPrice}}</text> -->
 					</view>
 				</view>
-				<view class="pay" wx:if="{{order.status == 1}}">
-					<text class="" catchtap="">去结算</text>
+				<view class="pay" catch:tap="countNumTap" wx:if="{{order.status == 1}}" data-order="{{order}}">
+					<text>去结算</text>
 				</view>
 			</view>
 		</block>
