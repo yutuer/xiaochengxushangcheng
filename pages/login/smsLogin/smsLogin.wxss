@@ -1,4 +1,8 @@
 /* pages/login/smsLogin/smsLogin.wxss */
+.loginOut {
+  width: 300rpx;
+}
+
 /* 输入账户 */
 .phoneNameInput {
   position: relative;

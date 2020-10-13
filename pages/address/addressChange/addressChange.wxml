@@ -5,8 +5,7 @@
 		<view class="content">
 			<view class="shouhuoren">
 				<text class="name">收货人:</text>
-				<input class="nameInput inputBorder" bindinput="nameInputTap" value="{{name}}" placeholder="请填写收货人的姓名"
-					maxlength="160rpx">{{name}}</input>
+				<input class="nameInput inputBorder" bindinput="nameInputTap" value="{{name}}" placeholder="请填写收货人的姓名" maxlength="160rpx">{{name}}</input>
 			</view>
 			<!-- 手机号码 -->
 			<view class="phoneInfo">
@@ -20,14 +19,12 @@
 					<text class="area">所在地区:</text>
 					<text class="mapPosition" catchtap="getLocation">定位</text>
 				</view>
-				<input class="areaInput inputBorder" bindinput="areaInputTap" value="{{area}}"
-					placeholder="请填写所在地区">{{area}}</input>
+				<input class="areaInput inputBorder" bindinput="areaInputTap" value="{{area}}" placeholder="请填写所在地区">{{area}}</input>
 				<!-- <image class="positionImg"></image> -->
 			</view>
 			<view class="areaDetailInfo">
 				<text class="areaDetail">详细地址:</text>
-				<input class="areaInputDetail inputBorder" bindinput="areaDetailTap" value="{{areaDetail}}"
-					placeholder="请填写详细地址">{{areaDetail}}</input>
+				<input class="areaInputDetail inputBorder" bindinput="areaDetailTap" value="{{areaDetail}}" placeholder="请填写详细地址">{{areaDetail}}</input>
 			</view>
 		</view>
 		<view class="setDefault">

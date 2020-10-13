@@ -1,5 +1,6 @@
 // pages/orderDetail/orderDetail.js
 let util = require('../../utils/util.js')
+const app = getApp()
 Page({
 
   /**
@@ -11,7 +12,7 @@ Page({
 
   payOrder() {
     let order = this.data.order
-    if (order && order.status == 1) {
+    if (order && order.status == app.globalData.orderStatus.waitForPay.status) {
       let payment = order.payment
       let youhuiquan = order.youhuiquan
       console.log("payment:", payment)

@@ -1,1 +1,70 @@
 /* pages/address/addressAdd/addressAdd.wxss */
+.inputBorder {
+  border: 1rpx solid;
+}
+
+.outer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 700rpx;
+  justify-content: space-between;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 92%;
+  justify-content: space-between;
+  height: 550rpx;
+}
+
+.save {
+  width: 300rpx;
+  background-color: skyblue;
+  border-radius: 10rpx;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 400rpx;
+}
+
+.setDefault {}
+
+.container .shouhuoren {}
+
+.container .phoneInfo {}
+
+.container .areaInfo {}
+
+.container .areaDetailInfo {}
+
+.shouhuoren .name {
+  flex-grow: 4;
+}
+
+.shouhuoren .nameInput {
+  flex-grow: 7;
+}
+
+
+.phoneInfo .phone {
+  flex-grow: 4;
+}
+
+.phoneInfo .phoneTxt {
+  flex-grow: 7;
+}
+
+
+
+.areaDetailInfo .areaDetail {
+  flex-grow: 4;
+}
+
+.areaDetailInfo .areaInputDetail {
+  flex-grow: 7;
+}

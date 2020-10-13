@@ -11,8 +11,7 @@
 	</view>
 </view>
 <!-- 顶部banner图 -->
-<swiper class='bannerView' indicator-dots='true' indicator-color='#afafaf' indicator-active-color='#ffffff'
-	autoplay='true' circular='true'>
+<swiper class='bannerView' indicator-dots='true' indicator-color='#afafaf' indicator-active-color='#ffffff' autoplay='true' circular='true'>
 	<block wx:for='{{banner}}' wx:key='index'>
 		<swiper-item>
 			<image src='{{item.icon}}' data-cargoid="{{item.cargoid}}" catchtap="bannerTap"></image>
@@ -51,7 +50,7 @@
 	</swiper-item> 
 </swiper>-->
 
-<swiper autoplay='true' circular='true' vertical='true' indicator-dots='true' indicator-color='#afafaf'>
+<swiper wx:if="{{youhuiquan.length>0}}" autoplay='true' circular='true' vertical='true' indicator-dots='true' indicator-color='#afafaf'>
 	<block wx:for="{{youhuiquan}}" wx:key="index">
 		<swiper-item>
 			<!-- <view hidden="true">{{item._id}}</view>
@@ -74,8 +73,7 @@
 <!-- 猜你喜欢内容 -->
 <view class="itemContainer">
 	<block wx:for='{{likesData}}' wx:key='index'>
-		<mainPageItem-cmp price="{{item.price}}" imgSrc="{{item.icon}}" txt="{{item.detail}}"
-			data-cargoid="{{item.cargoid}}" catch:tap="cargoDetailTap" />
+		<mainPageItem-cmp price="{{item.price}}" imgSrc="{{item.icon}}" txt="{{item.detail}}" data-cargoid="{{item.cargoid}}" catch:tap="cargoDetailTap" />
 		<!-- <view class='detailView' catchtap="cargoDetailTap" data-cargoid="{{item.cargoid}}">
 		<image class='detailImv' src='{{item.icon}}'></image>
 		<text class='detailTxt'>{{item.detail}}</text>
