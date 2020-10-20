@@ -1,36 +1,45 @@
 <!--pages/ordering/ordering.wxml-->
 <view class="container">
-	<!-- 展示栏 -->
-	<!-- 地址展示 -->
-	<view class="address">
-		<view>
-			<text class="area">{{address.area}}</text>
-			<text class="areaDetail">{{address.areaDetail}}</text>
-		</view>
-		<view>
-			<text class="name">{{address.name}}</text>
-			<text>{{address.phoneNum}}</text>
-		</view>
-		<text class="changeAddr" bindtap="changeAddrTap">修改送货地址</text>
-	</view>
-	<!-- 购买货物展示 -->
-	<view class="cargoShow">
-		<block wx:for="{{orderDetail.cargos}}" wx:key="index">
-			<view class="cargo">
-				<image class="cargoImg" src='{{item.icon}}'></image>
-				<view class="cargoDetail">
-					<text class="cargoName">{{item.title}}</text>
-					<text class="cargoNum">数量: <text>{{item.num}}</text></text>
-				</view>
-			</view>
-		</block>
-	</view>
-	<!-- 价格栏 -->
-	<view class="priceShow">
-		<text wx:if='{{orderDetail.youhuiquan}}'>{{orderDetail.youhuiquan.desc}}</text>
-		<!-- <text class="priceTxt">    ¥ <text>{{orderDetail.allPrice}}</text></text> -->
-		<price-cmp price="{{orderDetail.allPrice}}" fontSize="32" />
-	</view>
-	<!-- 确认订单 -->
-	<button catch:tap="confirm">确认订单</button>
+    <!-- 展示栏 -->
+
+    <!-- 地址展示 -->
+    <view class="addrBlock">
+        <view class="addrInfo">
+            <!--第一行-->
+            <view class="headLine">
+                <text class="defaultTxt fontBold" style="margin-right:10rpx"
+                      hidden="{{index != defaultIndex}}">默认
+                </text>
+                <text>{{address.area}}</text>
+            </view>
+
+            <!--第2行-->
+            <text class="areaDetailTxt fontBold">{{address.areaDetail}}</text>
+
+            <!--第3行-->
+            <view class="bottomLine">
+                <text class="name" style="margin-right:30rpx">{{address.name}}</text>
+                <text class="phoneNum">{{address.phoneNum}}</text>
+            </view>
+        </view>
+        <!--右边的修改图标-->
+        <image class="changeImg" src="images/add.png" catch:tap="changeAddrTap"/>
+    </view>
+
+    <!-- 购买货物展示 -->
+    <view class="cargoShow">
+        <block wx:for="{{orderDetail.cargos}}" wx:key="index">
+            <classPageItem-cmp class="cargo" imgSrc="{{item.icon}}" price="{{item.price}}" desc="{{item.title}}"
+                               cargoId="{{item.cargoid}}" plusImgShow="{{false}}" subImgShow="{{false}}"
+                               numShow="{{true}}" showNum="{{item.num}}"/>
+        </block>
+    </view>
+
+    <!-- 价格栏 -->
+    <view class="priceShow">
+        <text wx:if='{{orderDetail.youhuiquan}}'>{{orderDetail.youhuiquan.desc}}</text>
+        <price-cmp price="{{orderDetail.allPrice}}" fontSize="32"/>
+    </view>
+    <!-- 确认订单 -->
+    <button catch:tap="confirm">确认订单</button>
 </view>

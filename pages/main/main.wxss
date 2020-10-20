@@ -1,176 +1,183 @@
 /* pages/main/main.wxss */
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
 /* 顶部搜索 */
 .searchView {
-  /* 固定不跟随滚动 !!!!!!!!*/
-  position: fixed;
-  /* 保证不被遮盖 */
-  z-index: 99;
-  left: 40rpx;
-  right: 40rpx;
-  top: 20rpx;
-  height: 70rpx;
-  /* background-color: #F8F7FC; */
-  background-color: rgba(248, 247, 252, 0.5);
-  border-radius: 35rpx;
-  /* 设置透明底 */
-  /*opacity: 0.3;*/
+    position: fixed;
+    background-color: #ffffff;
+    height: 100rpx;
+    width: 100%;
+    border-top: 1px solid #f5f5f5;
+    border-bottom: 1px solid #f5f5f5;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 3px 0 #e3e3e3;
+    z-index: 99;
 }
 
-.searchView .logoImv {
-  position: absolute;
-  width: 39rpx;
-  height: 30rpx;
-  top: 20rpx;
-  left: 30rpx;
-  /* 通过边框做出右侧的分割线 */
-  border-right: 1px solid #999999;
-  /* 通过右侧内容的内边距，调整边框的位置 */
-  padding-right: 20rpx;
+.box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    background-color: #f5f5f5;
+    height: 34px;
+    width: 700rpx;
+    color: #999999;
 }
 
-.searchView .searchImv {
-  position: absolute;
-  top: 20rpx;
-  left: 100rpx;
-  width: 30rpx;
-  height: 30rpx;
-}
-
-.searchView .searchTxt {
-  position: absolute;
-  height: 100%;
-  left: 140rpx;
-  line-height: 70rpx;
-  color: #000000;
-  font-size: 28rpx;
+.box image {
+    margin-right: 10px;
+    width: 14px;
+    height: 14px;
+    margin-bottom: -2px;
 }
 
 /* 顶部banner图 */
 .bannerView {
-  width: 100%;
-  height: 300rpx;
-  /* background-color: red; */
+    width: 100%;
+    height: 300rpx;
+    margin-top: 100rpx;
+    /* background-color: red; */
 }
 
 .bannerView image {
-  width: 100%;
-  height: 100%;
-  background-color: #999999;
+    width: 100%;
+    height: 100%;
+    background-color: #999999;
 }
 
 /* 类别item */
 .itemView {
-  margin-top: 40rpx;
-  width: 100%;
-  /*140*2+40*/
-  height: 350rpx;
-  display: flex;
-  flex-wrap: wrap;
+    margin-top: 40rpx;
+    width: 100%;
+    /*140*2+40*/
+    height: 350rpx;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 /* 单个Item */
 .itemView .item {
-  display: inline-block;
-  /*(750-(40*6))/5*/
-  width: 102rpx;
-  height: 140rpx;
-  margin-left: 40rpx;
-  /* background-color: yellow; */
+    display: inline-block;
+    /*(750-(40*6))/5*/
+    width: 102rpx;
+    height: 140rpx;
+    margin-left: 40rpx;
+    /* background-color: yellow; */
 }
 
 /* 类别图片 */
 .itemView .item .iconView {
-  width: 102rpx;
-  height: 102rpx;
-  background-color: #eaeaea;
-  border-radius: 51rpx;
+    width: 102rpx;
+    height: 102rpx;
+    background-color: #eaeaea;
+    border-radius: 51rpx;
 }
 
 /* 类别文字 */
 .itemView .item .titleView {
-  width: 102rpx;
-  text-align: center;
-  font-size: 24rpx;
-  color: #000000;
+    width: 102rpx;
+    text-align: center;
+    font-size: 24rpx;
+    color: #000000;
+}
+
+.youhuiquan {
+    width: 100%;
+    height: 230rpx;
 }
 
 /* 猜你喜欢标题 */
 .cnxhTitle {
-  width: 100%;
-  line-height: 70rpx;
-  padding-left: 40rpx;
-  /* 设置字体样式 */
-  font-size: 34rpx;
-  font-weight: bolder;
-  color: #000000;
-  /* background-color: red; */
+    width: 100%;
+    line-height: 70rpx;
+    padding-left: 40rpx;
+    /* 设置字体样式 */
+    font-size: 34rpx;
+    font-weight: bolder;
+    color: #000000;
+    /* background-color: red; */
 }
 
 .itemContainer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  background-color: #e4e4e4;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #e4e4e4;
+    padding: 0 12rpx;
+}
+
+.mainPageItem {
+    margin-bottom: 20rpx;
 }
 
 .detailView {
-  display: inline-block;
-  border: 1px solid #eaeaea;
-  box-sizing: border-box;
-  width: 375rpx;
-  height: 520rpx;
-  /*375+105+40*/
-  /* background-color: yellow; */
+    display: inline-block;
+    border: 1px solid #eaeaea;
+    box-sizing: border-box;
+    width: 375rpx;
+    height: 520rpx;
+    /*375+105+40*/
+    /* background-color: yellow; */
 }
 
 .detailView .detailImv {
-  width: 375rpx;
-  height: 375rpx;
-  background-color: #999999;
+    width: 375rpx;
+    height: 375rpx;
+    background-color: #999999;
 }
 
 .detailView .detailTxt {
-  width: 375rpx;
-  /* 设置文字样式 */
-  font-size: 28rpx;
-  color: #000000;
-  /*限制2行*/
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-  /* 文字超出部分变成省略号 */
-  overflow: hidden;
-  text-overflow: -o-ellipsis-lastline;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
+    width: 375rpx;
+    /* 设置文字样式 */
+    font-size: 28rpx;
+    color: #000000;
+    /*限制2行*/
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    /* 文字超出部分变成省略号 */
+    overflow: hidden;
+    text-overflow: -o-ellipsis-lastline;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
 }
 
 .detailView .priceTxt {
-  color: red;
-  font-size: 34rpx;
+    color: red;
+    font-size: 34rpx;
 }
 
 .typeView {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
 }
 
 .typeView .item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 25%;
-  padding: 10rpx 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+    padding: 10rpx 0;
 }
 
 .typeView .item .titleView {
-  text-align: center;
+    text-align: center;
 }
 
 .typeView .item .iconView {
-  width: 102rpx;
-  height: 102rpx;
-  background-color: #eaeaea;
-  border-radius: 51rpx;
+    width: 102rpx;
+    height: 102rpx;
+    background-color: #eaeaea;
+    border-radius: 51rpx;
 }

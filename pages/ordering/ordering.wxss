@@ -1,61 +1,75 @@
 /* pages/ordering/ordering.wxss */
 .container {
-  display: flex;
-  flex-direction: column;
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
-.cargoShow {}
-
-.address {
-  margin: 30rpx 20rpx;
-  display: flex;
-  flex-direction: column;
+.addrBlock {
+    margin-bottom: 40rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 120rpx;
+    width: 96%;
 }
 
-.address .area {}
+.addrInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
 
-.address .areaDetail {}
+.headLine {
+    display: flex;
+    font-size: 24rpx;
+}
 
-.address .name {}
+.defaultTxt {
+    background-color: red;
+    color: white;
+}
 
-.address .changeAddr {}
+.areaDetailTxt {
+    font-size: 30rpx;
+}
 
+.fontBold {
+    font-weight: bold;
+}
+
+.bottomLine {
+    display: flex;
+    font-size: 24rpx;
+}
+
+.changeImg {
+    padding-right: 20rpx;
+    width: 40rpx;
+    height: 40rpx;
+}
+
+.cargoShow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 96%;
+}
 
 .cargo {
-  display: flex;
-  flex-direction: row;
-  margin: 30rpx 20rpx;
-}
-
-.cargo .cargoDetail {
-  display: flex;
-  flex-direction: column;
-  padding-left: 20rpx;
-}
-
-.cargo .cargoName {
-  font-size: 40rpx;
-  font-weight: bold;
-}
-
-.cargo .cargoImg {
-  /* display: block; */
-  height: 200rpx;
-  width: 200rpx;
-}
-
-.cargo .cargoNum {
-  /* display: block; */
+    width: 100%;
 }
 
 .priceShow {
-  display: flex;
-  justify-content: space-between;
-  margin: 30rpx 20rpx;
+    display: flex;
+    flex-direction: column;
+    width: 96%;
 }
 
 .priceShow .priceTxt {
-  color: red;
-  font-size: 40rpx bold;
+    color: red;
+    font-size: 40rpx bold;
 }

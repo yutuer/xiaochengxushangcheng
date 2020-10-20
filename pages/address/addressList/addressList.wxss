@@ -1,61 +1,63 @@
 /* pages/address/addressList/addressList.wxss */
 .container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 800rpx;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }
 
-.container .outer {
-  width: 96%;
+.scroll {
+    width: 92%;
+    height: 90vh;
 }
 
 .container button {
-  width: 400rpx;
-  align-self: center;
+    width: 400rpx;
+    align-self: center;
 }
 
 .addrBlock {
-  margin-bottom: 20rpx;
-  display: flex;
-  height: 120rpx;
-  align-items: center;
-  border-bottom: solid 1rpx #999999;
+    margin-bottom: 40rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 100rpx;
 }
 
-.checked {
-  font-weight: bold;
+.headLine {
+    display: flex;
+    font-size: 24rpx;
+}
+
+.bottomLine {
+    display: flex;
+    font-size: 24rpx;
+}
+
+.defaultTxt {
+    background-color: red;
+    color: white;
+}
+
+.fontBold {
+    font-weight: bold;
 }
 
 .addrInfo {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
 }
 
-.areaView {
-  display: flex;
-  justify-content: space-between;
-  font-size: 28rpx;
-}
-
-.addrUser {
-  display: flex;
-  justify-content: space-between;
-  font-size: 30rpx;
-}
-
-.addrUser .name {}
-.addrUser .phoneNum
 .areaDetailTxt {
-  /* display: inline-block;
-  margin-left: 20rpx; */
+    font-size: 30rpx;
 }
 
 .changeImg {
-  padding-right: 20rpx;
-  width: 80rpx;
-  height: 80rpx;
+    padding-right: 20rpx;
+    width: 40rpx;
+    height: 40rpx;
 }

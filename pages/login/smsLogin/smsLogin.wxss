@@ -1,104 +1,126 @@
 /* pages/login/smsLogin/smsLogin.wxss */
 .loginOut {
-  width: 300rpx;
+    width: 300rpx;
 }
 
 /* 输入账户 */
 .phoneNameInput {
-  position: relative;
-  top: 40rpx;
+    position: relative;
+    top: 40rpx;
 }
 
 .phoneNameInput .pswInput {
-  height: 70rpx;
-  width: 500rpx;
+    height: 70rpx;
+    width: 500rpx;
 }
 
 /* 验证码 */
 .yzmInput {
-  position: relative;
-  top: 80rpx;
+    position: relative;
+    top: 80rpx;
 }
 
 /* 手机快速注册 */
 .phoneRegist {
-  display: inline-block;
-  position: absolute;
-  top: 420rpx;
-  right: 40rpx;
+    display: inline-block;
+    position: absolute;
+    top: 420rpx;
+    right: 40rpx;
 }
 
 .itemContainer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  background-color: #999999;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #999999;
 }
 
 .choose {
-  width: 40rpx;
-  height: 40rpx;
+    width: 40rpx;
+    height: 40rpx;
+}
+
+.out-container {
+    /*display: flex;*/
+    /*flex-direction: row;*/
+    /*justify-content: space-between;*/
 }
 
 
 .container {
-  /* 
-  块状元素加了flex后, 会被转成行内元素 inline-block
-  行内元素是不能加宽高的, 所以要用inline-block
-  */
-  /* display: inline-block; */
-  width: 200rpx;
+    /*
+    块状元素加了flex后, 会被转成行内元素 inline-block
+    行内元素是不能加宽高的, 所以要用inline-block
+    */
+    /* display: inline-block; */
+
+
+    /*display: flex;*/
+    /*flex-direction: column;*/
 }
 
+
 .chunk {
-  /* 这里的100%, 只是inline-block平分后的宽度, 而不是原来的块的宽度 */
-  display: inline-block;
-  width: 100rpx;
-  height: 100rpx;
+    /* 这里的100%, 只是inline-block平分后的宽度, 而不是原来的块的宽度 */
+    display: inline-block;
+    width: 100rpx;
+    height: 100rpx;
 }
 
 .r {
-  background-color: red;
+    background-color: red;
+    display: flex;
+}
+
+.r text {
+    width: 200rpx;
 }
 
 .g {
-  background-color: green;
+    background-color: green;
 }
 
 .b {
-  background-color: blue;
+    background-color: blue;
 }
 
 .sky {
-  background-color: skyblue;
+    background-color: skyblue;
 }
 
-.userInfo {
-  height: 160rpx;
-  display: flex;
+.myDetail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 10rpx;
+}
+
+.hello {
+    font-size: 34rpx;
+    margin-bottom: 20rpx;
+    width: 100%;
 }
 
 .orderInfo {
-  display: flex;
-  flex-direction: column;
-  background-color: gainsboro;
-  width: 96%;
-  align-items: center;
-  justify-content: space-around;
-  height: 300rpx;
-  margin: 40rpx 2%;
+    display: flex;
+    flex-direction: column;
+    background-color: gainsboro;
+    justify-content: space-around;
+    height: 300rpx;
+    width: 100%;
+    margin-bottom: 20rpx;
 }
 
 .orderInfo .title {
-  display: flex;
-  justify-content: space-between;
-  width: 96%;
-  font-size: 36rpx;
+    width: 100%;
+    padding-left: 20rpx;
+    font-size: 36rpx;
+    line-height: 36rpx;
 }
 
 .orderInfo .infoContent {
-  display: flex;
-  align-items: center;
-  height: 200rpx;
-  width: 96%;
+    display: flex;
+    align-items: center;
+    height: 200rpx;
+    width: 100%;
 }

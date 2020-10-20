@@ -1,83 +1,98 @@
-<!--pages/main/main.wxml-->
-<!-- 顶部搜索框 -->
-<view class='searchView'>
-	<image class='logoImv' src='../../images/main/jd_logo.png'></image>
-	<image class='searchImv' src='../../images/class/search-normal.png'></image>
-	<input class='searchTxt' placeholder="请输入搜索内容" confirm-type="search" catchinput="search"></input>
-	<view wx:for='{{allSearchData}}' wx:key='index' wx:if="{{allSearchData.length>0}}">
-		<view data-cargoid="{{item.cargoid}}">
-			{{item.title}}
-		</view>
-	</view>
+<view>
+
+    <view wx:if="{{!searchPanel}}" class="container">
+
+        <!-- 顶部搜索框 -->
+        <view class='searchView'>
+            <!--        <image class='logoImv' src='../../images/main/jd_logo.png'></image>-->
+            <!--        <image class='searchImv' src='../../images/class/search-normal.png'></image>-->
+            <!--    <input class='searchTxt' placeholder="请输入搜索内容" confirm-type="search" catch:input="search"></input>-->
+            <!--        <input class='searchTxt' placeholder="请输入搜索内容" confirm-type="search" catch:tap="onActivateSearch"></input>-->
+            <!--        <view wx:for='{{allSearchData}}' wx:key='index' wx:if="{{allSearchData.length>0}}">-->
+            <!--            <view data-cargoid="{{item.cargoid}}">-->
+            <!--                {{item.title}}-->
+            <!--            </view>-->
+            <!--        </view>-->
+
+            <view class='box' bind:tap="onActivateSearch">
+                <image src="/images/icon/search.png"/>
+                <text>请输入搜索内容</text>
+            </view>
+
+        </view>
+
+        <!-- 顶部banner图 -->
+        <swiper class='bannerView' indicator-dots='true' indicator-color='#afafaf' indicator-active-color='#ffffff'
+                autoplay='true' circular='true'>
+            <block wx:for='{{banner}}' wx:key='index'>
+                <swiper-item>
+                    <image src='{{item.icon}}' data-cargoid="{{item.cargoid}}" catchtap="bannerTap"></image>
+                </swiper-item>
+            </block>
+        </swiper>
+
+        <!-- 类别item -->
+        <!-- 一个页面 -->
+        <view class="typeView">
+            <block wx:for='{{classData}}' wx:key='index'>
+                <view class='item' catchtap="typeTap" data-typeid="{{item.type}}">
+                    <image class='iconView' src='{{item.icon}}'></image>
+                    <text class='titleView'>{{item.desc}}</text>
+                </view>
+            </block>
+        </view>
+
+        <!-- <swiper class='itemView' indicator-dots='true' indicator-color='#afafaf' indicator-active-color='#e6e6e6'
+            circular='true'>
+            <swiper-item>
+                <block wx:for='{{classData}}' wx:key='index'>
+                    <view class='item' catchtap="typeTap" data-typeid="{{item.type}}">
+                        <image class='iconView' src='{{item.icon}}'></image>
+                        <view class='titleView'>{{item.desc}}</view>
+                    </view>
+                </block>
+            </swiper-item>
+            <swiper-item>
+                <block wx:for='{{classData.twoPage}}' wx:key='index'>
+                    <view class='item' catchtap="typeTap" data-typeid="{{item.type}}">
+                        <image class='iconView' src='{{item.icon}}'></image>
+                        <view class='titleView'>{{item.title}}</view>
+                    </view>
+                </block>
+            </swiper-item>
+        </swiper>-->
+
+        <swiper class="youhuiquan" wx:if="{{youhuiquan.length > 0 }}" autoplay='true' circular='true' vertical='true' indicator-dots='true'
+                indicator-color='#afafaf'>
+            <block wx:for="{{youhuiquan}}" wx:key="index">
+                <swiper-item>
+                    <!--                <view hidden="true">{{item._id}}</view>-->
+                    <!--                <view>优惠券名称: {{item.name}}</view>-->
+                    <!--                <view>描述: {{item.desc}}</view>-->
+                    <!--                <view>满足金额: {{item.needMoney}}</view>-->
+                    <!--                <view>开始时间: {{item.startTimeDesc}}</view>-->
+                    <!--                <view>结束时间: {{item.endTimeDesc}}</view>-->
+                    <!--                <view hidden="true">{{item.startTime}}</view>-->
+                    <!--                <view hidden="true">{{item.endTime}}</view>-->
+                    <!--                <view>剩余次数(测试): {{item.leftUseCount}}</view>-->
+                    <youhuiquan-cmp quan="{{item}}"/>
+                </swiper-item>
+            </block>
+        </swiper>
+
+        <!-- 猜你喜欢标题 -->
+        <view class='cnxhTitle'>猜你喜欢</view>
+        <!-- 猜你喜欢内容 -->
+        <view class="itemContainer">
+            <block wx:for='{{likesData}}' wx:key='index'>
+                <mainPageItem-cmp class="mainPageItem" price="{{item.price}}" imgSrc="{{item.icon}}"
+                                  txt="{{item.detail}}"
+                                  data-cargoid="{{item.cargoid}}" catch:tap="cargoDetailTap"
+                                  cargoId="{{item.cargoid}}"/>
+            </block>
+        </view>
+    </view>
+
+    <search-cmp wx:if="{{searchPanel}}" bind:cancel="onCancel"/>
 </view>
-<!-- 顶部banner图 -->
-<swiper class='bannerView' indicator-dots='true' indicator-color='#afafaf' indicator-active-color='#ffffff' autoplay='true' circular='true'>
-	<block wx:for='{{banner}}' wx:key='index'>
-		<swiper-item>
-			<image src='{{item.icon}}' data-cargoid="{{item.cargoid}}" catchtap="bannerTap"></image>
-		</swiper-item>
-	</block>
-</swiper>
 
-<!-- 类别item -->
-<!-- 一个页面 -->
-<view class="typeView">
-	<block wx:for='{{classData}}' wx:key='index'>
-		<view class='item' catchtap="typeTap" data-typeid="{{item.type}}">
-			<image class='iconView' src='{{item.icon}}'></image>
-			<text class='titleView'>{{item.desc}}</text>
-		</view>
-	</block>
-</view>
-
-<!-- <swiper class='itemView' indicator-dots='true' indicator-color='#afafaf' indicator-active-color='#e6e6e6'
-	circular='true'>
-	<swiper-item>
-		<block wx:for='{{classData}}' wx:key='index'>
-			<view class='item' catchtap="typeTap" data-typeid="{{item.type}}">
-				<image class='iconView' src='{{item.icon}}'></image>
-				<view class='titleView'>{{item.desc}}</view>
-			</view>
-		</block>
-	</swiper-item>
-	<swiper-item>
-		<block wx:for='{{classData.twoPage}}' wx:key='index'>
-			<view class='item' catchtap="typeTap" data-typeid="{{item.type}}">
-				<image class='iconView' src='{{item.icon}}'></image>
-				<view class='titleView'>{{item.title}}</view>
-			</view>
-		</block>
-	</swiper-item> 
-</swiper>-->
-
-<swiper wx:if="{{youhuiquan.length>0}}" autoplay='true' circular='true' vertical='true' indicator-dots='true' indicator-color='#afafaf'>
-	<block wx:for="{{youhuiquan}}" wx:key="index">
-		<swiper-item>
-			<!-- <view hidden="true">{{item._id}}</view>
-			<view>优惠券名称: {{item.name}}</view>
-			<view>描述: {{item.desc}}</view>
-			<view>满足金额: {{item.needMoney}}</view>
-			<view>开始时间: {{item.startTimeDesc}}</view>
-			<view>结束时间: {{item.endTimeDesc}}</view>
-			<view hidden="true">{{item.startTime}}</view>
-			<view hidden="true">{{item.endTime}}</view>
-			<view>剩余次数(测试): {{item.leftUseCount}}</view> -->
-
-			<youhuiquan-cmp quan="{{item}}" />
-		</swiper-item>
-	</block>
-</swiper>
-
-<!-- 猜你喜欢标题 -->
-<view class='cnxhTitle'>猜你喜欢</view>
-<!-- 猜你喜欢内容 -->
-<view class="itemContainer">
-	<block wx:for='{{likesData}}' wx:key='index'>
-		<mainPageItem-cmp price="{{item.price}}" imgSrc="{{item.icon}}" txt="{{item.detail}}" data-cargoid="{{item.cargoid}}" catch:tap="cargoDetailTap" />
-		<!-- <view class='detailView' catchtap="cargoDetailTap" data-cargoid="{{item.cargoid}}">
-		<image class='detailImv' src='{{item.icon}}'></image>
-		<text class='detailTxt'>{{item.detail}}</text>
-		<text class='priceTxt'>¥{{item.price}}</text>
-	</view> -->
-	</block>
-</view>

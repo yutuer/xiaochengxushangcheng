@@ -2,6 +2,7 @@
   "navigationBarTitleText": "购物车",
   "usingComponents": {
     "shopItem-cmp": "/components/shopItem/index",
+    "price-cmp": "/components/price/index",
     "classPageItem-cmp": "/components/classPageItem/index"
   }
 }

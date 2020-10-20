@@ -1,36 +1,24 @@
 /* components/youhuiquan/index.wxss */
-.youhuiquanContainer {
-  background-color: gainsboro;
+.container {
+    background-color: gainsboro;
 }
 
 .pad {
-  padding: 26rpx 30rpx;
+    padding: 26rpx 30rpx;
 }
 
-.txtlineHeight{
+.txtlineHeight {
     line-height: 60rpx;
 }
 
-.youhuiquanContainer .desc {
-  height: 80rpx;
-  font-weight: bold;
+.container .desc {
+    height: 80rpx;
+    font-weight: bold;
 }
 
-.youhuiquanContainer .validDate {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  font-size: 24rpx;
-}
-
-.r {
-  background-color: red;
-}
-
-.g {
-  background-color: green;
-}
-
-.b {
-  background-color: blue;
+.container .validDate {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 24rpx;
 }

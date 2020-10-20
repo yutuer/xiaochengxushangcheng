@@ -1,5 +1,5 @@
 <!--components/youhuiquan/index.wxml-->
-<view class="youhuiquanContainer">
+<view class="container">
 	<!-- <view hidden="true">{{quan._id}}</view>
 	<view hidden="true">{{quan.startTime}}</view>
 	<view hidden="true">{{quan.endTime}}</view>
@@ -7,7 +7,5 @@
 	<view class="desc pad">{{quan.desc}}  [剩余次数(测试): {{quan.leftUseCount}}]</view>
 	<view class="validDate pad">
 		<text class="">有效期: {{quan.startTimeDesc}}至{{quan.endTimeDesc}}</text>
-		<inlineButton-cmp content="立即使用" />
 	</view>
-	<view class=""></view>
 </view>

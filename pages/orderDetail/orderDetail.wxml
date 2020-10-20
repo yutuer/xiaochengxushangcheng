@@ -1,13 +1,18 @@
-<!--pages/orderDetail/orderDetail.wxml-->
-<view>
+<view class="container">
 	<view>{{statusDesc}}</view>
 	<view class="address">
-		<view><text>{{order.address.name}}</text><text>  {{order.address.phoneNum}}</text></view>
-		<view><text>{{order.address.area}}</text><text>  {{order.address.areaDetail}}</text></view>
+		<view>
+			<text>{{order.address.name}}</text>
+			<text> {{order.address.phoneNum}}</text>
+		</view>
+		<view>
+			<text>{{order.address.area}}</text>
+			<text> {{order.address.areaDetail}}</text>
+		</view>
 	</view>
 
 	<view class="cargoList" wx:for="{{order.cargos}}" wx:key="index">
-		<view>{{item.title}} ........ <text>{{item.num}}份</text></view>
+		<view>{{item.title}} ........ <text>{{item.num}}</text></view>
 	</view>
 
 	<view class="payInfo">

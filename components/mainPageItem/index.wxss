@@ -1,39 +1,33 @@
 /* components/mainItem/index.wxss */
 .mainPageItemContainer {
-  display: flex;
-  flex-direction: column;
-}
-
-.pad {
-  padding: 20rpx 12rpx;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 .widthRange {
-  width: 350rpx;
+    width: 350rpx;
 }
 
 .heightRange {
-  height: 375rpx;
+    height: 375rpx;
 }
 
-.mainPageItemContainer text {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  -webkit-line-clamp: 2;
+.mainPageItemContainer .desc {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    font-size: 30rpx;
+    height: 80rpx;
 }
 
 .mainPageItemContainer image {
-  background-color: #999999;
+    background-color: #999999;
 }
 
 .mainPageItemContainer .opera {
-  display: flex;
-  justify-content: space-between;
-}
-
-.opera image {
-  width: 40rpx;
-  height: 40rpx;
+    display: flex;
+    justify-content: space-between;
 }

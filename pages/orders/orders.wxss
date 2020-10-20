@@ -3,6 +3,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+}
+
+.header {
+  position: fixed;
+  height: 200rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 99;
 }
 
 .orderTitle {
@@ -15,28 +27,30 @@
   display: flex;
   justify-content: space-between;
   border-radius: 10rpx;
-  width: 96%;
+  width: 94%;
   font-size: 40rpx;
 }
 
 .contentView {
-  width: 100%;
-  /* 1334-128(导航高度)-98(tabbar高度)-100 */
-  /* height:1008rpx; */
   height: 100vh;
-  margin-bottom: 100rpx;
-  /* background-color: red; */
+  width: 94%;
+  margin-top: 200rpx;
+}
+
+.sub-container {
+  margin-top: 200rpx;
+  height: 100vh;
+  width: 94%;
+  display: flex;
+  flex-direction: column;
 }
 
 .oneOrder {
   background-color: whitesmoke;
-  margin: 30rpx 30rpx;
   border-radius: 8rpx;
   display: flex;
   flex-direction: column;
-  padding-bottom: 10rpx;
-  padding-left: 10rpx;
-  padding-right: 10rpx;
+  margin-bottom: 20rpx;
 }
 
 .oneOrder .firstLine {
@@ -51,6 +65,7 @@
 
 .oneOrder .orderStatus {
   color: green;
+  font-weight: bold;
 }
 
 .oneOrder .oneCargo {

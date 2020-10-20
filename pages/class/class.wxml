@@ -1,39 +1,37 @@
 <!--pages/class/class.wxml-->
-<!-- 顶部搜索框 -->
+        <!-- 顶部搜索框 -->
 <view class='searchHead'>
-	<view class='searchView'>
-		<image src='../../images/class/search-normal.png'></image>
-		<text>搜索京东商品</text>
-	</view>
+    <view class='searchView'>
+        <image src='../../images/class/search-normal.png'></image>
+        <text>点击搜索</text>
+    </view>
 </view>
 
-<!-- 底部分类 -->
-<!-- 分类左侧标签 -->
-<scroll-view class='leftTitle overflow' scroll-y="true" bindscrolltoupper="upper" bindscrolltolower="lower">
-	<block wx:for='{{typeArray}}' wx:key='index'>
-		<view class='titleView {{index+1==selectType?"selectTitleView":""}}' data-index='{{index}}' bind:tap='titleViewClick'>{{item.desc}}</view>
-	</block>
-</scroll-view>
+        <!-- 底部分类 -->
+        <!-- 分类左侧标签 -->
+<view class="panel">
+    <view class="leftDetail">
+        <scroll-view class='overflow' scroll-y="true" bindscrolltoupper="upper" bindscrolltolower="lower">
+            <block wx:for='{{typeArray}}' wx:key='index'>
+                <view class='titleView {{index+1==selectType?"selectTitleView":""}}' data-index='{{index}}'
+                      bind:tap='titleViewClick'>{{item.desc}}
+                </view>
+            </block>
+        </scroll-view>
+    </view>
 
-<!-- 分类右侧展示 -->
-<scroll-view class='rightDetail overflow' scroll-y="true" bindscrolltoupper="upper" bindscrolltolower="lower">
-	<!-- 顶部图片 -->
-	<!-- <image src='{{contentArr.image}}' class='topImv' wx:if='{{contentArr.image}}'></image> -->
-	<!-- 标题内内容 -->
-	<block wx:for='{{content}}' wx:for-item='itemName' wx:for-index='indexName' wx:key='indexName'>
-		<!-- <view class='itemView' catchtap="cargoDetailTap" data-cargoid="{{itemName.cargoid}}">
-			<image src='{{itemName.icon}}' class='icon'></image>
-			<view class='detail'>
-				<view class="desc">{{itemName.title}}</view>
-				<view class="count">
-					<price-cmp price="{{itemName.price}}" />
-					<view class="opera">
-						<image class='add' src='../../images/shopping/add.png' catchtap='addClick' data-cargoid='{{itemName.cargoid}}'></image>
-					</view>
-				</view>
-			</view>
-		</view> -->
-
-		<classPageItem-cmp imgSrc="{{itemName.icon}}" price="{{itemName.price}}" desc="{{itemName.title}}" subImgShow="{{false}}" numShow="{{false}}" catch:tap="cargoDetailTap" cargoId="{{itemName.cargoid}}" data-cargoid="{{itemName.cargoid}}" />
-	</block>
-</scroll-view>
+    <!-- 分类右侧展示 -->
+    <view class="rightDetail">
+        <scroll-view class='overflow' scroll-y="true" bindscrolltoupper="upper" bindscrolltolower="lower">
+            <!-- 顶部图片 -->
+            <!-- <image src='{{contentArr.image}}' class='topImv' wx:if='{{contentArr.image}}'></image> -->
+            <!-- 标题内内容 -->
+            <block wx:for='{{content}}' wx:for-item='itemName' wx:for-index='indexName' wx:key='indexName'>
+                <classPageItem-cmp imgSrc="{{itemName.icon}}" price="{{itemName.price}}" desc="{{itemName.title}}"
+                                   catch:tap="cargoDetailTap" cargoId="{{itemName.cargoid}}" subImgShow="{{false}}"
+                                   numShow="{{false}}" data-cargoid="{{itemName.cargoid}}"
+                                   catch:plusOnClickEvent="plusOnClickFun"/>
+            </block>
+        </scroll-view>
+    </view>
+</view>

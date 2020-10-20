@@ -1,36 +1,42 @@
 <!--pages/address/addressChange/addressChange.wxml-->
-<!-- 收货人姓名 -->
+        <!-- 收货人姓名 -->
 <view class="outer">
-	<view class="container">
-		<view class="content">
-			<view class="shouhuoren">
-				<text class="name">收货人:</text>
-				<input class="nameInput inputBorder" bindinput="nameInputTap" value="{{name}}" placeholder="请填写收货人的姓名" maxlength="160rpx">{{name}}</input>
-			</view>
-			<!-- 手机号码 -->
-			<view class="phoneInfo">
-				<text class="phone">手机号码:</text>
-				<!-- 不允许修改, 做查询使用的 -->
-				<text class="phoneTxt">{{phoneNum}}</text>
-			</view>
-			<!-- 所在地区 -->
-			<view class="areaInfo">
-				<view>
-					<text class="area">所在地区:</text>
-					<text class="mapPosition" catchtap="getLocation">定位</text>
-				</view>
-				<input class="areaInput inputBorder" bindinput="areaInputTap" value="{{area}}" placeholder="请填写所在地区">{{area}}</input>
-				<!-- <image class="positionImg"></image> -->
-			</view>
-			<view class="areaDetailInfo">
-				<text class="areaDetail">详细地址:</text>
-				<input class="areaInputDetail inputBorder" bindinput="areaDetailTap" value="{{areaDetail}}" placeholder="请填写详细地址">{{areaDetail}}</input>
-			</view>
-		</view>
-		<view class="setDefault">
-			<text>设置默认</text>
-			<switch checked="{{checked}}" bindchange="switchChange"></switch>
-		</view>
-	</view>
-	<button class="save" catchtap="saveTap" data-index="{{index}}">保存</button>
+    <view class="container">
+        <view class="content">
+            <view class="shouhuoren">
+                <text class="name">收货人:</text>
+                <input class="nameInput inputBorder" bindinput="nameInputTap" value="{{name}}" placeholder="请填写收货人的姓名">
+                    {{name}}
+                </input>
+            </view>
+            <!-- 手机号码 -->
+            <view class="phoneInfo">
+                <text class="phone">手机号码:</text>
+                <!-- 不允许修改, 做查询使用的 -->
+                <text class="phoneTxt">{{phoneNum}}</text>
+            </view>
+            <!-- 所在地区 -->
+            <view class="areaInfo">
+                <view>
+                    <text class="area">所在地区:</text>
+                    <text class="mapPosition" catchtap="getLocation">定位</text>
+                </view>
+                <input class="areaInput inputBorder" bindinput="areaInputTap" value="{{area}}" placeholder="请填写所在地区">
+                    {{area}}
+                </input>
+                <!-- <image class="positionImg"></image> -->
+            </view>
+            <view class="areaDetailInfo">
+                <text class="areaDetail">详细地址:</text>
+                <input class="areaInputDetail inputBorder" bindinput="areaDetailTap" value="{{areaDetail}}"
+                       placeholder="请填写详细地址">{{areaDetail}}
+                </input>
+            </view>
+        </view>
+        <view class="setDefault">
+            <text>设置默认</text>
+            <switch checked="{{checked}}" bindchange="switchChange"></switch>
+        </view>
+    </view>
+    <button class="save" catchtap="saveTap" data-index="{{index}}">保存</button>
 </view>

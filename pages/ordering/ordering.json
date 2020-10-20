@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "price-cmp": "/components/price/index"
+    "price-cmp": "/components/price/index",
+    "classPageItem-cmp": "/components/classPageItem/index"
   }
 }

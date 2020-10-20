@@ -44,18 +44,23 @@
 }
 
 /* 底部分类 */
+.panel {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 /* 分类左侧标签 */
-.leftTitle {
-  display: inline-block;
+.leftDetail {
   width: 30%;
   /*1334(屏幕高度)-98(底部tabBar高度)-128(导航栏高度)-112(顶部搜索高度)*/
   /* 此处应该是动态算出 */
   height: 100vh;
   background: #F2F2F2;
+  /* flex-grow: 6; */
 }
 
 /* 未选中的样式 */
-.leftTitle .titleView {
+.leftDetail .titleView {
   width: 100%;
   /* 文字居中对齐 */
   text-align: center;
@@ -66,7 +71,7 @@
 }
 
 /* 选中的样式 */
-.leftTitle .selectTitleView {
+.selectTitleView {
   font-size: 28rpx;
   color: #9D2A37;
   background-color: #ffffff;
@@ -74,11 +79,11 @@
 
 /* 分类右侧展示 */
 .rightDetail {
-  display: inline-block;
   width: 70%;
   /*1334(屏幕高度)-98(底部tabBar高度)-128(导航栏高度)-112(顶部搜索高度)*/
   height: 100vh;
   background-color: #ffffff;
+  /* flex-grow: 6; */
 }
 
 /* 顶部图片 */

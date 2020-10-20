@@ -1,11 +1,13 @@
 <!--components/classPageItem/index.wxml-->
 <view class="classPageItemContainer heightRange margin padButtom">
-	<image style="width:{{imgWidth}}rpx; height:{{heightRange}}rpx" src="{{imgSrc}}"></image>
-	<view class="right widthRange" style="height:{{heightRange}}rpx">
-		<text class="textHeight">{{desc}}</text>
-		<view class="bottomer">
-			<price-cmp price="{{price}}" />
-			<numOpera-cmp imgWidth="40" imgHeight="40" cargoId="{{cargoId}}" textWidth="100" subImgShow="{{subImgShow}}" numShow="{{numShow}}" showNum="{{showNum}}" catch:plusOnClickEvent="plusOnClickFunc" catch:reduceOnClickEvent="reduceOnClickFunc"/>
-		</view>
-	</view>
+    <image style="width:{{imgWidth}}rpx; height:{{heightRange}}rpx" src="{{imgSrc}}"></image>
+    <view class="right widthRange" style="height:{{heightRange}}rpx">
+        <text class="textHeight">{{desc}}</text>
+        <view class="bottomer">
+            <price-cmp price="{{price}}"/>
+            <numOpera-cmp imgWidth="40" imgHeight="40" cargoId="{{cargoId}}" textWidth="100"
+                          plusImgShow="{{plusImgShow}}" subImgShow="{{subImgShow}}"
+                          numShow="{{numShow}}" showNum="{{showNum}}"/>
+        </view>
+    </view>
 </view>

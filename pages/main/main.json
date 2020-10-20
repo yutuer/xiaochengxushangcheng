@@ -2,6 +2,7 @@
   "navigationBarTitleText": "首页",
   "usingComponents": {
     "youhuiquan-cmp": "/components/youhuiquan/index",
+    "search-cmp": "/components/search/index",
     "mainPageItem-cmp": "/components/mainPageItem/index"
   }
 }
