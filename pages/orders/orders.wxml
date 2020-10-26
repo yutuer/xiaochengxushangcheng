@@ -15,8 +15,10 @@
     <!-- 显示区域 -->
     <scroll-view class="contentView" scroll-y="true">
         <block wx:for='{{orders}}' wx:for-item='order' wx:key='index'>
-            <view class="oneOrder" wx:if="{{chooseStatus==0 || order.status == chooseStatus}}" data-order="{{order}}"
-                  catch:tap="countNumTap">
+            <view class="oneOrder"
+                  wx:if="{{chooseStatus==0 || order.status == chooseStatus || (chooseStatus==3 && order.status == 4)}}"
+                  data-order="{{order}}"
+                  catch:tap="tapOneOrder">
                 <view class="firstLine">
                     <text class="time">{{order.timeDesc}}</text>
                     <text class="orderStatus">{{order.statusDesc}}</text>

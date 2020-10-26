@@ -12,6 +12,7 @@ Component({
         imgSrc: String,
         price: Number,
         txt: String,
+        title: String,
         cargoId: Number
     },
 

@@ -1,6 +1,7 @@
-// pages/ordering/ordering.js
+// pages/prePay/prePay.js
 const app = getApp()
 let util = require('../../utils/util.js')
+let verify = require('../../utils/verify.js')
 Page({
 
     /**
@@ -23,7 +24,7 @@ Page({
     },
 
     // 提交订单
-    confirm(e) {
+    confirmOrder(e) {
         // 判断地址有没有选择
         if (this.data.chooseAddrIndex == -1) {
             wx.showToast({
@@ -37,6 +38,9 @@ Page({
 
         // !!!! 发起支付请求啦
         this.payStart(1)
+    },
+
+    cancelOrder(e) {
     },
 
     // 生成订单号
@@ -113,43 +117,98 @@ Page({
     // 开始支付
     payStart(money) {
         let that = this
+
         const allPrice = this.data.orderDetail.allPrice
         const cargos = this.data.orderDetail.cargos
         const youhuiquan = this.data.orderDetail.youhuiquan
-
         let address = that.data.address
-        // 订单号
-        let orderNo = that.genOrderNo()
 
-        // let nonceStr = that.nonceStr()
+        let order = this.data.orderDetail.order
+        if (order) {
+            let orderStatus = app.globalData.orderStatus
 
-        let dataSend = {
-            money: money,
-            // nonceStr: nonceStr,
-            order: orderNo,
+            if (order.status != orderStatus.waitForPay.status) {
+                return
+            }
+
+            // 有订单, 校验时间
+            const now = Date.parse(new Date())
+            // 如果15分钟还是未支付, 则更新为已完成
+            let time = order.time
+            if (time + 15 * 60 * 1000 < now) {
+                order.status = orderStatus.expire.status
+                util.updateOrderPayExpire(order.package)
+
+                verify.showToast("订单支付超时")
+                wx.redirectTo({
+                    url: '../orders/orders',
+                    success: function (res) {
+                        wx.reLaunch({
+                            url: '../orders/orders',
+                        })
+                    },
+                })
+                return
+            }
+
+            // 订单号
+            let orderNo = order.outTradeNo
+
+            let dataSend = {
+                money: money,
+                // nonceStr: nonceStr,
+                order: orderNo,
+            }
+            console.log("dataSend:", dataSend)
+
+            // 小程序代码
+            wx.cloud.callFunction({
+                name: 'paystart',
+                data: {
+                    ...dataSend
+                },
+                success: res => {
+                    const payment = res.result.payment
+                    console.log("payment:", payment);
+                    // 轮询处理支付
+                    util.payForPayment(orderNo, payment, youhuiquan)
+                },
+                fail: console.error,
+            })
+        } else {
+            // 订单号
+            let orderNo = that.genOrderNo()
+
+            // let nonceStr = that.nonceStr()
+
+            let dataSend = {
+                money: money,
+                // nonceStr: nonceStr,
+                order: orderNo,
+            }
+            console.log("dataSend:", dataSend)
+            // 小程序代码
+            wx.cloud.callFunction({
+                name: 'paystart',
+                data: {
+                    ...dataSend
+                },
+                success: res => {
+                    const payment = res.result.payment
+                    console.log("payment:", payment);
+
+                    // 插入数据库
+                    that.insertPaymentToDB(orderNo, address, cargos, payment, allPrice, youhuiquan)
+                    // 缓存设置为无效
+                    that.updateCache()
+                    // 清除掉购物车中所有选择的物品
+                    that.removeCargosBuy()
+                    // 轮询处理支付
+                    util.payForPayment(orderNo, payment, youhuiquan)
+                },
+                fail: console.error,
+            })
         }
-        console.log("dataSend:", dataSend)
-        // 小程序代码
-        wx.cloud.callFunction({
-            name: 'paystart',
-            data: {
-                ...dataSend
-            },
-            success: res => {
-                const payment = res.result.payment
-                console.log("payment:", payment);
-
-                // 插入数据库
-                that.insertPaymentToDB(orderNo, address, cargos, payment, allPrice, youhuiquan)
-                // 缓存设置为无效
-                that.updateCache()
-                // 清除掉购物车中所有选择的物品
-                that.removeCargosBuy()
-                // 轮询处理支付
-                util.payForPayment(orderNo, payment, youhuiquan)
-            },
-            fail: console.error,
-        })
     },
 
     // 清除掉购物车中所有select状态的物品
@@ -172,10 +231,10 @@ Page({
     onLoad: function (options) {
         let orderDetail = JSON.parse(decodeURIComponent(options.orderDetail))
         this.setData({
-            orderDetail: orderDetail
+            orderDetail: orderDetail,
         })
 
-        console.log("ordering  onLoad, orderDetail:", orderDetail)
+        console.log("prePay  onLoad, orderDetail:", orderDetail)
 
         // 从缓存中读出默认地址
         const addressCache = wx.getStorageSync(app.globalData.addressKey)
@@ -199,7 +258,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        console.log("ordering  onShow")
+        console.log("prePay  onShow")
         let chooseIndex = this.data.chooseAddrIndex
         // 从缓存中读出默认地址
         const addressCache = wx.getStorageSync(app.globalData.addressKey)
@@ -214,14 +273,14 @@ Page({
      * 生命周期函数--监听页面隐藏
      */
     onHide: function () {
-        console.log("ordering  onHide")
+        console.log("prePay  onHide")
     },
 
     /**
      * 生命周期函数--监听页面卸载
      */
     onUnload: function () {
-        console.log("ordering  onUnLoad")
+        console.log("prePay  onUnLoad")
     },
 
     /**

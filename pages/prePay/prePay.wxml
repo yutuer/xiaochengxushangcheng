@@ -1,4 +1,4 @@
-<!--pages/ordering/ordering.wxml-->
+<!--pages/prePay/prePay.wxml-->
 <view class="container">
     <!-- 展示栏 -->
 
@@ -37,9 +37,16 @@
 
     <!-- 价格栏 -->
     <view class="priceShow">
-        <text wx:if='{{orderDetail.youhuiquan}}'>{{orderDetail.youhuiquan.desc}}</text>
-        <price-cmp price="{{orderDetail.allPrice}}" fontSize="32"/>
+        <text class="youhuiquan" wx:if='{{orderDetail.youhuiquan}}'>优惠券: {{orderDetail.youhuiquan.desc}}</text>
+        <view class="price">
+            <text>总计:</text>
+            <price-cmp price="{{orderDetail.allPrice}}" fontSize="32"/>
+        </view>
     </view>
     <!-- 确认订单 -->
-    <button catch:tap="confirm">确认订单</button>
+    <view class="buttonLine">
+        <button class="confirm" catch:tap="confirmOrder" type="primary">确认支付</button>
+        <button class="cancel" catch:tap="cancelOrder" data-order="{{orderDetail}}" wx:if="{{orderDetail.order}}">取消订单
+        </button>
+    </view>
 </view>

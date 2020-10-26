@@ -2,6 +2,7 @@
 
 import {paginationBev} from '../behaviors/pagination.js'
 
+const util = require("../../utils/util.js")
 const app = getApp()
 
 Component({
@@ -32,9 +33,6 @@ Component({
             this.initPagination()
 
             let q = event.detail.value || event.detail.text
-
-            console.log("q:", q)
-
             this.search(q)
         },
 
@@ -68,6 +66,13 @@ Component({
                 empty: false,
                 q: ''
             })
+        },
+
+        // 点击了查看详情
+        cargoDetailTap: function (e) {
+            const cargoid = e.currentTarget.dataset.cargoid
+            // 跳转详情页
+            util.navigateToDetail(cargoid)
         },
     }
 })

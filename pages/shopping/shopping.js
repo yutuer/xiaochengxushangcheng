@@ -97,24 +97,6 @@ Page({
         const youhuiquan = this.data.youhuiquan
 
         pay.countNumTap(allPrice, chooseCargos, youhuiquan)
-
-        // if (chooseCargos.length == 0) {
-        //   wx.showToast({
-        //     title: '请选择购买物品',
-        //   })
-        //   return
-        // }
-
-        // let priceObj = {
-        //   allPrice: allPrice,
-        //   cargos: chooseCargos,
-        //   youhuiquan: youhuiquan,
-        // }
-
-        // let s = encodeURIComponent(JSON.stringify(priceObj))
-        // wx.navigateTo({
-        //   url: '../ordering/ordering?orderDetail=' + s,
-        // })
     },
 
     // 拷贝原始数据到一个新的带有num的对象中

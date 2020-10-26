@@ -52,15 +52,15 @@
     </view>
 </view>
 
-<!--<button bindtap="test">测试优惠券, 添加按钮</button>-->
-<!--<view>-->
-<!--    <input bindblur="testName" value="送香蕉" placeholder="优惠券名称"></input>-->
-<!--    <input bindblur="testDesc" value="满100送1斤香蕉" placeholder="赠送说明"></input>-->
-<!--    <input type="digit" bindblur="testNeedMoney" value="100.00" placeholder="优惠满足条件(合计金额, 精确到xx)"></input>-->
-<!--    <input bindblur="testStartTime" value="2020-8-8 10:00" placeholder="开始时间(年-月-日 时:分)"></input>-->
-<!--    <input bindblur="testEndTime" value="2021-10-10 10:10" placeholder="结束时间(年-月-日 时:分)"></input>-->
-<!--    <input type="number" bindblur="maxUseCount" value="100" placeholder="最大使用次数"></input>-->
-<!--</view>-->
+        <!--<button bindtap="test">测试优惠券, 添加按钮</button>-->
+        <!--<view>-->
+        <!--    <input bindblur="testName" value="送香蕉" placeholder="优惠券名称"></input>-->
+        <!--    <input bindblur="testDesc" value="满100送1斤香蕉" placeholder="赠送说明"></input>-->
+        <!--    <input type="digit" bindblur="testNeedMoney" value="100.00" placeholder="优惠满足条件(合计金额, 精确到xx)"></input>-->
+        <!--    <input bindblur="testStartTime" value="2020-8-8 10:00" placeholder="开始时间(年-月-日 时:分)"></input>-->
+        <!--    <input bindblur="testEndTime" value="2021-10-10 10:10" placeholder="结束时间(年-月-日 时:分)"></input>-->
+        <!--    <input type="number" bindblur="maxUseCount" value="100" placeholder="最大使用次数"></input>-->
+        <!--</view>-->
 
         <!--<view class="out-container">-->
         <!--    <view class="container">-->
@@ -95,7 +95,7 @@
     <numOpera-cmp imgWidth="50" imgHeight="50" cargoId="100" subImgShow="{{false}}" numShow="{{false}}" showNum="100" textWidth="100" bind:plusOnClickEvent="plusOnClickFunc"/>
         -->
 
-        <search-cmp/>
+        <!--        <search-cmp/>-->
         <!--<mainPageItem-cmp price="20.0" imgSrc="/images/getImages/ef747eda057cd778.jpg!q70.jpg" txt="华嘉 阳台 12夹水蓝色" />-->
         <!--<mainPageItem-cmp price="20.0" imgSrc="/images/getImages/ef747eda057cd778.jpg!q70.jpg" txt="华嘉 圆形塑料夹子18夹防风多功能折叠内衣袜子架加粗卧室阳台 12夹水蓝色" />-->
         <!--<mainPageItem-cmp price="20.0" imgSrc="/images/getImages/dc2268445a844a54.jpg!q70.jpg" txt="华嘉 圆形塑料夹子1阳台 12夹水蓝色" />-->

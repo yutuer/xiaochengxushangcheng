@@ -1,34 +1,50 @@
 <view class="container">
-	<view>{{statusDesc}}</view>
-	<view class="address">
-		<view>
-			<text>{{order.address.name}}</text>
-			<text> {{order.address.phoneNum}}</text>
-		</view>
-		<view>
-			<text>{{order.address.area}}</text>
-			<text> {{order.address.areaDetail}}</text>
-		</view>
-	</view>
+    <view>{{statusDesc}}</view>
 
-	<view class="cargoList" wx:for="{{order.cargos}}" wx:key="index">
-		<view>{{item.title}} ........ <text>{{item.num}}</text></view>
-	</view>
+    <!-- 地址展示 -->
+    <view class="addrInfo">
+        <text style="font-size:40rpx">收货地址信息:</text>
 
-	<view class="payInfo">
-		<view>商品小计: <text>¥ {{order.allPrice}}</text></view>
-		<view>优惠券: <text> {{order.youhuiquan.desc}}</text></view>
-		<view>实付金额合计: <text>¥ {{order.allPrice}}</text></view>
-	</view>
+        <!--第一行-->
+        <view class="headLine">
+            <text>{{order.address.area}}</text>
+        </view>
 
-	<view class="orderInfo">
-		<view>订单编号: {{order.payment.nonceStr}}</view>
-		<view>下单时间: {{order.timeDesc}}</view>
-		<view>客服电话: 18902733626</view>
-	</view>
+        <!--第2行-->
+        <text class="areaDetailTxt fontBold">{{order.address.areaDetail}}</text>
 
-	<view>
-		<view wx:if="{{order.status == 1}}" bindtap="payOrder"><button>去支付</button></view>
-		<view wx:else></view>
-	</view>
+        <!--第3行-->
+        <view class="bottomLine">
+            <text class="name" style="margin-right:30rpx">{{order.address.name}}</text>
+            <text class="phoneNum">{{order.address.phoneNum}}</text>
+        </view>
+    </view>
+
+    <!-- 购买货物展示 -->
+    <view class="cargoShow">
+        <block wx:for="{{order.cargos}}" wx:key="index">
+            <classPageItem-cmp class="cargo" imgSrc="{{item.icon}}" price="{{item.price}}" desc="{{item.title}}"
+                               cargoId="{{item.cargoid}}" plusImgShow="{{false}}" subImgShow="{{false}}"
+                               numShow="{{true}}" showNum="{{item.num}}"/>
+        </block>
+    </view>
+
+    <view class="payInfo">
+        <view>商品小计:
+            <text>¥ {{order.allPrice}}</text>
+        </view>
+        <view>使用优惠券:
+            <text>{{order.youhuiquan.desc}}</text>
+        </view>
+        <view>实付金额合计:
+            <text>¥ {{order.allPrice}}</text>
+        </view>
+    </view>
+
+    <view class="orderInfo">
+        <text>订单编号: {{order.payment.nonceStr}}</text>
+        <text>下单时间: {{order.timeDesc}}</text>
+        <text>支付方式: 微信支付</text>
+    </view>
+
 </view>

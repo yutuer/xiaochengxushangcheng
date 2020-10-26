@@ -35,7 +35,7 @@ var typeArray = [{
 var allDatas = [{
     cargoid: "1",
     price: 0.01,
-    "title": "手机",
+    "title": "手机1",
     "icon": "../../images/getImages/5be6ebd8Nb07ef492.png",
     type: 1,
     "detail": "华嘉 圆形塑料夹子18夹防风多功能折叠内衣袜子架加粗卧室阳台 12夹水蓝色",
@@ -45,7 +45,7 @@ var allDatas = [{
 }, {
     cargoid: "2",
     price: 12.2,
-    "title": "耳机",
+    "title": "耳机1",
     "icon": "../../images/getImages/aef9581abcc85725.png",
     type: 1,
     "detail": "华嘉 圆形塑料夹子18夹防风多功能折叠内衣袜子架加粗卧室阳台 12夹水蓝色",
@@ -55,7 +55,7 @@ var allDatas = [{
 }, {
     cargoid: "3",
     price: 12.3,
-    "title": "电饭煲",
+    "title": "电饭煲1",
     "icon": "../../images/getImages/987962eb75bfe813.png",
     type: 1,
     "detail": "华嘉 圆形塑料夹子18夹防风多功能折叠内衣袜子架加粗卧室阳台 12夹水蓝色",
@@ -65,7 +65,7 @@ var allDatas = [{
 }, {
     cargoid: "4",
     price: 12.1,
-    "title": "手机",
+    "title": "手机2",
     "icon": "../../images/getImages/5be6ebd8Nb07ef492.png",
     type: 1,
     "detail": "华嘉 圆形塑料夹子18夹防风多功能折叠内衣袜子架加粗卧室阳台 12夹水蓝色",
@@ -75,7 +75,7 @@ var allDatas = [{
 }, {
     cargoid: "5",
     price: 12.2,
-    "title": "耳机",
+    "title": "耳机2",
     "icon": "../../images/getImages/aef9581abcc85725.png",
     type: 1,
     "detail": "华嘉 圆形塑料夹子18夹防风多功能折叠内衣袜子架加粗卧室阳台 12夹水蓝色",
@@ -85,7 +85,7 @@ var allDatas = [{
 }, {
     cargoid: "6",
     price: 12.3,
-    "title": "电饭煲",
+    "title": "电饭煲2",
     "icon": "../../images/getImages/987962eb75bfe813.png",
     type: 1,
     "detail": "华嘉 圆形塑料夹子18夹防风多功能折叠内衣袜子架加粗卧室阳台 12夹水蓝色",
@@ -95,7 +95,7 @@ var allDatas = [{
 }, {
     cargoid: "7",
     price: 12.1,
-    "title": "手机",
+    "title": "手机3",
     "icon": "../../images/getImages/5be6ebd8Nb07ef492.png",
     type: 1,
     "detail": "华嘉 圆形塑料夹子18夹防风多功能折叠内衣袜子架加粗卧室阳台 12夹水蓝色",
@@ -105,7 +105,7 @@ var allDatas = [{
 }, {
     cargoid: "8",
     price: 12.2,
-    "title": "耳机",
+    "title": "耳机3",
     "icon": "../../images/getImages/aef9581abcc85725.png",
     type: 1,
     "detail": "华嘉 圆形塑料夹子18夹防风多功能折叠内衣袜子架加粗卧室阳台 12夹水蓝色",
@@ -115,7 +115,7 @@ var allDatas = [{
 }, {
     cargoid: "9",
     price: 12.3,
-    "title": "电饭煲",
+    "title": "电饭煲3",
     "icon": "../../images/getImages/987962eb75bfe813.png",
     type: 1,
     "detail": "华嘉 圆形塑料夹子18夹防风多功能折叠内衣袜子架加粗卧室阳台 12夹水蓝色",
@@ -125,7 +125,7 @@ var allDatas = [{
 }, {
     cargoid: "21",
     price: 122,
-    "title": "小米",
+    "title": "小米1",
     "icon": "../../images/getImages/5a1692eeN105a64b4.png",
     type: 2,
     "detail": "华嘉 圆形塑料夹子18夹防风多功能折叠内衣袜子架加粗卧室阳台 12夹水蓝色",
@@ -135,7 +135,7 @@ var allDatas = [{
 }, {
     cargoid: "22",
     price: 222.3,
-    "title": "华为",
+    "title": "华为1",
     "icon": "../../images/getImages/5a1692e2Nbea6e136.jpg",
     type: 2,
     "detail": "华嘉 圆形塑料夹子18夹防风多功能折叠内衣袜子架加粗卧室阳台 12夹水蓝色",
@@ -145,7 +145,7 @@ var allDatas = [{
 }, {
     cargoid: "23",
     price: 1.1,
-    "title": "荣耀",
+    "title": "荣耀1",
     "icon": "../../images/getImages/5a1692e2N6df7c609.jpg",
     type: 2,
     "detail": "华嘉 圆形塑料夹子18夹防风多功能折叠内衣袜子架加粗卧室阳台 12夹水蓝色",
@@ -155,7 +155,7 @@ var allDatas = [{
 }, {
     cargoid: "24",
     price: 1,
-    "title": "苹果",
+    "title": "苹果1",
     "icon": "../../images/getImages/5a1692ebN8ae73077.jpg",
     type: 2,
     "detail": "华嘉 圆形塑料夹子18夹防风多功能折叠内衣袜子架加粗卧室阳台 12夹水蓝色",
@@ -165,7 +165,7 @@ var allDatas = [{
 }, {
     cargoid: "31",
     price: 1212,
-    "title": "电水壶",
+    "title": "电水壶1",
     "icon": "../../images/getImages/5a17f1d2N8078d5e6.jpg",
     type: 3,
     "detail": "华嘉 圆形塑料夹子18夹防风多功能折叠内衣袜子架加粗卧室阳台 12夹水蓝色",
@@ -175,7 +175,7 @@ var allDatas = [{
 }, {
     cargoid: "32",
     price: 12,
-    "title": "电压力锅",
+    "title": "电压力锅1",
     "icon": "../../images/getImages/5a17f21dN905aaf4c.jpg",
     type: 3,
     "detail": "华嘉 圆形塑料夹子18夹防风多功能折叠内衣袜子架加粗卧室阳台 12夹水蓝色",
@@ -185,7 +185,7 @@ var allDatas = [{
 }, {
     cargoid: "33",
     price: 111.1,
-    "title": "电压力锅222",
+    "title": "电压力锅2",
     "icon": "../../images/getImages/5a17f224Nea1d3f59.jpg",
     type: 3,
     "detail": "华嘉 圆形塑料夹子18夹防风多功能折叠内衣袜子架加粗卧室阳台 12夹水蓝色",
@@ -195,7 +195,7 @@ var allDatas = [{
 }, {
     cargoid: "34",
     price: 12,
-    "title": "电池炉",
+    "title": "电池炉1",
     "icon": "../../images/getImages/5a17f1edN56abbe6e.jpg",
     type: 3,
     "detail": "华嘉 圆形塑料夹子18夹防风多功能折叠内衣袜子架加粗卧室阳台 12夹水蓝色",
@@ -205,7 +205,7 @@ var allDatas = [{
 }, {
     cargoid: "35",
     price: 12,
-    "title": "微波炉",
+    "title": "微波炉1",
     "icon": "../../images/getImages/5a17f203N50016f64.jpg",
     type: 3,
     "detail": "华嘉 圆形塑料夹子18夹防风多功能折叠内衣袜子架加粗卧室阳台 12夹水蓝色",

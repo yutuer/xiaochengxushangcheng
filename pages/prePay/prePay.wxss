@@ -1,4 +1,4 @@
-/* pages/ordering/ordering.wxss */
+/* pages/prePay/prePay.wxss */
 .container {
     display: flex;
     flex-direction: column;
@@ -14,6 +14,7 @@
     justify-content: space-between;
     height: 120rpx;
     width: 96%;
+    background-color: whitesmoke;
 }
 
 .addrInfo {
@@ -67,9 +68,23 @@
     display: flex;
     flex-direction: column;
     width: 96%;
+    margin-top: 30rpx;
+    height: 150rpx;
+    justify-content: space-evenly;
 }
 
-.priceShow .priceTxt {
-    color: red;
-    font-size: 40rpx bold;
+.youhuiquan {
+    font-size: 32rpx;
+}
+
+.price {
+    display: flex;
+    font-size: 32rpx;
+}
+
+.buttonLine {
+    margin-top: 30rpx;
+    display: flex;
+    width: 96%;
+    justify-content: space-between;
 }

@@ -13,7 +13,7 @@
     <view class="items-container" wx:if="{{finished}}">
         <block wx:for="{{dataArray}}" wx:key="cargoId">
             <mainPageItem-cmp class="mainPageItem" price="{{item.price}}" imgSrc="{{item.icon}}"
-                              txt="{{item.detail}}"
+                              txt="{{item.detail}}" title="{{item.title}}"
                               data-cargoid="{{item.cargoid}}" catch:tap="cargoDetailTap"
                               cargoId="{{item.cargoid}}"/>
         </block>

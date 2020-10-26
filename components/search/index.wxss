@@ -41,8 +41,8 @@
 }
 
 .cancel-img {
-    width: 14px;
-    height: 14px;
+    width: 18px;
+    height: 18px;
     margin-right: 10px;
 }
 
@@ -61,11 +61,15 @@
 }
 
 .items-container {
-    width: 570rpx;
+    padding: 0 12rpx;
+    background-color: #e4e4e4;
     margin-top: 100rpx;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    padding: 0 90rpx 0 90rpx;
     justify-content: space-between;
+}
+
+.mainPageItem {
+    margin-bottom: 20rpx;
 }

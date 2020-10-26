@@ -1,1 +1,60 @@
-/* pages/orderDetail/orderDetail.wxss */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.addrInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 200rpx;
+    background-color: whitesmoke;
+    width: 96%;
+    margin-bottom: 50rpx;
+}
+
+.headLine {
+    display: flex;
+    font-size: 24rpx;
+}
+
+.areaDetailTxt {
+    font-size: 30rpx;
+}
+
+.fontBold {
+    font-weight: bold;
+}
+
+.bottomLine {
+    display: flex;
+    font-size: 24rpx;
+}
+
+.cargoShow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 96%;
+    margin-bottom: 40rpx;
+}
+
+.cargo {
+    width: 100%;
+}
+
+.payInfo {
+    display: flex;
+    flex-direction: column;
+    width: 96%;
+    margin-bottom: 40rpx;
+}
+
+.orderInfo {
+    font-size: 28rpx;
+    display: flex;
+    flex-direction: column;
+    width: 96%;
+}

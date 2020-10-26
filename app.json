@@ -4,7 +4,7 @@
     "pages/class/class",
     "pages/cargodetail/cargodetail",
     "pages/shopping/shopping",
-    "pages/ordering/ordering",
+    "pages/prePay/prePay",
     "pages/orders/orders",
     "pages/orderDetail/orderDetail",
     "pages/login/smsLogin/smsLogin",

@@ -2,6 +2,7 @@
 .mainPageItemContainer {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     width: 100%;
 }
 
@@ -11,6 +12,11 @@
 
 .heightRange {
     height: 375rpx;
+}
+
+.title {
+    font-size: 34rpx;
+    font-weight: bold;
 }
 
 .mainPageItemContainer .desc {

@@ -62,7 +62,8 @@
             </swiper-item>
         </swiper>-->
 
-        <swiper class="youhuiquan" wx:if="{{youhuiquan.length > 0 }}" autoplay='true' circular='true' vertical='true' indicator-dots='true'
+        <swiper class="youhuiquan" wx:if="{{youhuiquan.length > 0 }}" autoplay='true' circular='true' vertical='true'
+                indicator-dots='true'
                 indicator-color='#afafaf'>
             <block wx:for="{{youhuiquan}}" wx:key="index">
                 <swiper-item>
@@ -86,7 +87,7 @@
         <view class="itemContainer">
             <block wx:for='{{likesData}}' wx:key='index'>
                 <mainPageItem-cmp class="mainPageItem" price="{{item.price}}" imgSrc="{{item.icon}}"
-                                  txt="{{item.detail}}"
+                                  txt="{{item.detail}}" title="{{item.title}}"
                                   data-cargoid="{{item.cargoid}}" catch:tap="cargoDetailTap"
                                   cargoId="{{item.cargoid}}"/>
             </block>
