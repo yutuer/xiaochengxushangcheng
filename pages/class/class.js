@@ -166,7 +166,7 @@ Page({
     },
 
     plusOnClickFun: function (e) {
-        console.log("class plusOnClickFun")
+        console.log("class page plusOnClickFun")
         numOpera.redDot()
     },
 })

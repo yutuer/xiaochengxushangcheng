@@ -1,51 +1,45 @@
 /* login.wxss */
 /* 设置字体大小为28 */
-.font28{
-  color: #999999;
-  font-size: 28rpx;
+.font28 {
+    color: #999999;
+    font-size: 28rpx;
 }
+
 /* 输入框样式 */
-.input{
-  margin: 0 40rpx;
-  height: 70rpx;
-  border-bottom: 1px solid #F1F1F1;
-  font-size: 28rpx;
+.input {
+    margin: 0 40rpx;
+    height: 70rpx;
+    border-bottom: 1px solid #F1F1F1;
+    font-size: 28rpx;
 }
+
 /* 输入框父层样式 */
-.inputSuperView{
-  display: flex;
-  align-items: center;
-  margin: 0 40rpx;
-  border-bottom: 1px solid #F1F1F1;
-  font-size: 28rpx;
+.inputSuperView {
+    display: flex;
+    align-items: center;
+    margin: 0 40rpx;
+    border-bottom: 1px solid #F1F1F1;
+    font-size: 28rpx;
 }
+
 /* 右侧文字样式 */
-.subBtnView{
-  font-size: 24rpx;
-  color: #000000;
-  border-left: 1px solid #E5E5E5;
-  padding: 0 20rpx;
+.subBtnView {
+    font-size: 24rpx;
+    color: #000000;
+    border-left: 1px solid #E5E5E5;
+    padding: 0 20rpx;
 }
+
 /* 底部登录按钮样式 */
-.loginView{
-  position: relative;
-  top: 140rpx;
-  margin: 0 40rpx;
-  height: 80rpx;
-  border-radius: 40rpx;
-  background-color: #EBBCB6;
-  /* 让文字居中 */
-  text-align: center;
-  line-height: 80rpx;
-  color: #ffffff;
-}
-/* 同意协议 */
-.protocol{
-  position: absolute;
-  bottom: 100rpx;
-  width: 100%;
-  text-align: center;
-}
-.protocol text{
-  color: #6CA5F2;
+.loginView {
+    position: relative;
+    top: 140rpx;
+    margin: 0 40rpx;
+    height: 80rpx;
+    border-radius: 40rpx;
+    background-color: #EBBCB6;
+    /* 让文字居中 */
+    text-align: center;
+    line-height: 80rpx;
+    color: #ffffff;
 }

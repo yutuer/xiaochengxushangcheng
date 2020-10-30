@@ -193,4 +193,9 @@ Page({
             searchPanel: false
         })
     },
+
+    plusOnClickFun: function (e) {
+        console.log("main page plusOnClickFun")
+        numOpera.redDot()
+    },
 })

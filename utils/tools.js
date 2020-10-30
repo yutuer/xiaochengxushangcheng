@@ -1,4 +1,5 @@
 const util = require('util.js');
+const verify = require('verify.js');
 let app = getApp()
 
 class NumOpera {
@@ -30,6 +31,8 @@ class NumOpera {
             })
         }
         wx.setStorageSync(app.globalData.cargosKey, cargoCache)
+
+        verify.showToast("添加成功,请到购物车查看")
     }
 
     // 点击 减 按钮

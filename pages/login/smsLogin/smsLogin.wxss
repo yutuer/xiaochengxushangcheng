@@ -1,6 +1,18 @@
 /* pages/login/smsLogin/smsLogin.wxss */
+.container {
+    height: 90vh;
+}
+
 .loginOut {
-    width: 300rpx;
+    background-color: red;
+    border-radius: 40rpx;
+    margin: 0 40rpx;
+    margin-top: 100rpx;
+    height: 80rpx;
+    text-align: center;
+    line-height: 80rpx;
+    width: 60%;
+    color: white;
 }
 
 /* 输入账户 */

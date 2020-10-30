@@ -8,7 +8,7 @@
             <!--第一行-->
             <view class="headLine">
                 <text class="defaultTxt fontBold" style="margin-right:10rpx"
-                      hidden="{{index != defaultIndex}}">默认
+                      wx:if="{{chooseAddrIndex == defaultIndex}}">默认
                 </text>
                 <text>{{address.area}}</text>
             </view>
@@ -39,14 +39,14 @@
     <view class="priceShow">
         <text class="youhuiquan" wx:if='{{orderDetail.youhuiquan}}'>优惠券: {{orderDetail.youhuiquan.desc}}</text>
         <view class="price">
-            <text>总计:</text>
+            <text class="total">总计:</text>
             <price-cmp price="{{orderDetail.allPrice}}" fontSize="32"/>
         </view>
     </view>
     <!-- 确认订单 -->
     <view class="buttonLine">
-        <button class="confirm" catch:tap="confirmOrder" type="primary">确认支付</button>
-        <button class="cancel" catch:tap="cancelOrder" data-order="{{orderDetail}}" wx:if="{{orderDetail.order}}">取消订单
-        </button>
+        <view class="confirm" catch:tap="confirmOrder">确认支付</view>
+        <view class="cancel" catch:tap="cancelOrder" data-order="{{orderDetail}}" wx:if="{{orderDetail.order}}">取消订单
+        </view>
     </view>
 </view>

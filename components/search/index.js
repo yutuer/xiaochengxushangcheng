@@ -5,6 +5,12 @@ import {paginationBev} from '../behaviors/pagination.js'
 const util = require("../../utils/util.js")
 const app = getApp()
 
+import {
+    NumOpera
+} from '../../utils/tools.js';
+
+let numOpera = new NumOpera()
+
 Component({
     /**
      * 组件的属性列表
@@ -73,6 +79,11 @@ Component({
             const cargoid = e.currentTarget.dataset.cargoid
             // 跳转详情页
             util.navigateToDetail(cargoid)
+        },
+
+        plusOnClickFun: function (e) {
+            console.log("search page plusOnClickFun")
+            numOpera.redDot()
         },
     }
 })

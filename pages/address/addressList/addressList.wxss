@@ -8,7 +8,7 @@
 }
 
 .scroll {
-    width: 92%;
+    width: 96%;
     height: 90vh;
 }
 
@@ -29,6 +29,10 @@
 .headLine {
     display: flex;
     font-size: 24rpx;
+}
+
+.choose {
+    margin-right: 20rpx;
 }
 
 .bottomLine {
@@ -60,4 +64,15 @@
     padding-right: 20rpx;
     width: 40rpx;
     height: 40rpx;
+}
+
+.addAddress {
+    background-color: red;
+    border-radius: 40rpx;
+    margin: 0 40rpx;
+    height: 80rpx;
+    text-align: center;
+    line-height: 80rpx;
+    width: 60%;
+    color: white;
 }

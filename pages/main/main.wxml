@@ -89,7 +89,7 @@
                 <mainPageItem-cmp class="mainPageItem" price="{{item.price}}" imgSrc="{{item.icon}}"
                                   txt="{{item.detail}}" title="{{item.title}}"
                                   data-cargoid="{{item.cargoid}}" catch:tap="cargoDetailTap"
-                                  cargoId="{{item.cargoid}}"/>
+                                  cargoId="{{item.cargoid}}" catch:plusOnClickEvent="plusOnClickFun"/>
             </block>
         </view>
     </view>

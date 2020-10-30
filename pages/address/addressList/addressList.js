@@ -11,7 +11,7 @@ Page({
         address: [],
         defaultIndex: -1,
         chooseAddrIndex: -1,
-        isListPage: true,
+        isListPage: false,
     },
 
     // 点击修改按钮
@@ -72,6 +72,7 @@ Page({
         } else {
             // 去数据库中获取 玩家地址所有数据
             util.getAddressList()
+
             let addressObj = wx.getSystemInfoSync(app.globalData.addressKey)
 
             this.setData({
@@ -87,11 +88,11 @@ Page({
     onLoad: function (options) {
         console.log("addressList  onLoad:", options)
 
-        let isListPage = true
+        let isListPage = false
         let chooseIndex = "0"
         if (options) {
             if (options.isListPage) {
-                isListPage = false
+                isListPage = true
             }
             chooseIndex = options.choose
         }

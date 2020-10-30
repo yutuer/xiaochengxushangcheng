@@ -75,16 +75,39 @@
 
 .youhuiquan {
     font-size: 32rpx;
+    width: 100%;
 }
 
 .price {
+    width: 30%;
     display: flex;
     font-size: 32rpx;
+    justify-content: space-between;
 }
 
 .buttonLine {
     margin-top: 30rpx;
     display: flex;
     width: 96%;
-    justify-content: space-between;
+    justify-content: space-around;
+}
+
+.confirm {
+    background-color: red;
+    border-radius: 40rpx;
+    height: 80rpx;
+    text-align: center;
+    line-height: 80rpx;
+    width: 40%;
+    color: white;
+}
+
+.cancel {
+    background-color: lightgrey;
+    border-radius: 40rpx;
+    height: 80rpx;
+    text-align: center;
+    line-height: 80rpx;
+    width: 40%;
+    color: black;
 }

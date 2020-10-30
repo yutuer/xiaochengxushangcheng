@@ -233,8 +233,9 @@ Page({
 
     // 点击了地址管理tap
     addressTap() {
+        const isListPage = 1
         wx.navigateTo({
-            url: '../../address/addressList/addressList',
+            url: `../../address/addressList/addressList?isListPage=${isListPage}`,
         })
     },
 

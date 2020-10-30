@@ -45,6 +45,7 @@
         <text>订单编号: {{order.payment.nonceStr}}</text>
         <text>下单时间: {{order.timeDesc}}</text>
         <text>支付方式: 微信支付</text>
+        <text>支付时间: {{order.payTime}}</text>
     </view>
 
 </view>

@@ -11,15 +11,15 @@ Page({
         orderDetail: {},
         address: {},
         chooseAddrIndex: -1,
+        defaultIndex: -1,
     },
 
     // 修改地址
     changeAddrTap(e) {
         // 需要看看选择的是在第几个索引
         const chooseAddrIndex = this.data.chooseAddrIndex
-        const isListPage = 1
         wx.navigateTo({
-            url: `/pages/address/addressList/addressList?choose=${chooseAddrIndex}&isListPage=${isListPage}`,
+            url: `/pages/address/addressList/addressList?choose=${chooseAddrIndex}`,
         })
     },
 
@@ -41,6 +41,26 @@ Page({
     },
 
     cancelOrder(e) {
+        let order = this.data.orderDetail.order;
+        wx.cloud.callFunction({
+            name: 'payCancel',
+            data: {
+                order: order.outTradeNo,
+            },
+            success: res => {
+                console.log(res)
+
+                util.updateOrderPayFinish(order.package)
+
+                verify.showToast("取消订单成功")
+
+                // 跳转到订单页面
+                util.jumpToOrders()
+            },
+            fail: err => {
+                console.err(err)
+            }
+        })
     },
 
     // 生成订单号
@@ -52,31 +72,11 @@ Page({
         return "" + util.uuid(32, 32)
     },
 
-    getTimeDesc(timestamp) {
-        var date = new Date(timestamp)
-        //年
-        var Y = date.getFullYear()
-        //月
-        var M = this.getLessTenShow(date.getMonth() + 1)
-        //日
-        var D = this.getLessTenShow(date.getDate())
-        //时
-        var h = this.getLessTenShow(date.getHours())
-        //分
-        var m = this.getLessTenShow(date.getMinutes())
-        return Y + "-" + M + "-" + D + " " + h + ":" + m
-    },
-
-    getLessTenShow(v) {
-        let ret = v < 10 ? '0' + v : '' + v
-        return ret
-    },
-
     // 插入订单到数据库
     insertPaymentToDB(orderNo, address, cargos, payment, allPrice, youhuiquan) {
         let phoneNum = wx.getStorageSync(app.globalData.userKey)
         const timestamp = Date.parse(new Date())
-        const timeDesc = this.getTimeDesc(timestamp)
+        const timeDesc = util.getTimeDesc(timestamp)
 
         let orderObj = {
             outTradeNo: orderNo,
@@ -140,14 +140,8 @@ Page({
                 util.updateOrderPayExpire(order.package)
 
                 verify.showToast("订单支付超时")
-                wx.redirectTo({
-                    url: '../orders/orders',
-                    success: function (res) {
-                        wx.reLaunch({
-                            url: '../orders/orders',
-                        })
-                    },
-                })
+
+                util.jumpToOrders()
                 return
             }
 
@@ -173,7 +167,7 @@ Page({
                     // 轮询处理支付
                     util.payForPayment(orderNo, payment, youhuiquan)
                 },
-                fail: console.error,
+                fail: err => console.log(err),
             })
         } else {
             // 订单号
@@ -243,6 +237,7 @@ Page({
         if (addressCache.defaultIndex >= 0) {
             this.setData({
                 chooseAddrIndex: addressCache.defaultIndex,
+                defaultIndex: addressCache.defaultIndex,
             })
         }
     },

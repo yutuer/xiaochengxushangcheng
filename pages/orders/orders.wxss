@@ -1,109 +1,110 @@
 /* pages/orders/orders.wxss */
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
 .header {
-  position: fixed;
-  height: 200rpx;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 99;
+    position: fixed;
+    height: 200rpx;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
 }
 
 .orderTitle {
-  font-size: 60rpx;
-  font-weight: bold;
-  margin: 30rpx 0;
+    font-size: 60rpx;
+    font-weight: bold;
+    margin: 30rpx 0;
 }
 
 .orderType {
-  display: flex;
-  justify-content: space-between;
-  border-radius: 10rpx;
-  width: 94%;
-  font-size: 40rpx;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10rpx;
+    width: 94%;
+    font-size: 40rpx;
 }
 
 .contentView {
-  height: 100vh;
-  width: 94%;
-  margin-top: 200rpx;
+    height: 100vh;
+    width: 94%;
+    margin-top: 200rpx;
+    position: fixed;
 }
 
 .sub-container {
-  margin-top: 200rpx;
-  height: 100vh;
-  width: 94%;
-  display: flex;
-  flex-direction: column;
+    margin-top: 200rpx;
+    height: 100vh;
+    width: 94%;
+    display: flex;
+    flex-direction: column;
 }
 
 .oneOrder {
-  background-color: whitesmoke;
-  border-radius: 8rpx;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20rpx;
+    background-color: whitesmoke;
+    border-radius: 8rpx;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20rpx;
 }
 
 .oneOrder .firstLine {
-  display: flex;
-  justify-content: space-between;
-  margin: 10rpx 0;
+    display: flex;
+    justify-content: space-between;
+    margin: 10rpx 0;
 }
 
 .firstLine .time {
-  font-size: 26rpx;
+    font-size: 26rpx;
 }
 
 .oneOrder .orderStatus {
-  color: green;
-  font-weight: bold;
+    color: green;
+    font-weight: bold;
 }
 
 .oneOrder .oneCargo {
-  display: flex;
-  justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 }
 
 .heji {
-  display: flex;
+    display: flex;
 }
 
 .block1 {
-  display: flex;
+    display: flex;
 }
 
 .title {
-  font-size: 30rpx;
-  font-weight: bold;
+    font-size: 30rpx;
+    font-weight: bold;
 }
 
 .img {
-  width: 100rpx;
-  height: 100rpx;
+    width: 100rpx;
+    height: 100rpx;
 }
 
 .pay {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 180rpx;
-  height: 70rpx;
-  align-self: flex-end;
-  background-color: skyblue;
-  border-radius: 10rpx;
-  align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 180rpx;
+    height: 70rpx;
+    align-self: flex-end;
+    background-color: skyblue;
+    border-radius: 10rpx;
+    align-items: center;
 }
 
 .pay text {
-  font-size: 30rpx;
-  color: white;
+    font-size: 30rpx;
+    color: white;
 }

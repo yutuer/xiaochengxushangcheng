@@ -11,9 +11,10 @@
                     <!--第一行-->
                     <view class="headLine">
                         <text class="defaultTxt fontBold" style="margin-right:10rpx"
-                              hidden="{{!(isListPage && index == defaultIndex)}}">默认
+                              wx:if="{{isListPage && index == defaultIndex}}">默认
                         </text>
-                        <text catch:tap="chooseTap" hidden="{{!(!isListPage && index != chooseAddrIndex)}}"
+                        <text class="choose" catch:tap="chooseTap"
+                              wx:if="{{!isListPage && index != chooseAddrIndex}}"
                               data-index="{{index}}">选择
                         </text>
                         <text>{{item.area}}</text>
@@ -39,5 +40,5 @@
     </scroll-view>
 
     <!-- 新增按钮 -->
-    <button type="primary" catchtap="addressAddTap">新增收货地址</button>
+    <view class="addAddress" catchtap="addressAddTap">新增收货地址</view>
 </view>

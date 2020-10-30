@@ -85,6 +85,18 @@ function uuid(len, radix) {
     return uuid.join('')
 }
 
+function jumpToOrders() {
+    // 跳转到订单页面
+    wx.redirectTo({
+        url: '../orders/orders',
+        success: function (res) {
+            wx.reLaunch({
+                url: '../orders/orders',
+            })
+        },
+    })
+}
+
 // 请求支付
 function payForPayment(outTradeNo, payment, youhuiquan) {
     let _this = this
@@ -99,15 +111,8 @@ function payForPayment(outTradeNo, payment, youhuiquan) {
             subYouhuiquanLeftUseCount(youhuiquan)
 
             console.log('pay success', res)
-            // 跳转到订单页面
-            wx.redirectTo({
-                url: '../orders/orders',
-                success: function (res) {
-                    wx.reLaunch({
-                        url: '../orders/orders',
-                    })
-                },
-            })
+
+            jumpToOrders()
         },
         fail(err) {
             console.error('pay fail', err)
@@ -117,14 +122,7 @@ function payForPayment(outTradeNo, payment, youhuiquan) {
             queryPayment(outTradeNo, payment)
 
             // 也跳转
-            wx.redirectTo({
-                url: '../orders/orders',
-                success: function (res) {
-                    wx.reLaunch({
-                        url: '../orders/orders',
-                    })
-                },
-            })
+            jumpToOrders()
         }
     })
 }
@@ -149,17 +147,44 @@ function queryPayment(outTradeNo, payment) {
     })
 }
 
+function getLessTenShow(v) {
+    let ret = v < 10 ? '0' + v : '' + v
+    return ret
+}
+
+function getTimeDesc(timestamp) {
+    var date = new Date(timestamp)
+    //年
+    var Y = date.getFullYear()
+    //月
+    var M = getLessTenShow(date.getMonth() + 1)
+    //日
+    var D = getLessTenShow(date.getDate())
+    //时
+    var h = getLessTenShow(date.getHours())
+    //分
+    var m = getLessTenShow(date.getMinutes())
+    return Y + "-" + M + "-" + D + " " + h + ":" + m
+}
+
+function updateOrderPayFinish(_package) {
+    updateOrderPayStatus(_package, app.globalData.orderStatus.finish.status)
+}
+
+
 function updateOrderPayExpire(_package) {
     updateOrderPayStatus(_package, app.globalData.orderStatus.expire.status)
 }
 
 // 更新订单支付成功
 function updateOrderPaySuccess(_package) {
-    updateOrderPayStatus(_package, app.globalData.orderStatus.hasPay.status)
+    const now = Date.parse(new Date())
+    const timeDesc = getTimeDesc(now)
+    updateOrderPayStatus(_package, app.globalData.orderStatus.hasPay.status, timeDesc)
 }
 
 // 更新订单支付成功
-function updateOrderPayStatus(_package, _status) {
+function updateOrderPayStatus(_package, _status, payTime) {
     let phoneNum = wx.getStorageSync(app.globalData.userKey)
     wx.cloud.callFunction({
         name: 'updateWhereData',
@@ -171,6 +196,7 @@ function updateOrderPayStatus(_package, _status) {
             },
             dataObj: {
                 status: _status,
+                payTime: payTime,
             },
         },
         success: res => console.log(res),
@@ -410,4 +436,7 @@ module.exports = {
     loadOrders: loadOrders,
     loadOrdersFromDB: loadOrdersFromDB,
     updateOrderPayExpire: updateOrderPayExpire,
+    updateOrderPayFinish: updateOrderPayFinish,
+    jumpToOrders: jumpToOrders,
+    getTimeDesc: getTimeDesc,
 }
