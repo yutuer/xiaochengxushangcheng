@@ -110,6 +110,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        console.log("class Page onLoad")
         this.setData({
             typeArray: allCargoDatas.typeArray,
         })
@@ -125,6 +126,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+        console.log("class Page onShow")
         let switchType = app.globalData.switchType
         this.updateOriginDatas(switchType)
         app.globalData.switchType = 1
@@ -134,14 +136,14 @@ Page({
      * 生命周期函数--监听页面隐藏
      */
     onHide: function () {
-
+        console.log("class Page onHide")
     },
 
     /**
      * 生命周期函数--监听页面卸载
      */
     onUnload: function () {
-
+        console.log("class Page onUnload")
     },
 
     /**

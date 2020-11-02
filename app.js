@@ -35,6 +35,7 @@ App({
         userKey: 'userKey', // 存放登录标识, 现在是注册的phonenum
         openidKey: 'openidKey', //存放openid
         allSellItemKey: 'allSellItemKey', // 所有商品(从服务器读出来, 缓存)的key
+        allSellItemTypeKey:'allSellItemTypeKey', // 所有商品的类型
         //存放所有地址
         // 格式:
         // wx: {_id: _id, hasQuery:bool, defaultIndex: int, address:[]}

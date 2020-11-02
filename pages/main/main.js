@@ -2,8 +2,6 @@
 //引入本地数据
 let mainDataJs = require('../../utils/data/mainData.js')
 const classDataJs = require('../../utils/data/classData.js')
-const allDatas = require('../../utils/data/classData.js')
-const allCargoDatas = require('../../utils/data/allCargoData.js')
 const util = require("../../utils/util.js")
 
 import {
@@ -11,6 +9,18 @@ import {
 } from '../../utils/tools.js';
 
 let numOpera = new NumOpera()
+
+import {
+    YouhuiquanDB
+} from '../../utils/youhuiquanDB.js';
+
+let youhuiquanDB = new YouhuiquanDB()
+
+import {
+    CargoDB
+} from '../../utils/cargoDB.js';
+
+let cargoDB = new CargoDB()
 
 const app = getApp()
 Page({
@@ -55,11 +65,12 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        this.loadAllCargoDataFromDB()
+        console.log("main Page onLoad")
 
-        util.updateYouhuiquanCacheUpdateKey(false)
+        cargoDB.loadCargos()
+        cargoDB.loadCargoTypes()
 
-        util.loadYouhuiquan()
+        youhuiquanDB.loadYouhuiquan()
 
         // this.loadBannerData()
         // this.loadClassData()
@@ -70,18 +81,11 @@ Page({
 
         util.loadOrders(false)
 
-        numOpera.redDot()
-    },
-
-    loadAllCargoDataFromDB: function () {
-        // todo 去数据库取出所有数据, 加入到缓存
-        let allCargos = allCargoDatas.allDatas
-        wx.setStorageSync(app.globalData.allSellItemKey, allCargos)
     },
 
     loadAllCargoData: function () {
         let allCargos = wx.getStorageSync(app.globalData.allSellItemKey);
-        let types = allCargoDatas.typeArray
+        let types = wx.getStorageSync(app.globalData.allSellItemTypeKey)
         let banners = []
         let likes = []
 
@@ -138,24 +142,28 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        util.loadYouhuiquan()
+        console.log("main Page onShow")
 
         let youhuiquanData = wx.getStorageSync(app.globalData.youhuiquanKey)
         this.setData({
             youhuiquan: youhuiquanData.data,
         })
+
+        numOpera.redDot()
     },
 
     /**
      * 生命周期函数--监听页面隐藏
      */
     onHide: function () {
+        console.log("main Page onHide")
     },
 
     /**
      * 生命周期函数--监听页面卸载
      */
     onUnload: function () {
+        console.log("main Page onUnLoad")
     },
 
     /**

@@ -1,19 +1,23 @@
 // pages/shopping/shopping.js
 //引入本地数据
-const allCargoDatas = require('../../utils/data/allCargoData.js')
+const allCargoDatas = require('../../utils/data/allCargoData.js');
 import {
     NumOpera
 } from '../../utils/tools.js';
 
-let numOpera = new NumOpera()
+let numOpera = new NumOpera();
 
 import {
     Pay
-} from '../../utils/pay.js'
+} from '../../utils/pay.js';
 
-let pay = new Pay()
+let pay = new Pay();
 
-const app = getApp()
+import {CargoCache} from "../../utils/cargoCache";
+
+const cargoCache = new CargoCache();
+
+const app = getApp();
 
 Page({
 
@@ -47,27 +51,28 @@ Page({
 
     // 单击选中选项
     singleSelectClick(e) {
-        let cargoid = e.currentTarget.dataset.cargoid
+        let cargoId = e.currentTarget.dataset.cargoid
 
         // 更新缓存中的选中状态
-        let findcargoIndex = -1
-        let cargoCache = wx.getStorageSync(app.globalData.cargosKey)
-        if (cargoCache) {
-            for (let i = 0; i < cargoCache.length; i++) {
-                let cargo = cargoCache[i]
-                if (cargo.cargoid == cargoid && cargo.num > 0) {
+        let cargos = cargoCache.getSellCargosFromCache()
+        if (cargos) {
+            let findcargoIndex = -1
+            for (let i = 0; i < cargos.length; i++) {
+                let cargo = cargos[i]
+                if (cargo.cargoid == cargoId && cargo.num > 0) {
                     findcargoIndex = i
                     break
                 }
             }
-        }
-        if (findcargoIndex >= 0) {
-            let cargo = cargoCache[findcargoIndex]
-            cargo.select = !cargo.select
-        }
-        wx.setStorageSync(app.globalData.cargosKey, cargoCache)
+            if (findcargoIndex >= 0) {
+                let cargo = cargos[findcargoIndex]
+                cargo.select = !cargo.select
+            }
 
-        this.updateShow()
+            cargoCache.saveSellCargosToCache(cargos)
+
+            this.updateShow()
+        }
     },
 
     // 全选, 把当前购物车中 数量>0的物品, 全部选中或反选
@@ -100,25 +105,25 @@ Page({
     },
 
     // 拷贝原始数据到一个新的带有num的对象中
-    getNumCargos(originDatas) {
-        let classData = originDatas
-        let cargosData = []
+    getNumCargos() {
+        let classData = cargoCache.getSellCargosFromCache();
+        let cargosData = [];
 
-        let cargosCache = wx.getStorageSync(app.globalData.cargosKey)
+        let cargosCache = cargoCache.getShoppingCargoDataFromCache();
 
         for (let i = 0; i < classData.length; i++) {
             let cargo = classData[i]
 
             if (cargosCache && cargosCache.length > 0) {
                 for (let i = 0; i < cargosCache.length; i++) {
-                    let cargoCache = cargosCache[i]
+                    let cargoCache = cargosCache[i];
                     if (cargoCache.cargoid == cargo.cargoid) {
                         let numcargo = {
                             ...cargo,
                             num: cargoCache.num
                         }
-                        numcargo.select = cargoCache.select
-                        cargosData.push(numcargo)
+                        numcargo.select = cargoCache.select;
+                        cargosData.push(numcargo);
                         break
                     }
                 }
@@ -134,8 +139,7 @@ Page({
         let allIsSelect = true
         let chooseNum = 0
 
-        let originDatas = allCargoDatas.allDatas
-        let numCargos = this.getNumCargos(originDatas)
+        let numCargos = this.getNumCargos()
 
         // 对数据进行初始化修改
         for (var i = 0; i < numCargos.length; i++) {

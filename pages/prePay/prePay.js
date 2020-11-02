@@ -35,6 +35,8 @@ Page({
 
         //TODO 确定没有未完成的订单, 如果有未付款的订单, 则不让下单
 
+        //TODO 检查库存
+
 
         // !!!! 发起支付请求啦
         this.payStart(1)
@@ -197,6 +199,10 @@ Page({
                     that.updateCache()
                     // 清除掉购物车中所有选择的物品
                     that.removeCargosBuy()
+
+                    // 扣除优惠券使用次数
+                    util.subYouhuiquanLeftUseCount(youhuiquan)
+
                     // 轮询处理支付
                     util.payForPayment(orderNo, payment, youhuiquan)
                 },

@@ -1,6 +1,10 @@
 const app = getApp()
 let verify = require("verify.js")
 
+import {CargoCache} from "./cargoCache";
+
+const cargoCache = new CargoCache();
+
 class Pay {
     // 点击结算按钮
     countNumTap(allPrice, chooseCargos, youhuiquan, order) {

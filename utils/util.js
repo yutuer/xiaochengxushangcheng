@@ -85,8 +85,8 @@ function uuid(len, radix) {
     return uuid.join('')
 }
 
+// 跳转到订单页面
 function jumpToOrders() {
-    // 跳转到订单页面
     wx.redirectTo({
         url: '../orders/orders',
         success: function (res) {
@@ -107,8 +107,6 @@ function payForPayment(outTradeNo, payment, youhuiquan) {
             console.log('pay success', res)
             //更新状态后跳转
             updateOrderPaySuccess(payment.package)
-            // 扣除优惠券使用次数
-            subYouhuiquanLeftUseCount(youhuiquan)
 
             console.log('pay success', res)
 
@@ -280,51 +278,6 @@ function checkLoginStatus() {
     return phoneNum
 }
 
-// 更新优惠券缓存值 bool
-function updateYouhuiquanCacheUpdateKey(v) {
-    if (v) {
-        wx.setStorageSync(app.globalData.youhuiquanCacheUpdateKey, v)
-    } else {
-        wx.removeStorageSync(app.globalData.youhuiquanCacheUpdateKey)
-    }
-}
-
-// 起服加载优惠券, 把所有未过期的放入缓存. 以后直接调用缓存
-function loadYouhuiquan() {
-    let youhuiquanCacheUpdateKey = wx.getStorageSync(app.globalData.youhuiquanCacheUpdateKey)
-    if (youhuiquanCacheUpdateKey) {
-        return
-    }
-    updateYouhuiquanCacheUpdateKey(true)
-
-    let now = Date.parse(new Date())
-    wx.cloud.callFunction({
-        name: 'queryAllData',
-        data: {
-            dbName: 'youhuiquan',
-        },
-        success(res) {
-            let datas = res.result.data
-            let nowValids = []
-
-            for (let i = 0; i < datas.length; i++) {
-                let data = datas[i]
-                if (now < data.endTime && data.leftUseCount > 10) {
-                    nowValids.push(data)
-                }
-            }
-
-            let youhuiquanC = {
-                data: nowValids,
-            }
-            wx.setStorageSync(app.globalData.youhuiquanKey, youhuiquanC)
-        },
-        fail(res) {
-            console.log(res)
-        }
-    })
-}
-
 // 读取订单数据
 function loadOrders(isQueryCache) {
     if (isQueryCache) {
@@ -431,12 +384,11 @@ module.exports = {
     getAddressList: getAddressList,
     checkLoginStatus: checkLoginStatus,
     getDateByStr: getDateByStr,
-    loadYouhuiquan: loadYouhuiquan,
-    updateYouhuiquanCacheUpdateKey: updateYouhuiquanCacheUpdateKey,
     loadOrders: loadOrders,
     loadOrdersFromDB: loadOrdersFromDB,
     updateOrderPayExpire: updateOrderPayExpire,
     updateOrderPayFinish: updateOrderPayFinish,
     jumpToOrders: jumpToOrders,
     getTimeDesc: getTimeDesc,
+    subYouhuiquanLeftUseCount: subYouhuiquanLeftUseCount,
 }
