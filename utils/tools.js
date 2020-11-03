@@ -38,7 +38,7 @@ class NumOpera {
                 num: 1
             });
         }
-        cargoCache.saveShoppingCargoDataToCache(cargos)
+        cargoCache.saveShoppingCargoDataToCache(cargos);
 
         verify.showToast("添加成功,请到购物车查看")
     }
@@ -49,14 +49,14 @@ class NumOpera {
             return
         }
 
-        let findcargoIndex = -1
+        let findcargoIndex = -1;
         let cargos = cargoCache.getShoppingCargoDataFromCache();
         // 查找
         if (cargos) {
             for (let i = 0; i < cargos.length; i++) {
-                let cargo = cargos[i]
+                let cargo = cargos[i];
                 if (cargo.cargoid == cargoid && cargo.num > 0) {
-                    findcargoIndex = i
+                    findcargoIndex = i;
                     break
                 }
             }

@@ -17,6 +17,12 @@ import {CargoCache} from "../../utils/cargoCache";
 
 const cargoCache = new CargoCache();
 
+import {
+    YouhuiquanCache
+} from "../../utils/youhuiquanCache";
+
+let youhuiquanCache = new YouhuiquanCache();
+
 const app = getApp();
 
 Page({
@@ -104,24 +110,25 @@ Page({
         pay.countNumTap(allPrice, chooseCargos, youhuiquan)
     },
 
-    // 拷贝原始数据到一个新的带有num的对象中
+    // 将2个缓存的数据组合起来, 变成一个新的带有num的对象中
     getNumCargos() {
-        let classData = cargoCache.getSellCargosFromCache();
         let cargosData = [];
-
-        let cargosCache = cargoCache.getShoppingCargoDataFromCache();
+        // 所有的商品
+        let classData = cargoCache.getSellCargosFromCache();
+        // 购买的数量
+        let cargos = cargoCache.getShoppingCargoDataFromCache();
 
         for (let i = 0; i < classData.length; i++) {
             let cargo = classData[i]
 
-            if (cargosCache && cargosCache.length > 0) {
-                for (let i = 0; i < cargosCache.length; i++) {
-                    let cargoCache = cargosCache[i];
+            if (cargos && cargos.length > 0) {
+                for (let i = 0; i < cargos.length; i++) {
+                    let cargoCache = cargos[i];
                     if (cargoCache.cargoid == cargo.cargoid) {
                         let numcargo = {
                             ...cargo,
                             num: cargoCache.num
-                        }
+                        };
                         numcargo.select = cargoCache.select;
                         cargosData.push(numcargo);
                         break
@@ -129,17 +136,17 @@ Page({
                 }
             }
         }
-        return cargosData
+        return cargosData;
     },
 
     //更新显示界面
     updateShow() {
-        let allPrice = 0.00
-        let chooseCargos = []
-        let allIsSelect = true
-        let chooseNum = 0
+        let allPrice = 0.00;
+        let chooseCargos = [];
+        let allIsSelect = true;
+        let chooseNum = 0;
 
-        let numCargos = this.getNumCargos()
+        let numCargos = this.getNumCargos();
 
         // 对数据进行初始化修改
         for (var i = 0; i < numCargos.length; i++) {
@@ -154,8 +161,8 @@ Page({
             }
 
             if (numCargo.select) {
-                allPrice += (numCargo.price * 100 * numCargo.num)
-                chooseCargos.push(numCargo)
+                allPrice += (numCargo.price * 100 * numCargo.num);
+                chooseCargos.push(numCargo);
 
                 chooseNum += numCargo.num
             }
@@ -165,16 +172,17 @@ Page({
             allIsSelect = false
         }
 
-        allPrice = allPrice / 100
+        allPrice = allPrice / 100.0;
 
-        let now = Date.parse(new Date())
+        let now = Date.parse(new Date());
+
         // 计算满足的优惠券信息(注意开始时间和结束时间)
         // 满足的优惠券最大钱数
-        let maxyouhuiquan = null
-        let youhuiquans = wx.getStorageSync(app.globalData.youhuiquanKey)
+        let maxyouhuiquan = null;
+        let youhuiquans = youhuiquanCache.getYouhuiquanDataFromCache();
         if (youhuiquans && youhuiquans.data && youhuiquans.data.length > 0) {
             for (let i = 0; i < youhuiquans.data.length; i++) {
-                let youhuiquan = youhuiquans.data[i]
+                let youhuiquan = youhuiquans.data[i];
                 if (allPrice >= youhuiquan.needMoney) {
                     if (youhuiquan.startTime < now && now < youhuiquan.endTime && youhuiquan.leftUseCount > 10) {
                         if (maxyouhuiquan == null) {
@@ -217,11 +225,11 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        console.log("shopping  onShow")
+        console.log("shopping  onShow");
 
-        this.updateShow()
+        this.updateShow();
 
-        numOpera.redDot()
+        numOpera.redDot();
     },
 
     /**
