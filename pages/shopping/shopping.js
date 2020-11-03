@@ -174,28 +174,9 @@ Page({
 
         allPrice = allPrice / 100.0;
 
-        let now = Date.parse(new Date());
-
         // 计算满足的优惠券信息(注意开始时间和结束时间)
         // 满足的优惠券最大钱数
-        let maxyouhuiquan = null;
-        let youhuiquans = youhuiquanCache.getYouhuiquanDataFromCache();
-        if (youhuiquans && youhuiquans.data && youhuiquans.data.length > 0) {
-            for (let i = 0; i < youhuiquans.data.length; i++) {
-                let youhuiquan = youhuiquans.data[i];
-                if (allPrice >= youhuiquan.needMoney) {
-                    if (youhuiquan.startTime < now && now < youhuiquan.endTime && youhuiquan.leftUseCount > 10) {
-                        if (maxyouhuiquan == null) {
-                            maxyouhuiquan = youhuiquan
-                        } else {
-                            if (youhuiquan.needMoney > maxyouhuiquan.needMoney) {
-                                maxyouhuiquan = youhuiquan
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        let maxyouhuiquan = youhuiquanCache.calMaxYouhuiquan(allPrice);
 
         this.setData({
             shoppingData: numCargos,
@@ -211,7 +192,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        console.log("shopping  onLoad")
+        console.log("shopping page onLoad");
     },
 
     /**
@@ -225,7 +206,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        console.log("shopping  onShow");
+        console.log("shopping page onShow");
 
         this.updateShow();
 

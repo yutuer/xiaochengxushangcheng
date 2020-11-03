@@ -42,7 +42,8 @@ class YouhuiquanCache {
         return youhuiquan.startTime < now && now < youhuiquan.endTime && youhuiquan.leftUseCount > 2;
     }
 
-    calMaxYouhuiquan(allPrice) {
+    // 计算最大优惠券
+    calMaxYouhuiquan(totalPrice) {
         let maxyouhuiquan = null;
         let youhuiquans = this.getYouhuiquanDataFromCache();
         if (!youhuiquans) {
@@ -52,7 +53,7 @@ class YouhuiquanCache {
         if (youhuiquans.data && youhuiquans.data.length > 0) {
             for (let i = 0; i < youhuiquans.data.length; i++) {
                 let youhuiquan = youhuiquans.data[i];
-                if (allPrice >= youhuiquan.needMoney) {
+                if (totalPrice >= youhuiquan.needMoney) {
                     if (!this.isYouhuiquanValid(youhuiquan)) {
                         return
                     }
