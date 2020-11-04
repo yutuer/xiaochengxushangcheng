@@ -14,8 +14,7 @@
                         <text class="weightTxt"></text>
                     </view>
                     <numOpera-cmp imgWidth="50" imgHeight="50" cargoId="{{item.cargoid}}" textWidth="100"
-                                  subImgShow="{{false}}"
-                                  numShow="{{false}}" bind:plusOnClickEvent="plusOnClickFunc"/>
+                                  subImgShow="{{false}}" numShow="{{false}}"/>
                 </view>
             </view>
             <view class="productDetail">

@@ -22,6 +22,28 @@ class DB {
             }
         })
     }
+
+    // 加载云端数据
+    loadAllDataFromCloudyByCond(funName, cond, successFun, failFun) {
+        wx.cloud.callFunction({
+            name: funName,
+            data: {
+                ...cond,
+            },
+            success: (res) => {
+                if (successFun) {
+                    successFun(res)
+                }
+            },
+            fail: (err) => {
+                if (failFun) {
+                    failFun(err)
+                }
+            }
+        })
+    }
+
+
 }
 
 export {

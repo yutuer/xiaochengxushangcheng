@@ -39,43 +39,27 @@ Page({
         youhuiquan: null,
     },
 
-    // 点击add按钮
-    addClick(e) {
-        let cargoid = e.currentTarget.dataset.cargoid
-        numOpera.addClick(cargoid)
-
-        this.updateShow()
-    },
-
-    // 点击 减 按钮
-    reduceClick(e) {
-        let cargoid = e.currentTarget.dataset.cargoid
-        numOpera.reduceClick(cargoid)
-
-        this.updateShow()
-    },
-
     // 单击选中选项
     singleSelectClick(e) {
-        let cargoId = e.currentTarget.dataset.cargoid
+        let cargoId = e.currentTarget.dataset.cargoid;
 
         // 更新缓存中的选中状态
-        let cargos = cargoCache.getSellCargosFromCache()
+        let cargos = cargoCache.getShoppingCargoDataFromCache();
         if (cargos) {
-            let findcargoIndex = -1
+            let findcargoIndex = -1;
             for (let i = 0; i < cargos.length; i++) {
-                let cargo = cargos[i]
+                let cargo = cargos[i];
                 if (cargo.cargoid == cargoId && cargo.num > 0) {
-                    findcargoIndex = i
+                    findcargoIndex = i;
                     break
                 }
             }
             if (findcargoIndex >= 0) {
-                let cargo = cargos[findcargoIndex]
+                let cargo = cargos[findcargoIndex];
                 cargo.select = !cargo.select
             }
 
-            cargoCache.saveSellCargosToCache(cargos)
+            cargoCache.saveShoppingCargoDataToCache(cargos);
 
             this.updateShow()
         }
@@ -83,9 +67,9 @@ Page({
 
     // 全选, 把当前购物车中 数量>0的物品, 全部选中或反选
     allClick() {
-        let setSelect = !this.data.allIsSelect
+        let setSelect = !this.data.allIsSelect;
 
-        let cargosCache = wx.getStorageSync(app.globalData.cargosKey)
+        let cargosCache = wx.getStorageSync(app.globalData.cargosKey);
         if (cargosCache) {
             for (let i = 0; i < cargosCache.length; i++) {
                 let cargoCache = cargosCache[i]
@@ -94,18 +78,18 @@ Page({
                 }
             }
         }
-        wx.setStorageSync(app.globalData.cargosKey, cargosCache)
+        wx.setStorageSync(app.globalData.cargosKey, cargosCache);
 
         this.updateShow()
     },
 
     // 点击结算按钮
     countNumTap(e) {
-        console.log("countNumTap:", e)
+        console.log("countNumTap:", e);
 
-        const allPrice = e.currentTarget.dataset.allprice
-        const chooseCargos = this.data.chooseCargos
-        const youhuiquan = this.data.youhuiquan
+        const allPrice = e.currentTarget.dataset.allprice;
+        const chooseCargos = this.data.chooseCargos;
+        const youhuiquan = this.data.youhuiquan;
 
         pay.countNumTap(allPrice, chooseCargos, youhuiquan)
     },
@@ -116,20 +100,20 @@ Page({
         // 所有的商品
         let classData = cargoCache.getSellCargosFromCache();
         // 购买的数量
-        let cargos = cargoCache.getShoppingCargoDataFromCache();
+        let shoppingCargos = cargoCache.getShoppingCargoDataFromCache();
 
         for (let i = 0; i < classData.length; i++) {
-            let cargo = classData[i]
+            let sellCargo = classData[i];
 
-            if (cargos && cargos.length > 0) {
-                for (let i = 0; i < cargos.length; i++) {
-                    let cargoCache = cargos[i];
-                    if (cargoCache.cargoid == cargo.cargoid) {
+            if (shoppingCargos && shoppingCargos.length > 0) {
+                for (let i = 0; i < shoppingCargos.length; i++) {
+                    let shoppingCargo = shoppingCargos[i];
+                    if (shoppingCargo.cargoid == sellCargo.cargoid) {
                         let numcargo = {
-                            ...cargo,
-                            num: cargoCache.num
+                            ...sellCargo,
+                            num: shoppingCargo.num
                         };
-                        numcargo.select = cargoCache.select;
+                        numcargo.select = shoppingCargo.select;
                         cargosData.push(numcargo);
                         break
                     }
@@ -249,17 +233,17 @@ Page({
     },
 
     plusOnClickFun: function (e) {
-        console.log("shopping plusOnClickFun")
+        console.log("shopping plusOnClickFun");
 
-        numOpera.redDot()
+        numOpera.redDot();
 
         this.updateShow()
     },
 
     reduceOnClickFun: function (e) {
-        console.log("shopping reduceOnClickFun")
+        console.log("shopping reduceOnClickFun");
 
-        numOpera.redDot()
+        numOpera.redDot();
 
         this.updateShow()
     },

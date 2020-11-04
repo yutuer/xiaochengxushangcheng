@@ -4,17 +4,16 @@ import {
 
 import {CargoCache} from "./cargoCache";
 
-const cargoCache = new CargoCache()
+const cargoCache = new CargoCache();
 
-let app = getApp()
+let app = getApp();
 
-const allCargoDatas = require('data/allCargoData.js')
-
+const allCargoDatas = require('data/allCargoData.js');
 
 class CargoDB extends DB {
     // 加载商品
     loadCargos() {
-        let allCargos = allCargoDatas.allDatas
+        let allCargos = allCargoDatas.allDatas;
         cargoCache.saveSellCargosToCache(allCargos)
 
         // const suc = (res) => {
@@ -29,7 +28,7 @@ class CargoDB extends DB {
 
     // 加载商品类型
     loadCargoTypes() {
-        let allCargoTypes = allCargoDatas.typeArray
+        let allCargoTypes = allCargoDatas.typeArray;
         cargoCache.saveSellCargoTypesToCache(allCargoTypes)
 
         // const suc = (res) => {

@@ -109,53 +109,53 @@ Page({
     // 更新订单缓存
     updateCache() {
         // 一旦有新提交的订单, 则修改wx中订单状态的allFinish为false
-        let ordersObj = wx.getStorageSync(app.globalData.ordersKey)
+        let ordersObj = wx.getStorageSync(app.globalData.ordersKey);
         if (ordersObj) {
-            ordersObj.isAllFinish = false
+            ordersObj.isAllFinish = false;
             wx.setStorageSync(app.globalData.ordersKey, ordersObj)
         }
     },
 
     // 开始支付
     payStart(money) {
-        let that = this
+        let that = this;
 
-        const allPrice = this.data.orderDetail.allPrice
-        const cargos = this.data.orderDetail.cargos
-        const youhuiquan = this.data.orderDetail.youhuiquan
-        let address = that.data.address
+        const allPrice = this.data.orderDetail.allPrice;
+        const cargos = this.data.orderDetail.cargos;
+        const youhuiquan = this.data.orderDetail.youhuiquan;
+        let address = that.data.address;
 
-        let order = this.data.orderDetail.order
+        let order = this.data.orderDetail.order;
         if (order) {
-            let orderStatus = app.globalData.orderStatus
+            let orderStatus = app.globalData.orderStatus;
 
             if (order.status != orderStatus.waitForPay.status) {
                 return
             }
 
             // 有订单, 校验时间
-            const now = Date.parse(new Date())
+            const now = Date.parse(new Date());
             // 如果15分钟还是未支付, 则更新为已完成
-            let time = order.time
+            let time = order.time;
             if (time + 15 * 60 * 1000 < now) {
-                order.status = orderStatus.expire.status
-                util.updateOrderPayExpire(order.package)
+                order.status = orderStatus.expire.status;
+                util.updateOrderPayExpire(order.package);
 
-                verify.showToast("订单支付超时")
+                verify.showToast("订单支付超时");
 
-                util.jumpToOrders()
+                util.jumpToOrders();
                 return
             }
 
             // 订单号
-            let orderNo = order.outTradeNo
+            let orderNo = order.outTradeNo;
 
             let dataSend = {
                 money: money,
                 // nonceStr: nonceStr,
                 order: orderNo,
-            }
-            console.log("dataSend:", dataSend)
+            };
+            console.log("dataSend:", dataSend);
 
             // 小程序代码
             wx.cloud.callFunction({
@@ -164,7 +164,7 @@ Page({
                     ...dataSend
                 },
                 success: res => {
-                    const payment = res.result.payment
+                    const payment = res.result.payment;
                     console.log("payment:", payment);
                     // 轮询处理支付
                     util.payForPayment(orderNo, payment, youhuiquan)
@@ -173,7 +173,7 @@ Page({
             })
         } else {
             // 订单号
-            let orderNo = that.genOrderNo()
+            let orderNo = that.genOrderNo();
 
             // let nonceStr = that.nonceStr()
 
@@ -181,8 +181,8 @@ Page({
                 money: money,
                 // nonceStr: nonceStr,
                 order: orderNo,
-            }
-            console.log("dataSend:", dataSend)
+            };
+            console.log("dataSend:", dataSend);
             // 小程序代码
             wx.cloud.callFunction({
                 name: 'paystart',
@@ -190,18 +190,18 @@ Page({
                     ...dataSend
                 },
                 success: res => {
-                    const payment = res.result.payment
+                    const payment = res.result.payment;
                     console.log("payment:", payment);
 
                     // 插入数据库
                     that.insertPaymentToDB(orderNo, address, cargos, payment, allPrice, youhuiquan)
                     // 缓存设置为无效
-                    that.updateCache()
+                    that.updateCache();
                     // 清除掉购物车中所有选择的物品
-                    that.removeCargosBuy()
+                    that.removeCargosBuy();
 
                     // 扣除优惠券使用次数
-                    util.subYouhuiquanLeftUseCount(youhuiquan)
+                    util.subYouhuiquanLeftUseCount(youhuiquan);
 
                     // 轮询处理支付
                     util.payForPayment(orderNo, payment, youhuiquan)

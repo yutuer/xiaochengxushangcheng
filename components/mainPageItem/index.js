@@ -2,7 +2,7 @@ import {
     NumOpera
 } from "../../utils/tools.js"
 
-let numOpera = new NumOpera()
+let numOpera = new NumOpera();
 
 Component({
     /**
@@ -26,8 +26,8 @@ Component({
      */
     methods: {
         clickPlus() {
-            let cargoId = this.properties.cargoId
+            let cargoId = this.properties.cargoId;
             numOpera.addClick(cargoId)
         }
     }
-})
+});
