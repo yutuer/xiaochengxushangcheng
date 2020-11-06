@@ -44,22 +44,22 @@ Page({
         let cargoId = e.currentTarget.dataset.cargoid;
 
         // 更新缓存中的选中状态
-        let cargos = cargoCache.getShoppingCargoDataFromCache();
-        if (cargos) {
+        let shoppingCargos = cargoCache.getShoppingCargoDataFromCache();
+        if (shoppingCargos) {
             let findcargoIndex = -1;
-            for (let i = 0; i < cargos.length; i++) {
-                let cargo = cargos[i];
-                if (cargo.cargoid == cargoId && cargo.num > 0) {
+            for (let i = 0; i < shoppingCargos.length; i++) {
+                let shoppingCargo = shoppingCargos[i];
+                if (shoppingCargo.cargoid == cargoId && shoppingCargo.num > 0) {
                     findcargoIndex = i;
                     break
                 }
             }
             if (findcargoIndex >= 0) {
-                let cargo = cargos[findcargoIndex];
+                let cargo = shoppingCargos[findcargoIndex];
                 cargo.select = !cargo.select
             }
 
-            cargoCache.saveShoppingCargoDataToCache(cargos);
+            cargoCache.saveShoppingCargoDataToCache(shoppingCargos);
 
             this.updateShow()
         }
@@ -69,16 +69,16 @@ Page({
     allClick() {
         let setSelect = !this.data.allIsSelect;
 
-        let cargosCache = wx.getStorageSync(app.globalData.cargosKey);
-        if (cargosCache) {
-            for (let i = 0; i < cargosCache.length; i++) {
-                let cargoCache = cargosCache[i]
-                if (cargoCache.num > 0) {
-                    cargoCache.select = setSelect
+        let shoppingCargos = cargoCache.getShoppingCargoDataFromCache();
+        if (shoppingCargos) {
+            for (let i = 0; i < shoppingCargos.length; i++) {
+                let shoppingCargo = shoppingCargos[i];
+                if (shoppingCargo.num > 0) {
+                    shoppingCargo.select = setSelect
                 }
             }
         }
-        wx.setStorageSync(app.globalData.cargosKey, cargosCache);
+        cargoCache.saveShoppingCargoDataToCache(shoppingCargos);
 
         this.updateShow()
     },
