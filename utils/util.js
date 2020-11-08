@@ -44,18 +44,19 @@ function navigateToDetail(cargoid) {
 
 // 跳转到分类页
 function navigateToType(type) {
-    app.globalData.switchType = type
+    app.globalData.switchType = type;
     wx.switchTab({
         url: '../class/class',
-        success() {
+        success: (res) => {
 
         },
-        fail() {
+        fail: (err) => {
 
         }
     })
 }
 
+// 生成一个uuid
 function uuid(len, radix) {
     var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
     var uuid = [],
@@ -99,25 +100,25 @@ function jumpToOrders() {
 
 // 请求支付
 function payForPayment(outTradeNo, payment, youhuiquan) {
-    let _this = this
-    console.log("outTradeNo:", outTradeNo, ", payment:", payment, ", youhuiquan:", youhuiquan)
+    let _this = this;
+    console.log("outTradeNo:", outTradeNo, ", payment:", payment, ", youhuiquan:", youhuiquan);
     wx.requestPayment({
         ...payment,
         success(res) {
-            console.log('pay success', res)
+            console.log('pay success', res);
             //更新状态后跳转
-            updateOrderPaySuccess(payment.package)
+            updateOrderPaySuccess(payment.package);
 
-            console.log('pay success', res)
+            console.log('pay success', res);
 
             jumpToOrders()
         },
         fail(err) {
-            console.error('pay fail', err)
+            console.error('pay fail', err);
             //TODO 如果是超时的时候, 更新超时状态到数据库
 
             //查询订单
-            queryPayment(outTradeNo, payment)
+            queryPayment(outTradeNo, payment);
 
             // 也跳转
             jumpToOrders()
@@ -146,22 +147,22 @@ function queryPayment(outTradeNo, payment) {
 }
 
 function getLessTenShow(v) {
-    let ret = v < 10 ? '0' + v : '' + v
+    let ret = v < 10 ? '0' + v : '' + v;
     return ret
 }
 
 function getTimeDesc(timestamp) {
-    var date = new Date(timestamp)
+    var date = new Date(timestamp);
     //年
-    var Y = date.getFullYear()
+    var Y = date.getFullYear();
     //月
-    var M = getLessTenShow(date.getMonth() + 1)
+    var M = getLessTenShow(date.getMonth() + 1);
     //日
-    var D = getLessTenShow(date.getDate())
+    var D = getLessTenShow(date.getDate());
     //时
-    var h = getLessTenShow(date.getHours())
+    var h = getLessTenShow(date.getHours());
     //分
-    var m = getLessTenShow(date.getMinutes())
+    var m = getLessTenShow(date.getMinutes());
     return Y + "-" + M + "-" + D + " " + h + ":" + m
 }
 
@@ -176,14 +177,14 @@ function updateOrderPayExpire(_package) {
 
 // 更新订单支付成功
 function updateOrderPaySuccess(_package) {
-    const now = Date.parse(new Date())
-    const timeDesc = getTimeDesc(now)
+    const now = Date.parse(new Date());
+    const timeDesc = getTimeDesc(now);
     updateOrderPayStatus(_package, app.globalData.orderStatus.hasPay.status, timeDesc)
 }
 
 // 更新订单支付成功
 function updateOrderPayStatus(_package, _status, payTime) {
-    let phoneNum = wx.getStorageSync(app.globalData.userKey)
+    let phoneNum = wx.getStorageSync(app.globalData.userKey);
     wx.cloud.callFunction({
         name: 'updateWhereData',
         data: {
@@ -205,9 +206,9 @@ function updateOrderPayStatus(_package, _status, payTime) {
 // 扣除优惠券使用次数
 function subYouhuiquanLeftUseCount(youhuiquan) {
     if (youhuiquan && youhuiquan.leftUseCount > 10) {
-        const remain = youhuiquan.leftUseCount - 1
+        const remain = youhuiquan.leftUseCount - 1;
         // 使用同步更新
-        updateYouhuiquanCacheUpdateKey(false)
+        updateYouhuiquanCacheUpdateKey(false);
         wx.cloud.callFunction({
             name: 'updateOneData',
             data: {
@@ -227,7 +228,7 @@ function subYouhuiquanLeftUseCount(youhuiquan) {
 
 //  获取地址信息, 并存入缓存
 function getAddressList() {
-    let loginPhoneNum = wx.getStorageSync(app.globalData.userKey)
+    let loginPhoneNum = wx.getStorageSync(app.globalData.userKey);
 
     wx.cloud.callFunction({
         name: 'queryAllData',
@@ -238,14 +239,14 @@ function getAddressList() {
             }
         },
         success(res) {
-            let _id = ''
-            let data = null
-            let defaultIndex = -1
-            let address = []
+            let _id = '';
+            let data = null;
+            let defaultIndex = -1;
+            let address = [];
             if (res.result.data && res.result.data.length > 0) {
-                data = res.result.data[0]
-                _id = data._id
-                defaultIndex = data.defaultIndex
+                data = res.result.data[0];
+                _id = data._id;
+                defaultIndex = data.defaultIndex;
                 address = data.address
             }
 
@@ -265,7 +266,7 @@ function getAddressList() {
 
 //  校验登录状态
 function checkLoginStatus() {
-    let phoneNum = wx.getStorageSync(app.globalData.userKey)
+    let phoneNum = wx.getStorageSync(app.globalData.userKey);
     if (!phoneNum) {
         wx.switchTab({
             url: '/pages/login/smsLogin/smsLogin',
@@ -281,7 +282,7 @@ function checkLoginStatus() {
 // 读取订单数据
 function loadOrders(isQueryCache) {
     if (isQueryCache) {
-        let ordersObj = wx.getStorageSync(app.globalData.ordersKey)
+        let ordersObj = wx.getStorageSync(app.globalData.ordersKey);
         if (ordersObj && ordersObj.isAllFinish) {
             let orders = ordersObj.orders
         } else {
@@ -293,7 +294,7 @@ function loadOrders(isQueryCache) {
 }
 
 function loadOrdersFromDB(page) {
-    const phoneNum = wx.getStorageSync(app.globalData.userKey)
+    const phoneNum = wx.getStorageSync(app.globalData.userKey);
     if (!phoneNum) {
         // 当前没有userKey的话就返回(没有主键查什么)
         return
@@ -310,11 +311,11 @@ function loadOrdersFromDB(page) {
         success(res) {
             console.log(res)
 
-            const now = Date.parse(new Date())
+            const now = Date.parse(new Date());
 
             if (res.errMsg == 'cloud.callFunction:ok') {
-                let orders = res.result.data
-                let orderStatus = app.globalData.orderStatus
+                let orders = res.result.data;
+                let orderStatus = app.globalData.orderStatus;
 
                 for (let i = 0; i < orders.length; i++) {
                     let order = orders[i]
@@ -365,7 +366,7 @@ function loadOrdersFromDB(page) {
                     isAllFinish: finish,
                     waitforPay: waiforPay,
                     orders: orders,
-                }
+                };
                 // 加入缓存
                 wx.setStorageSync(app.globalData.ordersKey, ordersCache)
             }

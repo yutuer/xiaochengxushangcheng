@@ -1,7 +1,7 @@
 // pages/login/smsLogin/smsLogin.js
-let app = getApp()
-const verify = require("../../../utils/verify.js")
-const util = require("../../../utils/util.js")
+let app = getApp();
+const verify = require("../../../utils/verify.js");
+const util = require("../../../utils/util.js");
 Page({
 
     /**
@@ -41,38 +41,38 @@ Page({
         })
     },
     testNeedMoney(e) {
-        let value = e.detail.value
-        let v1 = parseFloat(value)
-        let v2 = (v1 * 100) / 100
+        let value = e.detail.value;
+        let v1 = parseFloat(value);
+        let v2 = (v1 * 100) / 100;
         this.setData({
             testNeedMoney: v2
         })
     },
     testStartTime(e) {
-        let dataStr = e.detail.value
-        let d = util.getDateByStr(dataStr)
+        let dataStr = e.detail.value;
+        let d = util.getDateByStr(dataStr);
         this.setData({
             testStartTime: d,
             testStartTimeDesc: dataStr,
         })
     },
     testEndTime(e) {
-        let dataStr = e.detail.value
-        let d = util.getDateByStr(dataStr)
+        let dataStr = e.detail.value;
+        let d = util.getDateByStr(dataStr);
         this.setData({
             testEndTime: d,
             testEndTimeDesc: dataStr,
         })
     },
     maxUseCount(e) {
-        let maxUseCount = parseInt(e.detail.value)
+        let maxUseCount = parseInt(e.detail.value);
         this.setData({
             leftUseCount: maxUseCount,
         })
     },
 
     test() {
-        let that = this
+        let that = this;
 
         let dataParam = {
             name: that.data.testName,
@@ -83,42 +83,42 @@ Page({
             startTimeDesc: that.data.testStartTimeDesc,
             endTimeDesc: that.data.testEndTimeDesc,
             leftUseCount: that.data.leftUseCount,
-        }
+        };
 
         if (!dataParam.name) {
             wx.showToast({
                 title: '名称未填写',
-            })
+            });
             return
         }
         if (!dataParam.desc) {
             wx.showToast({
                 title: '描述未填写',
-            })
+            });
             return
         }
         if (dataParam.needMoney == 0) {
             wx.showToast({
                 title: '金额未填写',
-            })
+            });
             return
         }
         if (!dataParam.startTimeDesc) {
             wx.showToast({
                 title: '开始日期未填写',
-            })
+            });
             return
         }
         if (!dataParam.endTimeDesc) {
             wx.showToast({
                 title: '结束日期未填写',
-            })
+            });
             return
         }
         if (dataParam.leftUseCount == 0) {
             wx.showToast({
                 title: '剩余数量未填写',
-            })
+            });
             return
         }
 
@@ -128,14 +128,14 @@ Page({
                 dbName: 'youhuiquan',
                 dataObj: dataParam,
                 success(res) {
-                    console.log(res)
+                    console.log(res);
 
                     wx.showToast({
                         title: '添加记录成功',
                     })
                 },
                 fail(e) {
-                    console.error(e)
+                    console.error(e);
 
                     wx.showToast({
                         title: '添加记录失败',
@@ -175,8 +175,8 @@ Page({
     },
     // 验证手机号是否正确
     checkPhoneNumRight() {
-        let that = this
-        let loginPhoneNum = that.data.loginPhoneNum
+        let that = this;
+        let loginPhoneNum = that.data.loginPhoneNum;
         // 直接查询
         wx.cloud.callFunction({
             name: 'queryAllData',
@@ -190,14 +190,14 @@ Page({
                 console.log(res)
                 if (res.result.data.length > 0) {
                     // 存入手机号到缓存
-                    wx.setStorageSync(app.globalData.userKey, loginPhoneNum)
+                    wx.setStorageSync(app.globalData.userKey, loginPhoneNum);
                     // 存入一个空的购物车
-                    wx.setStorageSync(app.globalData.cargosKey, [])
+                    wx.setStorageSync(app.globalData.cargosKey, []);
 
                     //获取地址信息
-                    util.getAddressList()
+                    util.getAddressList();
                     // 获取订单信息
-                    util.loadOrders(false)
+                    util.loadOrders(false);
                     // 重新加载当前页面
                     wx.reLaunch({
                         url: '../smsLogin/smsLogin',
@@ -215,9 +215,9 @@ Page({
 
     // 登出tap
     loginOutTap() {
-        let that = this
+        let that = this;
         // 清空缓存内玩家信息
-        wx.clearStorage()
+        wx.clearStorage();
         // 重新加载本页
         wx.reLaunch({
             url: '../smsLogin/smsLogin',
@@ -233,7 +233,7 @@ Page({
 
     // 点击了地址管理tap
     addressTap() {
-        const isListPage = 1
+        const isListPage = 1;
         wx.navigateTo({
             url: `../../address/addressList/addressList?isListPage=${isListPage}`,
         })
@@ -250,10 +250,10 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        console.log("smsLogin onLoad")
+        console.log("smsLogin onLoad");
 
         // 本地的userInfo 目前只需要phoneNum
-        let loginPhoneNum = wx.getStorageSync(app.globalData.userKey)
+        let loginPhoneNum = wx.getStorageSync(app.globalData.userKey);
         if (loginPhoneNum) {
             this.setData({
                 userInfo: {

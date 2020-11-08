@@ -1,11 +1,12 @@
 <!--components/youhuiquan/index.wxml-->
 <view class="container">
-	<!-- <view hidden="true">{{quan._id}}</view>
-	<view hidden="true">{{quan.startTime}}</view>
-	<view hidden="true">{{quan.endTime}}</view>
-	<view hidden="true">满足金额: {{quan.needMoney}}</view> -->
-	<view class="desc pad">{{quan.desc}}  [剩余次数(测试): {{quan.leftUseCount}}]</view>
-	<view class="validDate pad">
-		<text class="">有效期: {{quan.startTimeDesc}}至{{quan.endTimeDesc}}</text>
-	</view>
+    <view hidden="true">{{quan._id}}</view>
+    <view hidden="true">{{quan.startTime}}</view>
+    <view hidden="true">{{quan.endTime}}</view>
+    <view hidden="true">需要满足金额: {{quan.needMoney}}</view>
+    <view hidden="true">{{quan.name}}</view>
+    <view class="desc pad">{{quan.desc}} [剩余次数(测试): {{quan.leftUseCount}}]</view>
+    <view class="validDate pad">
+        <text class="">有效期: {{quan.startTimeDesc}}至{{quan.endTimeDesc}}</text>
+    </view>
 </view>

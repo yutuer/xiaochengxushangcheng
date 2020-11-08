@@ -1,28 +1,42 @@
 // pages/main/main.js
 //引入本地数据
-let mainDataJs = require('../../utils/data/mainData.js')
-const classDataJs = require('../../utils/data/classData.js')
-const util = require("../../utils/util.js")
+let mainDataJs = require('../../utils/data/mainData.js');
+const classDataJs = require('../../utils/data/classData.js');
+const util = require("../../utils/util.js");
 
 import {
     NumOpera
 } from '../../utils/tools.js';
 
-let numOpera = new NumOpera()
+let numOpera = new NumOpera();
 
 import {
     YouhuiquanDB
 } from '../../utils/youhuiquanDB.js';
 
-let youhuiquanDB = new YouhuiquanDB()
+let youhuiquanDB = new YouhuiquanDB();
+
+import {
+    YouhuiquanCache
+} from "../../utils/youhuiquanCache";
+
+let youhuiquanCache = new YouhuiquanCache();
 
 import {
     CargoDB
 } from '../../utils/cargoDB.js';
 
-let cargoDB = new CargoDB()
+let cargoDB = new CargoDB();
 
-const app = getApp()
+import {CargoCache} from "../../utils/cargoCache";
+
+const cargoCache = new CargoCache();
+
+import {OrderDB} from "../../utils/orderDB";
+
+const orderDB = new OrderDB();
+
+const app = getApp();
 Page({
 
     /**
@@ -40,15 +54,15 @@ Page({
 
     // 点击banner
     bannerTap(e) {
-        let cargoid = e.currentTarget.dataset.cargoid
+        let cargoid = e.currentTarget.dataset.cargoid;
         // 调到详情页
         util.navigateToDetail(cargoid)
     },
 
     // 点击类别
     typeTap(e) {
-        console.log(e)
-        let type = e.currentTarget.dataset.typeid
+        console.log(e);
+        let type = e.currentTarget.dataset.typeid;
         //调到分类页
         util.navigateToType(type)
     },
@@ -56,7 +70,7 @@ Page({
     // 点击了查看详情
     cargoDetailTap(e) {
         // console.log(e)
-        const cargoid = e.currentTarget.dataset.cargoid
+        const cargoid = e.currentTarget.dataset.cargoid;
         // 跳转详情页
         util.navigateToDetail(cargoid)
     },
@@ -65,32 +79,28 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        console.log("main Page onLoad")
+        console.log("main Page onLoad");
 
-        cargoDB.loadCargos()
-        cargoDB.loadCargoTypes()
+        cargoDB.loadCargos();
+        cargoDB.loadCargoTypes();
 
-        youhuiquanDB.loadYouhuiquan()
+        youhuiquanDB.loadYouhuiquan();
 
-        // this.loadBannerData()
-        // this.loadClassData()
-        // this.loadLikeItemData()
-        // this.loadAllData()
+        this.loadAllCargoData();
 
-        this.loadAllCargoData()
-
-        util.loadOrders(false)
-
+        orderDB.loadOrders(false)
     },
 
+    // 构造页面所需要的数据
     loadAllCargoData: function () {
-        let allCargos = wx.getStorageSync(app.globalData.allSellItemKey);
-        let types = wx.getStorageSync(app.globalData.allSellItemTypeKey)
-        let banners = []
-        let likes = []
+        let allCargos = cargoCache.getSellCargosFromCache();
+        let types = cargoCache.getSellCargoTypesFromCache();
+
+        let banners = [];
+        let likes = [];
 
         for (let i = 0; i < allCargos.length; i++) {
-            let cargo = allCargos[i]
+            let cargo = allCargos[i];
             if (cargo.isBanner) {
                 banners.push(cargo)
             }
@@ -104,18 +114,6 @@ Page({
             classData: types,
             likesData: likes,
             allDatas: allCargos,
-        })
-    },
-
-    loadBannerData: function () {
-        this.setData({
-            banner: mainDataJs.bannerData
-        })
-    },
-
-    loadLikeItemData: function () {
-        this.setData({
-            itemArrayData: mainDataJs.itemArrayData
         })
     },
 
@@ -142,12 +140,12 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        console.log("main Page onShow")
+        console.log("main Page onShow");
 
-        let youhuiquanData = wx.getStorageSync(app.globalData.youhuiquanKey)
+        let youhuiquanData = youhuiquanCache.getYouhuiquanDataFromCache();
         this.setData({
             youhuiquan: youhuiquanData.data,
-        })
+        });
 
         numOpera.redDot()
     },
@@ -189,21 +187,21 @@ Page({
 
     // 点击搜索
     onActivateSearch: function (event) {
-        console.log("search active")
+        console.log("search active");
         this.setData({
             searchPanel: true
         })
     },
 
     onCancel: function (event) {
-        console.log("search cancel")
+        console.log("search cancel");
         this.setData({
             searchPanel: false
         })
     },
 
     plusOnClickFun: function (e) {
-        console.log("main page plusOnClickFun")
+        console.log("main page plusOnClickFun");
         numOpera.redDot()
     },
-})
+});
