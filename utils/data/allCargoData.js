@@ -218,4 +218,4 @@ var allDatas = [{
 module.exports = {
     typeArray: typeArray,
     allDatas: allDatas
-}
+};

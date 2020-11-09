@@ -96,7 +96,7 @@ class OrderDB extends DB {
             }
         };
 
-        this.loadAllDataFromCloudyByCond('queryAllData', data, suc, fail)
+        this.callFunctionFromCloudyByCond('queryAllData', data, suc, fail)
     }
 
     updateOrderPayFinish(_package) {
@@ -133,7 +133,7 @@ class OrderDB extends DB {
         let sucFunc = (res) => console.log(res);
         let failFunc = (err) => console.error(err);
 
-        this.loadAllDataFromCloudyByCond('updateWhereData', data, sucFunc, failFunc);
+        this.callFunctionFromCloudyByCond('updateWhereData', data, sucFunc, failFunc);
     }
 }
 

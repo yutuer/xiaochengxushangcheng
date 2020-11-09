@@ -144,8 +144,8 @@ Page({
     },
 
     tapOneOrder(e) {
-        let order = e.currentTarget.dataset.order
-        console.log("order :", order)
+        let order = e.currentTarget.dataset.order;
+        console.log("order :", order);
 
         if (order.status > 1) {
             this.viewOrderDetail(e)
@@ -155,22 +155,22 @@ Page({
     },
 
     viewOrderDetail(e) {
-        let order = e.currentTarget.dataset.order
+        let order = e.currentTarget.dataset.order;
 
-        let s = encodeURIComponent(JSON.stringify(order))
+        let s = encodeURIComponent(JSON.stringify(order));
         wx.navigateTo({
             url: `/pages/orderDetail/orderDetail?order=${s}`,
         })
     },
 
     countNumTap(e) {
-        let order = e.currentTarget.dataset.order
+        let order = e.currentTarget.dataset.order;
 
-        console.log("order :", order)
+        console.log("order :", order);
 
-        const allPrice = order.allPrice
-        const chooseCargos = order.cargos
-        const youhuiquan = order.youhuiquan
+        const allPrice = order.allPrice;
+        const chooseCargos = order.cargos;
+        const youhuiquan = order.youhuiquan;
 
         pay.countNumTap(allPrice, chooseCargos, youhuiquan, order)
     },

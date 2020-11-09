@@ -44,9 +44,12 @@
         </view>
     </view>
     <!-- 确认订单 -->
-    <view class="buttonLine">
+    <view class="buttonLine" wx:if="{{orderDetail.order}}">
         <view class="confirm" catch:tap="confirmOrder">确认支付</view>
-        <view class="cancel" catch:tap="cancelOrder" data-order="{{orderDetail}}" wx:if="{{orderDetail.order}}">取消订单
+        <view class="cancel" catch:tap="cancelOrder" data-order="{{orderDetail}}">取消订单
         </view>
+    </view>
+    <view class="buttonLine" wx:else>
+        <view class="confirm" catch:tap="confirmOrder">确认支付</view>
     </view>
 </view>

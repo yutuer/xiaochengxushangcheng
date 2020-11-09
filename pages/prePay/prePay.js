@@ -1,7 +1,18 @@
 // pages/prePay/prePay.js
-const app = getApp()
-let util = require('../../utils/util.js')
-let verify = require('../../utils/verify.js')
+const app = getApp();
+let util = require('../../utils/util.js');
+let verify = require('../../utils/verify.js');
+
+import {
+    YouhuiquanCache
+} from "../../utils/youhuiquanCache";
+
+let youhuiquanCache = new YouhuiquanCache();
+
+import {CargoCache} from "../../utils/cargoCache";
+
+const cargoCache = new CargoCache();
+
 Page({
 
     /**
@@ -17,7 +28,7 @@ Page({
     // 修改地址
     changeAddrTap(e) {
         // 需要看看选择的是在第几个索引
-        const chooseAddrIndex = this.data.chooseAddrIndex
+        const chooseAddrIndex = this.data.chooseAddrIndex;
         wx.navigateTo({
             url: `/pages/address/addressList/addressList?choose=${chooseAddrIndex}`,
         })
@@ -29,14 +40,25 @@ Page({
         if (this.data.chooseAddrIndex == -1) {
             wx.showToast({
                 title: '没有选择配送地址!',
-            })
+            });
             return
         }
 
         //TODO 确定没有未完成的订单, 如果有未付款的订单, 则不让下单
 
         //TODO 检查库存
+        const cargos = this.data.orderDetail.cargos;
+        let checkKucun = cargoCache.checkKucun(cargos);
+        if (checkKucun && !checkKucun.result) {
+            verify.showToast("没有足够的 " + checkKucun.cargoName + ", 请修改");
+            return
+        }
 
+        const youhuiquan = this.data.orderDetail.youhuiquan;
+        if (youhuiquan && youhuiquan.leftUseCount <= 0) {
+            verify.showToast("优惠券没有使用次数!");
+            return
+        }
 
         // !!!! 发起支付请求啦
         this.payStart(1)
@@ -50,11 +72,11 @@ Page({
                 order: order.outTradeNo,
             },
             success: res => {
-                console.log(res)
+                console.log(res);
 
-                util.updateOrderPayFinish(order.package)
+                util.updateOrderPayFinish(order.package);
 
-                verify.showToast("取消订单成功")
+                verify.showToast("取消订单成功");
 
                 // 跳转到订单页面
                 util.jumpToOrders()
@@ -76,9 +98,9 @@ Page({
 
     // 插入订单到数据库
     insertPaymentToDB(orderNo, address, cargos, payment, allPrice, youhuiquan) {
-        let phoneNum = wx.getStorageSync(app.globalData.userKey)
-        const timestamp = Date.parse(new Date())
-        const timeDesc = util.getTimeDesc(timestamp)
+        let phoneNum = wx.getStorageSync(app.globalData.userKey);
+        const timestamp = Date.parse(new Date());
+        const timeDesc = util.getTimeDesc(timestamp);
 
         let orderObj = {
             outTradeNo: orderNo,
@@ -92,7 +114,7 @@ Page({
             timeDesc: timeDesc,
             allPrice: allPrice,
             youhuiquan: youhuiquan,
-        }
+        };
 
         // 存库
         wx.cloud.callFunction({
@@ -194,7 +216,7 @@ Page({
                     console.log("payment:", payment);
 
                     // 插入数据库
-                    that.insertPaymentToDB(orderNo, address, cargos, payment, allPrice, youhuiquan)
+                    that.insertPaymentToDB(orderNo, address, cargos, payment, allPrice, youhuiquan);
                     // 缓存设置为无效
                     that.updateCache();
                     // 清除掉购物车中所有选择的物品
@@ -213,10 +235,10 @@ Page({
 
     // 清除掉购物车中所有select状态的物品
     removeCargosBuy() {
-        let cargosCache = wx.getStorageSync(app.globalData.cargosKey)
+        let cargosCache = wx.getStorageSync(app.globalData.cargosKey);
 
         for (let i = cargosCache.length - 1; i >= 0; i--) {
-            let cargo = cargosCache[i]
+            let cargo = cargosCache[i];
             if (cargo.select) {
                 cargosCache.splice(i, 1)
             }
@@ -229,16 +251,16 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        let orderDetail = JSON.parse(decodeURIComponent(options.orderDetail))
+        let orderDetail = JSON.parse(decodeURIComponent(options.orderDetail));
         this.setData({
             orderDetail: orderDetail,
-        })
+        });
 
-        console.log("prePay  onLoad, orderDetail:", orderDetail)
+        console.log("prePay  onLoad, orderDetail:", orderDetail);
 
         // 从缓存中读出默认地址
-        const addressCache = wx.getStorageSync(app.globalData.addressKey)
-        console.log(addressCache)
+        const addressCache = wx.getStorageSync(app.globalData.addressKey);
+        console.log(addressCache);
 
         if (addressCache.defaultIndex >= 0) {
             this.setData({
@@ -259,10 +281,10 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        console.log("prePay  onShow")
-        let chooseIndex = this.data.chooseAddrIndex
+        console.log("prePay  onShow");
+        let chooseIndex = this.data.chooseAddrIndex;
         // 从缓存中读出默认地址
-        const addressCache = wx.getStorageSync(app.globalData.addressKey)
+        const addressCache = wx.getStorageSync(app.globalData.addressKey);
         if (addressCache && chooseIndex >= 0) {
             this.setData({
                 address: addressCache.address[chooseIndex]

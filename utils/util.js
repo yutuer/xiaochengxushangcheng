@@ -1,12 +1,18 @@
-const app = getApp()
+const app = getApp();
+
+import {
+    YouhuiquanDB
+} from "./youhuiquanDB";
+
+let youhuiquanDB = new YouhuiquanDB();
 
 const formatTime = date => {
-    const year = date.getFullYear()
-    const month = date.getMonth() + 1
-    const day = date.getDate()
-    const hour = date.getHours()
-    const minute = date.getMinutes()
-    const second = date.getSeconds()
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const hour = date.getHours();
+    const minute = date.getMinutes();
+    const second = date.getSeconds();
 
     return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
@@ -14,22 +20,22 @@ const formatTime = date => {
 // alert(getDate("2016-6-14 11:20:00"));
 //字符串转时间戳，strDate要转为日期格式的字符串 
 function getDateByStr(strDate) {
-    var st = strDate
-    var a = st.split(" ")
-    var b = a[0].split("-")
-    var c = a[1].split(":")
-    var date = new Date(b[0], b[1] - 1, b[2], c[0], c[1], 0)
+    var st = strDate;
+    var a = st.split(" ");
+    var b = a[0].split("-");
+    var c = a[1].split(":");
+    var date = new Date(b[0], b[1] - 1, b[2], c[0], c[1], 0);
     return Date.parse(date);
 }
 
 const formatNumber = n => {
-    n = n.toString()
+    n = n.toString();
     return n[1] ? n : '0' + n
-}
+};
 
 const db = wx.cloud.database({
     env: 'xiaochi-rlwg9'
-})
+});
 
 function getCloudDB(name) {
     return db.collection(name)
@@ -130,7 +136,7 @@ function payForPayment(outTradeNo, payment, youhuiquan) {
 function queryPayment(outTradeNo, payment) {
     const dataSend = {
         outTradeNo: outTradeNo,
-    }
+    };
 
     wx.cloud.callFunction({
         name: 'payQuery',
@@ -206,23 +212,7 @@ function updateOrderPayStatus(_package, _status, payTime) {
 // 扣除优惠券使用次数
 function subYouhuiquanLeftUseCount(youhuiquan) {
     if (youhuiquan && youhuiquan.leftUseCount > 10) {
-        const remain = youhuiquan.leftUseCount - 1;
-        // 使用同步更新
-        updateYouhuiquanCacheUpdateKey(false);
-        wx.cloud.callFunction({
-            name: 'updateOneData',
-            data: {
-                dbName: 'youhuiquan',
-                cond: youhuiquan._id,
-                dataObj: {
-                    leftUseCount: remain
-                }
-            },
-            success: res => {
-                console.log(res)
-            },
-            fail: err => console.err(err),
-        })
+        youhuiquanDB.youhuisubYouhuiquanNum(youhuiquan, 1);
     }
 }
 
@@ -324,7 +314,7 @@ function loadOrdersFromDB(page) {
                         // 如果15分钟还是未支付, 则更新为已完成
                         let time = order.time
                         if (time + 15 * 60 * 1000 < now) {
-                            order.status = orderStatus.waitForPay.status
+                            order.status = orderStatus.waitForPay.status;
                             updateOrderPayExpire(order.package)
                         }
                     }
@@ -341,13 +331,13 @@ function loadOrdersFromDB(page) {
                 }
 
                 // 遍历下看看是否全部完成
-                let finish = true
-                let waiforPay = false
+                let finish = true;
+                let waiforPay = false;
                 for (let i = 0; i < orders.length; i++) {
-                    let order = orders[i]
+                    let order = orders[i];
                     if (order.status < app.globalData.orderStatus.finish.status) {
                         // 还有未完成的
-                        finish = false
+                        finish = false;
                         if (order.status == app.globalData.orderStatus.waitForPay.status) {
                             // 还有未完成的
                             waiforPay = true

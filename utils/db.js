@@ -1,10 +1,10 @@
 const util = require('util.js');
 const verify = require('verify.js');
-let app = getApp()
+let app = getApp();
 
 class DB {
     // 加载云端数据
-    loadAllDataFromCloudy(funName, dbName, successFun, failFun) {
+    callFunctionFromCloudy(funName, dbName, successFun, failFun) {
         wx.cloud.callFunction({
             name: funName,
             data: {
@@ -24,7 +24,7 @@ class DB {
     }
 
     // 加载云端数据
-    loadAllDataFromCloudyByCond(funName, cond, successFun, failFun) {
+    callFunctionFromCloudyByCond(funName, cond, successFun, failFun) {
         wx.cloud.callFunction({
             name: funName,
             data: {

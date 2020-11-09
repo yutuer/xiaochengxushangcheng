@@ -44,9 +44,28 @@ class YouhuiquanDB extends DB {
             console.error(err)
         };
 
-        this.loadAllDataFromCloudy('queryAllData', 'youhuiquan', suc, fail);
+        this.callFunctionFromCloudy('queryAllData', 'youhuiquan', suc, fail);
     }
 
+    subYouhuiquanNum(youhuiquan, num) {
+        let data = {
+            dbName: 'youhuiquan',
+            cond: youhuiquan._id,
+            dataObj: {
+                leftUseCount: _.inc(num * -1)
+            }
+        };
+
+        const suc = (res) => {
+            console.log(res)
+        };
+
+        const fail = (err) => {
+            console.error(err)
+        };
+
+        this.callFunctionFromCloudy('updateOneData', data, suc, fail);
+    }
 }
 
 export {

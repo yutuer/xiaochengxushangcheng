@@ -61,7 +61,7 @@ class YouhuiquanCache {
                         maxyouhuiquan = youhuiquan;
                     } else {
                         // 这是个更大额度的优惠券
-                        if (youhuiquan.needMoney > maxyouhuiquan.needMoney) {
+                        if (youhuiquan.needMoney > maxyouhuiquan.needMoney && youhuiquan.leftUseCount > 0) {
                             maxyouhuiquan = youhuiquan;
                         }
                     }

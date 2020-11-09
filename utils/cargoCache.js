@@ -27,6 +27,34 @@ class CargoCache {
     getSellCargoTypesFromCache() {
         return wx.getStorageSync(app.globalData.allSellItemTypeKey)
     }
+
+    // 检查想要购买的物品的库存
+    checkKucun(cargos) {
+        for (let i = 0; i < cargos.length; i++) {
+            let cargo = cargos[i];
+            let cargoInCache = this.findCargo(cargo.cargoid);
+
+            if (!cargoInCache || cargoInCache.storageNum < cargo.num) {
+                return {
+                    cargoid: cargo.cargoid,
+                    cargoName: cargo.title,
+                    result: false,
+                };
+            }
+        }
+        return {result: true};
+    }
+
+    findCargo(id) {
+        let sellCargosFromCache = this.getSellCargosFromCache();
+        for (let i = 0; i < sellCargosFromCache.length; i++) {
+            let cargo = sellCargosFromCache[i];
+            if (cargo.cargoid == id) {
+                return cargo
+            }
+        }
+        return null
+    }
 }
 
 export {
