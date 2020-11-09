@@ -52,7 +52,7 @@ class YouhuiquanDB extends DB {
             dbName: 'youhuiquan',
             cond: youhuiquan._id,
             dataObj: {
-                leftUseCount: _.inc(num * -1)
+                num: num
             }
         };
 
@@ -64,7 +64,7 @@ class YouhuiquanDB extends DB {
             console.error(err)
         };
 
-        this.callFunctionFromCloudy('updateOneData', data, suc, fail);
+        this.callFunctionFromCloudy('updateYouhuiquanNum', data, suc, fail);
     }
 }
 

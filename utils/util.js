@@ -212,7 +212,7 @@ function updateOrderPayStatus(_package, _status, payTime) {
 // 扣除优惠券使用次数
 function subYouhuiquanLeftUseCount(youhuiquan) {
     if (youhuiquan && youhuiquan.leftUseCount > 10) {
-        youhuiquanDB.youhuisubYouhuiquanNum(youhuiquan, 1);
+        youhuiquanDB.subYouhuiquanNum(youhuiquan, 1);
     }
 }
 
