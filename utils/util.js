@@ -245,7 +245,7 @@ function getAddressList() {
                 hasQuery: true,
                 defaultIndex: defaultIndex,
                 address: address,
-            }
+            };
             wx.setStorageSync(app.globalData.addressKey, addressObj)
         },
         fail(res) {

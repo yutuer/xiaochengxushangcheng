@@ -64,7 +64,7 @@ class YouhuiquanDB extends DB {
             console.error(err)
         };
 
-        this.callFunctionFromCloudy('updateYouhuiquanNum', data, suc, fail);
+        // this.callFunctionFromCloudyByCond('updateYouhuiquanNum', data, suc, fail);
     }
 }
 
