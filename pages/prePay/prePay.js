@@ -219,6 +219,9 @@ Page({
                     that.insertPaymentToDB(orderNo, address, cargos, payment, allPrice, youhuiquan);
                     // 缓存设置为无效
                     that.updateCache();
+
+                    util.subCargoUseCount(cargos);
+
                     // 清除掉购物车中所有选择的物品
                     that.removeCargosBuy();
 

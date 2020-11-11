@@ -6,6 +6,12 @@ import {
 
 let youhuiquanDB = new YouhuiquanDB();
 
+import {
+    CargoDB
+} from './cargoDB.js';
+
+let cargoDB = new CargoDB();
+
 const formatTime = date => {
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
@@ -15,7 +21,7 @@ const formatTime = date => {
     const second = date.getSeconds();
 
     return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
-}
+};
 
 // alert(getDate("2016-6-14 11:20:00"));
 //字符串转时间戳，strDate要转为日期格式的字符串 
@@ -211,7 +217,7 @@ function updateOrderPayStatus(_package, _status, payTime) {
 
 // 扣除优惠券使用次数
 function subYouhuiquanLeftUseCount(youhuiquan) {
-    if (youhuiquan && youhuiquan.leftUseCount > 10) {
+    if (youhuiquan && youhuiquan.leftUseCount > 2) {
         youhuiquanDB.subYouhuiquanNum(youhuiquan, 1);
     }
 }
@@ -299,7 +305,7 @@ function loadOrdersFromDB(page) {
             }
         },
         success(res) {
-            console.log(res)
+            console.log(res);
 
             const now = Date.parse(new Date());
 
@@ -362,7 +368,19 @@ function loadOrdersFromDB(page) {
             }
         },
         fail: console.error
-    })
+    });
+}
+
+function subCargoUseCount(cargos) {
+    if(cargos){
+        let cargosSend = [];
+        for(let i = 0; i < cargos.length; i++){
+            let cargo = cargos[i];
+            cargosSend.push({id:cargo._id, num: cargo.num});
+        }
+
+        cargoDB.subCargosNum(cargosSend);
+    }
 }
 
 module.exports = {
@@ -382,4 +400,5 @@ module.exports = {
     jumpToOrders: jumpToOrders,
     getTimeDesc: getTimeDesc,
     subYouhuiquanLeftUseCount: subYouhuiquanLeftUseCount,
-}
+    subCargoUseCount:subCargoUseCount,
+};

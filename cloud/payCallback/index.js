@@ -16,4 +16,4 @@ exports.main = async (event, context) => {
         "errmsg": "",
     };
     return ret
-}
+};

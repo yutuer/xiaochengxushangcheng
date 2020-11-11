@@ -37,6 +37,25 @@ class CargoDB extends DB {
         };
         this.callFunctionFromCloudy('queryAllData', 'cargoType', suc, fail)
     }
+
+    subCargosNum(cargoSend) {
+        let data = {
+            dbName: 'youhuiquan',
+            dataObj: {
+                cargoSend: cargoSend,
+            }
+        };
+
+        const suc = (res) => {
+            console.log(res)
+        };
+
+        const fail = (err) => {
+            console.error(err)
+        };
+
+        this.callFunctionFromCloudyByCond('updateCargoNum', data, suc, fail);
+    }
 }
 
 export {
