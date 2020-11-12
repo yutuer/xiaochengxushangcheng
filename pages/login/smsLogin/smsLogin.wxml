@@ -10,13 +10,13 @@
                 <text>我的订单</text>
             </view>
             <view class="infoContent">
-                <tipButton-cmp txt="未支付" fontSize="30" imgSrc="images/add.png" imgWidth="120" imgHeight="120"
+                <tipButton-cmp txt="未支付" fontSize="30" imgSrc="images/未支付.png" imgWidth="120" imgHeight="120"
                                containerWidth="180" containerHeight="180" bind:imgClickEvent="click1"/>
-                <tipButton-cmp txt="待发货" fontSize="30" imgSrc="images/add.png" imgWidth="120" imgHeight="120"
+                <tipButton-cmp txt="待发货" fontSize="30" imgSrc="images/待发货.png" imgWidth="120" imgHeight="120"
                                containerWidth="180" containerHeight="180" bind:imgClickEvent="click2"/>
-                <tipButton-cmp txt="已完成" fontSize="30" imgSrc="images/add.png" imgWidth="120" imgHeight="120"
+                <tipButton-cmp txt="已完成" fontSize="30" imgSrc="images/已完成.png" imgWidth="120" imgHeight="120"
                                containerWidth="180" containerHeight="180" bind:imgClickEvent="click3"/>
-                <tipButton-cmp txt="全部订单" fontSize="30" imgSrc="images/add.png" imgWidth="120" imgHeight="120"
+                <tipButton-cmp txt="全部订单" fontSize="30" imgSrc="images/全部订单.png" imgWidth="120" imgHeight="120"
                                containerWidth="180" containerHeight="180" bind:imgClickEvent="click4"/>
             </view>
         </view>
@@ -26,9 +26,9 @@
                 <text>我的服务</text>
             </view>
             <view class="infoContent">
-                <tipButton-cmp txt="收货地址" fontSize="30" imgSrc="images/add.png" imgWidth="120" imgHeight="120"
+                <tipButton-cmp txt="收货地址" fontSize="30" imgSrc="images/收货地址.png" imgWidth="120" imgHeight="120"
                                containerWidth="180" containerHeight="180" bind:imgClickEvent="click11"/>
-                <tipButton-cmp txt="客服帮助" fontSize="30" imgSrc="images/add.png" imgWidth="120" imgHeight="120"
+                <tipButton-cmp txt="客服帮助" fontSize="30" imgSrc="images/客服帮助.png" imgWidth="120" imgHeight="120"
                                containerWidth="180" containerHeight="180" catch:imgClickEvent="click12"/>
             </view>
         </view>

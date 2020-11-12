@@ -1,16 +1,21 @@
 // pages/class/class.js
 //引入本地数据
 let classData = require('../../utils/data/classData.js');
-const allCargoDatas = require('../../utils/data/allCargoData.js')
 const util = require('../../utils/util.js');
 
 import {
     NumOpera
 } from '../../utils/tools.js';
 
-let numOpera = new NumOpera()
+let numOpera = new NumOpera();
 
-const app = getApp()
+import {
+    CargoCache
+} from "../../utils/cargoCache";
+
+const cargoCache = new CargoCache();
+
+const app = getApp();
 
 Page({
 
@@ -34,11 +39,11 @@ Page({
     // 根据当前点击对象, 设置数据
     updateOriginDatas(type) {
         // 显示数组
-        let contentArr = []
+        let contentArr = [];
         // 所有数据
-        let allDatas = classData.allDatas
+        let allDatas = classData.allDatas;
         for (let i = 0; i < allDatas.length; i++) {
-            let data = allDatas[i]
+            let data = allDatas[i];
             if (data.type == type) {
                 contentArr.push(data)
             }
@@ -53,7 +58,7 @@ Page({
 
     // 点击了分类查看
     titleViewClick(e) {
-        console.log(e)
+        console.log(e);
         var type = e.currentTarget.dataset.index + 1;
 
         this.updateOriginDatas(type)
@@ -62,7 +67,7 @@ Page({
     // 点击了查看详情
     cargoDetailTap(e) {
         // console.log(e)
-        const cargoid = e.currentTarget.dataset.cargoid
+        const cargoid = e.currentTarget.dataset.cargoid;
         // 跳转详情页
         wx.navigateTo({
             url: '../cargodetail/cargodetail?cargoid=' + cargoid,
@@ -75,24 +80,24 @@ Page({
             return
         }
 
-        const cargoid = e.currentTarget.dataset.cargoid
-        console.log(cargoid)
+        const cargoid = e.currentTarget.dataset.cargoid;
+        console.log(cargoid);
 
-        let findcargoIndex = -1
-        let cargos = wx.getStorageSync(app.globalData.cargosKey)
-        console.log(cargos)
+        let findcargoIndex = -1;
+        let cargos = wx.getStorageSync(app.globalData.cargosKey);
+        console.log(cargos);
         // 查找
         if (cargos) {
             for (let i = 0; i < cargos.length; i++) {
-                let cargo = cargos[i]
+                let cargo = cargos[i];
                 if (cargo.cargoid == cargoid) {
-                    findcargoIndex = i
+                    findcargoIndex = i;
                     break
                 }
             }
         }
         if (findcargoIndex >= 0) {
-            let cargo = cargos[findcargoIndex]
+            let cargo = cargos[findcargoIndex];
             cargo.num += 1
         } else {
             cargos.push({
@@ -100,7 +105,7 @@ Page({
                 num: 1
             })
         }
-        wx.setStorageSync(app.globalData.cargosKey, cargos)
+        wx.setStorageSync(app.globalData.cargosKey, cargos);
         wx.showToast({
             title: '添加成功',
         })
@@ -110,9 +115,12 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        console.log("class Page onLoad")
+        console.log("class Page onLoad");
+
+        let cargoTypes = cargoCache.getSellCargoTypesFromCache();
+
         this.setData({
-            typeArray: allCargoDatas.typeArray,
+            typeArray: cargoTypes,
         })
     },
     /**
