@@ -8,6 +8,15 @@ function showToast(title) {
   })
 }
 
+function showToastWithSucFun(title, suc) {
+  wx.showToast({
+    title: title,
+    icon: 'none',
+    duration: 2000,
+    success:suc,
+  })
+}
+
 // 发送短信
 function send(phoneNum) {
   var templateParams = ['1111', '5分钟'];
@@ -120,4 +129,5 @@ function findSmsByMessageId() {
 
 module.exports = {
   showToast: showToast,
+  showToastWithSucFun:showToastWithSucFun,
 }

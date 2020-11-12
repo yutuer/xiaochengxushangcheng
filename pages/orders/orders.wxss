@@ -32,7 +32,7 @@
 }
 
 .contentView {
-    height: 100vh;
+    height: 85vh;
     width: 94%;
     margin-top: 200rpx;
     position: fixed;

@@ -38,11 +38,12 @@ class CargoDB extends DB {
         this.callFunctionFromCloudy('queryAllData', 'cargoType', suc, fail)
     }
 
-    subCargosNum(cargoSend) {
+    subCargosNum(cargo) {
         let data = {
-            dbName: 'youhuiquan',
+            dbName: 'cargo',
+            cond: cargo.id,
             dataObj: {
-                cargoSend: cargoSend,
+                num: cargo.num,
             }
         };
 
@@ -54,7 +55,7 @@ class CargoDB extends DB {
             console.error(err)
         };
 
-        this.callFunctionFromCloudyByCond('updateCargoNum', data, suc, fail);
+        this.callFunctionFromCloudyByCond('updateOneCargoNum', data, suc, fail);
     }
 }
 

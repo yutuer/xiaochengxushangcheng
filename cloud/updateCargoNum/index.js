@@ -22,6 +22,8 @@ exports.main = async (event, context) => {
             let id = dataObjElement.id;
             let num = dataObjElement.num * -1;
 
+            console.log(id, num);
+
             let record = db.collection(dbName).doc(id);
             await record.update({
                 data: {

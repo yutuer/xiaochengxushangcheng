@@ -99,13 +99,17 @@ function uuid(len, radix) {
 }
 
 // 跳转到订单页面
-function jumpToOrders() {
+function jumpToOrders(sucFun) {
     wx.redirectTo({
         url: '../orders/orders',
         success: function (res) {
             wx.reLaunch({
                 url: '../orders/orders',
-            })
+            });
+
+            if (sucFun) {
+                sucFun(res)
+            }
         },
     })
 }
@@ -372,14 +376,11 @@ function loadOrdersFromDB(page) {
 }
 
 function subCargoUseCount(cargos) {
-    if(cargos){
-        let cargosSend = [];
-        for(let i = 0; i < cargos.length; i++){
+    if (cargos) {
+        for (let i = 0; i < cargos.length; i++) {
             let cargo = cargos[i];
-            cargosSend.push({id:cargo._id, num: cargo.num});
+            cargoDB.subCargosNum({id: cargo._id, num: cargo.num});
         }
-
-        cargoDB.subCargosNum(cargosSend);
     }
 }
 
@@ -400,5 +401,5 @@ module.exports = {
     jumpToOrders: jumpToOrders,
     getTimeDesc: getTimeDesc,
     subYouhuiquanLeftUseCount: subYouhuiquanLeftUseCount,
-    subCargoUseCount:subCargoUseCount,
+    subCargoUseCount: subCargoUseCount,
 };

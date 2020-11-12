@@ -10,9 +10,9 @@
                 <text>我的订单</text>
             </view>
             <view class="infoContent">
-                <tipButton-cmp txt="待支付" fontSize="30" imgSrc="images/add.png" imgWidth="120" imgHeight="120"
+                <tipButton-cmp txt="未支付" fontSize="30" imgSrc="images/add.png" imgWidth="120" imgHeight="120"
                                containerWidth="180" containerHeight="180" bind:imgClickEvent="click1"/>
-                <tipButton-cmp txt="进行中" fontSize="30" imgSrc="images/add.png" imgWidth="120" imgHeight="120"
+                <tipButton-cmp txt="待发货" fontSize="30" imgSrc="images/add.png" imgWidth="120" imgHeight="120"
                                containerWidth="180" containerHeight="180" bind:imgClickEvent="click2"/>
                 <tipButton-cmp txt="已完成" fontSize="30" imgSrc="images/add.png" imgWidth="120" imgHeight="120"
                                containerWidth="180" containerHeight="180" bind:imgClickEvent="click3"/>

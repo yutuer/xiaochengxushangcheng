@@ -3,15 +3,21 @@ const app = getApp();
 let util = require('../../utils/util.js');
 let verify = require('../../utils/verify.js');
 
-import {
-    YouhuiquanCache
-} from "../../utils/youhuiquanCache";
+import {YouhuiquanCache} from "../../utils/youhuiquanCache";
 
 let youhuiquanCache = new YouhuiquanCache();
+
+import {YouhuiquanDB} from "../../utils/youhuiquanDB";
+
+const youhuiquanDB = new YouhuiquanDB();
 
 import {CargoCache} from "../../utils/cargoCache";
 
 const cargoCache = new CargoCache();
+
+import {CargoDB} from "../../utils/cargoDB";
+
+const cargoDB = new CargoDB();
 
 Page({
 
@@ -47,16 +53,26 @@ Page({
         //TODO 确定没有未完成的订单, 如果有未付款的订单, 则不让下单
 
         //TODO 检查库存
+
+        // 先查询db -> 更新缓存 -> 校验缓存库存 -》 发起订单 -》 数据库减去库存
+        youhuiquanDB.loadYouhuiquan();
+
+        let youhuiquan = this.data.orderDetail.youhuiquan;
+        if (youhuiquan) {
+            let id = youhuiquan._id;
+            let enoughInCache = youhuiquanCache.isEnoughInCache(id);
+            if (!enoughInCache) {
+                verify.showToast("优惠券没有使用次数!");
+                return
+            }
+        }
+
+        cargoDB.loadCargos();
+
         const cargos = this.data.orderDetail.cargos;
         let checkKucun = cargoCache.checkKucun(cargos);
         if (checkKucun && !checkKucun.result) {
             verify.showToast("没有足够的 " + checkKucun.cargoName + ", 请修改");
-            return
-        }
-
-        const youhuiquan = this.data.orderDetail.youhuiquan;
-        if (youhuiquan && youhuiquan.leftUseCount <= 0) {
-            verify.showToast("优惠券没有使用次数!");
             return
         }
 
@@ -76,10 +92,10 @@ Page({
 
                 util.updateOrderPayFinish(order.package);
 
-                verify.showToast("取消订单成功");
-
                 // 跳转到订单页面
-                util.jumpToOrders()
+                util.jumpToOrders(function (res) {
+                    verify.showToast("取消订单成功");
+                })
             },
             fail: err => {
                 console.err(err)
@@ -149,6 +165,7 @@ Page({
 
         let order = this.data.orderDetail.order;
         if (order) {
+            // 通过订单列表过来的请求
             let orderStatus = app.globalData.orderStatus;
 
             if (order.status != orderStatus.waitForPay.status) {
@@ -161,11 +178,12 @@ Page({
             let time = order.time;
             if (time + 15 * 60 * 1000 < now) {
                 order.status = orderStatus.expire.status;
+
                 util.updateOrderPayExpire(order.package);
 
-                verify.showToast("订单支付超时");
-
-                util.jumpToOrders();
+                util.jumpToOrders(function (res) {
+                    verify.showToast("订单支付超时");
+                });
                 return
             }
 
@@ -220,6 +238,7 @@ Page({
                     // 缓存设置为无效
                     that.updateCache();
 
+                    // 减去物品库存
                     util.subCargoUseCount(cargos);
 
                     // 清除掉购物车中所有选择的物品
