@@ -1,43 +1,32 @@
 <!--pages/address/addressAdd/addressAdd.wxml-->
-        <!-- 收货人姓名 -->
 <view class="outer">
     <view class="container">
         <view class="content">
+            <!-- 所在地区 -->
+            <view class="areaInfo" catch:tap="areaInfoTap">
+                <text class="area left">收货地址</text>
+                <input class="areaInput" placeholder="小区/写字楼/学校" disabled="true" wx:if="{{!hasAreaValue}}"></input>
+                <text class="areaText" user-select="false" wx:if="{{hasAreaValue}}">{{area}}</text>
+                <text class="arrow">></text>
+                <!-- <image class="positionImg"></image> -->
+            </view>
+            <view class="areaDetailInfo">
+                <text class="areaDetail left">门牌号</text>
+                <input class="areaInputDetail" bind:input="areaDetailTap" value="{{areaDetail}}"
+                       placeholder="例: 8号楼808室"></input>
+            </view>
             <view class="shouhuoren">
-                <text class="name">收货人:</text>
-                <input class="nameInput inputBorder" bind:input="nameInputTap" value="{{name}}" placeholder="请填写收货人的姓名">
-                    {{name}}
+                <text class="name left">联系人</text>
+                <input class="nameInput" bind:input="nameInputTap" value="{{name}}" placeholder="您的姓名">
                 </input>
             </view>
             <!-- 手机号码 -->
             <view class="phoneInfo">
-                <text class="phone">手机号码:</text>
+                <text class="phone left">手机号</text>
                 <!-- 不允许修改, 做查询使用的 -->
-                <input class="phoneInput inputBorder" type="number" placeholder="请输入电话号码" bind:input="phoneInputTap">
-                    {{phoneNum}}
+                <input class="phoneInput" type="number" placeholder="配送员联系您的手机号" bind:input="phoneInputTap">
                 </input>
             </view>
-            <!-- 所在地区 -->
-            <view class="areaInfo">
-                <view>
-                    <text class="area">所在地区:</text>
-                    <text class="mapPosition" catchtap="getLocation">定位</text>
-                </view>
-                <input class="areaInput inputBorder" bind:input="areaInputTap" value="{{area}}" placeholder="请填写所在地区">
-                    {{area}}
-                </input>
-                <!-- <image class="positionImg"></image> -->
-            </view>
-            <view class="areaDetailInfo">
-                <text class="areaDetail">详细地址:</text>
-                <input class="areaInputDetail inputBorder" bind:input="areaDetailTap" value="{{areaDetail}}"
-                       placeholder="请填写详细地址">{{areaDetail}}
-                </input>
-            </view>
-        </view>
-        <view class="setDefault">
-            <text>设置默认</text>
-            <switch checked="{{checked}}" bind:change="switchChange"></switch>
         </view>
     </view>
     <button class="save" catchtap="saveTap">保存</button>

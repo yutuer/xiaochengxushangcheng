@@ -5,14 +5,15 @@
         <text class="orderTitle">订单列表</text>
         <!-- 分类 块 -->
         <view class="orderType">
-            <text data-choosestatus="0" catchtap="showByStatus">全部</text>
-            <text data-choosestatus="1" catchtap="showByStatus">未支付</text>
-            <text data-choosestatus="2" catchtap="showByStatus">待发货</text>
-            <text data-choosestatus="3" catchtap="showByStatus">已完成</text>
+            <text data-choosestatus="0" class='{{chooseStatus==0? "bold": ""}}' catch:tap="showByStatus">全部</text>
+            <text data-choosestatus="1" class='{{chooseStatus==1? "bold": ""}}' catch:tap="showByStatus">未支付</text>
+            <text data-choosestatus="2" class='{{chooseStatus==2? "bold": ""}}' catch:tap="showByStatus">待发货</text>
+            <text data-choosestatus="3" class='{{chooseStatus==3? "bold": ""}}' catch:tap="showByStatus">已完成</text>
         </view>
     </view>
 
     <!-- 显示区域 -->
+
     <scroll-view class="contentView" scroll-y="true">
         <block wx:for='{{orders}}' wx:for-item='order' wx:key='index'>
             <view class="oneOrder"

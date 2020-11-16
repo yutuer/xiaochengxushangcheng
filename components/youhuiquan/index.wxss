@@ -1,6 +1,7 @@
 /* components/youhuiquan/index.wxss */
 .container {
-    background-color: gainsboro;
+    width: 96%;
+    height: 100%;
 }
 
 .pad {
@@ -17,8 +18,10 @@
 }
 
 .container .validDate {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
     font-size: 24rpx;
+}
+
+.img {
+    width: 100%;
+    height: 100%;
 }

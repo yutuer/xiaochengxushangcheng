@@ -49,12 +49,6 @@
   "simulatorPluginLibVersion": {},
   "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
   "condition": {
-    "search": {
-      "list": []
-    },
-    "conversation": {
-      "list": []
-    },
     "plugin": {
       "list": []
     },
@@ -98,6 +92,12 @@
           "id": -1,
           "name": "pages/shopping/shopping",
           "pathName": "pages/shopping/shopping",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/address/addressAdd/addressAdd",
+          "pathName": "pages/address/addressAdd/addressAdd",
           "scene": null
         }
       ]

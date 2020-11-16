@@ -2,6 +2,8 @@
 .out {
     display: flex;
     justify-content: center;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .container {
@@ -90,7 +92,7 @@
 
 .youhuiquan {
     width: 100%;
-    height: 230rpx;
+    height: 270rpx;
 }
 
 /* 猜你喜欢标题 */

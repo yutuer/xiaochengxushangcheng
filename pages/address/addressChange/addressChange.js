@@ -1,6 +1,6 @@
 // pages/address/addressChange/addressChange.js
-const app = getApp()
-const verify = require("../../../utils/verify.js")
+const app = getApp();
+const verify = require("../../../utils/verify.js");
 const QQMapWX = require('../../../utils/qqmap-wx-jssdk.min.js');
 var qqmapsdk;
 Page({
@@ -14,7 +14,15 @@ Page({
         area: "", //所在地区
         areaDetail: "", //详细地址
         checked: false, //是否默认
-        index: -1, //index
+        index: -1, //index,
+        hasAreaValue: false, //是否地址有值
+    },
+
+    // 地址自动定位
+    areaInfoTap(e) {
+        console.log("areaInfoTap");
+
+        this.getLocation();
     },
 
     //  收货人输入
@@ -24,24 +32,28 @@ Page({
             name: e.detail.value
         })
     },
-    //  手机号输入
-    // phoneInputTap(e) {
-    //   this.setData({
-    //     phoneNum: e.detail.value
-    //   })
-    // },
+
+    // 手机号输入
+    phoneInputTap(e) {
+        this.setData({
+            phoneNum: e.detail.value
+        })
+    },
+
     // 收货地址输入
     areaInputTap(e) {
         this.setData({
             area: e.detail.value
         })
     },
+
     // 收货地址详细输入
     areaDetailTap(e) {
         this.setData({
             areaDetail: e.detail.value
         })
     },
+
     //默认设置勾选
     switchChange(e) {
         this.setData({
@@ -57,22 +69,22 @@ Page({
             phoneNum: this.data.phoneNum,
             area: this.data.area,
             areaDetail: this.data.areaDetail,
-        }
+        };
 
         if (!address.name || address.name.length == 0) {
-            verify.showToast("请输入名称")
+            verify.showToast("联系人至少请输入1个字");
             return
         }
         if (!address.phoneNum || address.phoneNum.length == 0) {
-            verify.showToast("请输入电话")
+            verify.showToast("请正确填写手机号码");
             return
         }
         if (!address.area || address.area.length == 0) {
-            verify.showToast("请输入所在地区")
+            verify.showToast("请补充收货地址");
             return
         }
         if (!address.areaDetail || address.areaDetail.length == 0) {
-            verify.showToast("请输入详细地址")
+            verify.showToast("请补充收货地址");
             return
         }
 
@@ -83,15 +95,15 @@ Page({
 
     // 获取位置信息
     getLocation() {
-        let that = this
+        let that = this;
 
         wx.getLocation({
             type: 'gcj02',
             success(res) {
-                const latitude = res.latitude
-                const longitude = res.longitude
-                const speed = res.speed
-                const accuracy = res.accuracy
+                const latitude = res.latitude;
+                const longitude = res.longitude;
+                const speed = res.speed;
+                const accuracy = res.accuracy;
 
                 that.getLocal(latitude, longitude)
             }
@@ -108,8 +120,8 @@ Page({
             },
             success: function (res) {
                 console.log(JSON.stringify(res));
-                let district = res.result.address_component.district
-                let recommend = res.result.formatted_addresses.recommend
+                let district = res.result.address_component.district;
+                let recommend = res.result.formatted_addresses.recommend;
 
                 if (district || recommend) {
                     that.setData({
@@ -128,11 +140,11 @@ Page({
 
     // 存储地址到远程
     saveAddressToCloud(address) {
-        let that = this
-        let index = that.data.index
-        console.log(index)
+        let that = this;
+        let index = that.data.index;
+        console.log(index);
 
-        let addressCache = wx.getStorageSync(app.globalData.addressKey)
+        let addressCache = wx.getStorageSync(app.globalData.addressKey);
         // 计算默认的索引
         if (that.data.checked) {
             addressCache.defaultIndex = index
@@ -142,13 +154,13 @@ Page({
             }
         }
 
-        that.updateEntity(addressCache.address[index], address)
+        that.updateEntity(addressCache.address[index], address);
 
         // 构造更新对象
         let addressObj = {
             defaultIndex: addressCache.defaultIndex,
             address: addressCache.address,
-        }
+        };
 
         wx.cloud.callFunction({
             name: 'updateOneData',
@@ -158,15 +170,15 @@ Page({
                 dataObj: addressObj,
             },
             success(res) {
-                console.log(res)
+                console.log(res);
                 //更新到缓存
-                let addressCache = wx.getStorageSync(app.globalData.addressKey)
-                console.log(addressCache)
+                let addressCache = wx.getStorageSync(app.globalData.addressKey);
+                console.log(addressCache);
 
-                addressCache.defaultIndex = addressObj.defaultIndex
-                addressCache.address = addressObj.address
+                addressCache.defaultIndex = addressObj.defaultIndex;
+                addressCache.address = addressObj.address;
                 // 重新存入新的
-                wx.setStorageSync(app.globalData.addressKey, addressCache)
+                wx.setStorageSync(app.globalData.addressKey, addressCache);
                 //跳转
                 wx.navigateBack({
                     delta: 1,
@@ -181,10 +193,10 @@ Page({
     // 更新记录
     updateEntity(oldone, newone) {
         if (oldone && newone) {
-            oldone.name = newone.name
-            oldone.phoneNum = newone.phoneNum
-            oldone.area = newone.area
-            oldone.areaDetail = newone.areaDetail
+            oldone.name = newone.name;
+            oldone.phoneNum = newone.phoneNum;
+            oldone.area = newone.area;
+            oldone.areaDetail = newone.areaDetail;
             return true
         }
         return false
@@ -195,9 +207,9 @@ Page({
      */
     onLoad: function (options) {
         // str转化回对象
-        let addr = JSON.parse(options.addr)
+        let addr = JSON.parse(options.addr);
 
-        console.log(addr)
+        console.log(addr);
 
         this.setData({
             name: addr.name,
@@ -205,8 +217,9 @@ Page({
             area: addr.area,
             areaDetail: addr.areaDetail,
             checked: addr.checked,
-            index: addr.index
-        })
+            index: addr.index,
+            hasAreaValue: true,
+        });
 
         // 实例化API核心类
         qqmapsdk = new QQMapWX({
@@ -262,4 +275,4 @@ Page({
     onShareAppMessage: function () {
 
     }
-})
+});

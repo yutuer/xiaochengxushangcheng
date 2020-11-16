@@ -1,70 +1,52 @@
-/* pages/address/addressChange/addressChange.wxss */
-.inputBorder {
-  border: 1rpx solid;
-}
-
 .outer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 700rpx;
-  justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
-  width: 92%;
-  justify-content: space-between;
-  height: 550rpx;
+    display: flex;
+    flex-direction: column;
+    width: 94%;
+    justify-content: space-between;
 }
 
 .save {
-  width: 300rpx;
-  background-color: skyblue;
-  border-radius: 10rpx;
+    width: 90%;
+    background-color: deepskyblue;
+    border-radius: 45rpx;
+    color: white;
+    margin-top: 20rpx;
 }
 
 .content {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  height: 400rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 400rpx;
 }
 
-.setDefault {}
-
-.container .shouhuoren {}
-
-.container .phoneInfo {}
-
-.container .areaInfo {}
-
-.container .areaDetailInfo {}
-
-.shouhuoren .name {
-  flex-grow: 4;
+.content view {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: start;
+    height: 100rpx;
+    align-items: center;
+    border-bottom: 2rpx solid lightgrey;
 }
 
-.shouhuoren .nameInput {
-  flex-grow: 7;
+.content view .left {
+    width: 160rpx;
 }
 
-
-.phoneInfo .phone {
-  flex-grow: 4;
+.areaInput {
+    width: 500rpx;
 }
 
-.phoneInfo .phoneTxt {
-  flex-grow: 7;
-}
-
-
-
-.areaDetailInfo .areaDetail {
-  flex-grow: 4;
-}
-
-.areaDetailInfo .areaInputDetail {
-  flex-grow: 7;
+.areaText {
+    width: 500rpx;
+    height: 100rpx;
+    line-height: 100rpx;
 }

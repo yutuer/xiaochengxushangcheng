@@ -17,6 +17,14 @@
     z-index: 99;
 }
 
+.bold {
+    font-weight: bold;
+}
+
+.empty {
+
+}
+
 .orderTitle {
     font-size: 60rpx;
     font-weight: bold;

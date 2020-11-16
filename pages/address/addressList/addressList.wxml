@@ -32,7 +32,7 @@
                 </view>
 
                 <!--右边的修改图标-->
-                <image class="changeImg" src="images/add.png" bind:tap="changeTap" data-addr="{{item}}"
+                <image class="changeImg" src="images/加1.png" bind:tap="changeTap" data-addr="{{item}}"
                        data-checked="{{index == defaultIndex}}" data-index="{{index}}"/>
 
             </view>

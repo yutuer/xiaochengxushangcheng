@@ -1,12 +1,12 @@
-const util = require("../../utils/util")
+const util = require("../../utils/util");
 
 import {
     Pay
 } from '../../utils/pay.js'
 
-let pay = new Pay()
+let pay = new Pay();
 // pages/orders/orders.js
-const app = getApp()
+const app = getApp();
 Page({
 
     /**
@@ -19,8 +19,8 @@ Page({
 
     // 显示订单详情
     showOrderDetail(e) {
-        let index = e.currentTarget.dataset.index
-        let order = this.data.orders[index]
+        let index = e.currentTarget.dataset.index;
+        let order = this.data.orders[index];
 
         // 牛皮, 序列化
         let orderStr = encodeURIComponent(JSON.stringify(order))
@@ -30,7 +30,7 @@ Page({
     },
 
     showByStatus(e) {
-        let choosestatus = e.currentTarget.dataset.choosestatus
+        let choosestatus = e.currentTarget.dataset.choosestatus;
         this.setChooseStatus(choosestatus)
     },
 
@@ -44,9 +44,9 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        console.log("orders onLoad:", options)
-        let choosestatus = options.chooseStatus
-        this.setChooseStatus(choosestatus)
+        console.log("orders onLoad:", options);
+        let choosestatus = options.chooseStatus;
+        this.setChooseStatus(choosestatus);
 
         this.loadOrders()
     },
@@ -57,9 +57,9 @@ Page({
     // 获取到后先检查下. 如果全部完成, 则下次从缓存拿
     // 2. 否则使用缓存数据.
     loadOrders() {
-        let that = this
+        let that = this;
 
-        let ordersObj = wx.getStorageSync(app.globalData.ordersKey)
+        let ordersObj = wx.getStorageSync(app.globalData.ordersKey);
         // if (ordersObj && ordersObj.isAllFinish) {
         if (false) {
             // 从缓存中拿
