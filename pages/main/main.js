@@ -97,13 +97,19 @@ Page({
         let types = cargoCache.getSellCargoTypesFromCache();
 
         let banners = [];
+
+        banners.push(
+            {"cargoid":1, "icon": "images/WechatIMG25.jpeg"},
+            {"cargoid":2, "icon": "images/WechatIMG26.jpeg"},
+            {"cargoid":3, "icon": "images/WechatIMG30.jpeg"},
+            {"cargoid":4, "icon": "images/WechatIMG32.jpeg"},
+            {"cargoid":5, "icon": "images/WechatIMG33.jpeg"},
+        );
+
         let likes = [];
 
         for (let i = 0; i < allCargos.length; i++) {
             let cargo = allCargos[i];
-            if (cargo.isBanner) {
-                banners.push(cargo)
-            }
             if (cargo.isLike) {
                 likes.push(cargo)
             }
@@ -168,14 +174,29 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function () {
+        console.log("main page onPullDownRefresh");
 
+        // 标题栏中显示加载
+        wx.showNavigationBarLoading();
+
+        setTimeout(function () {
+            // 完成停止加载
+            wx.hideNavigationBarLoading();
+            // 停止下拉刷新
+            wx.stopPullDownRefresh();
+
+            wx.reLaunch({
+                    url: 'pages/main/main',
+                }
+            );
+        }, 1000);
     },
 
     /**
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function () {
-
+        console.log("main page onReachBottom")
     },
 
     /**

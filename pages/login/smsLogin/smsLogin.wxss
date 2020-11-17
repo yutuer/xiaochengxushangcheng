@@ -2,8 +2,8 @@
 .container {
     width: 100%;
     overflow-x: hidden;
-    height: 90vh;
-
+    height: 100vh;
+    background-color: #f5f6f7;
     /*
     块状元素加了flex后, 会被转成行内元素 inline-block
     行内元素是不能加宽高的, 所以要用inline-block
@@ -102,7 +102,6 @@
     flex-direction: column;
     align-items: center;
     padding: 0 10rpx;
-    background-color: lightgrey;
 }
 
 .hello {
@@ -114,11 +113,11 @@
 .orderInfo {
     display: flex;
     flex-direction: column;
-    background-color: white;
     justify-content: space-around;
     height: 300rpx;
     width: 100%;
     margin-bottom: 20rpx;
+    background-color: #ffffff;
 }
 
 .orderInfo .title {

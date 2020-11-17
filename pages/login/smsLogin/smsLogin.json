@@ -1,4 +1,6 @@
 {
+  "navigationBarTitleText": "我的信息",
+  "enablePullDownRefresh": true,
   "usingComponents": {
     "price-cmp": "/components/price/index",
     "youhuiquan-cmp": "/components/youhuiquan/index",
@@ -7,8 +9,8 @@
     "classPageItem-cmp": "/components/classPageItem/index",
     "line-cmp": "/components/line/index",
     "shopItem-cmp": "/components/shopItem/index",
-    "numOpera-cmp":"/components/numOpera/index",
-    "search-cmp":"/components/search/index",
-    "tipButton-cmp":"/components/tipButton/index"
+    "numOpera-cmp": "/components/numOpera/index",
+    "search-cmp": "/components/search/index",
+    "tipButton-cmp": "/components/tipButton/index"
   }
 }

@@ -2,7 +2,7 @@ import {
     NumOpera
 } from "../../utils/tools.js"
 
-let numOpera = new NumOpera()
+let numOpera = new NumOpera();
 
 Component({
 
@@ -32,9 +32,17 @@ Component({
             value: 40,
         },
         cargoId: Number,
+        plusImg: {
+            type: String,
+            value: "images/加1.png",
+        },
         plusImgShow: {
             type: Boolean,
             value: true
+        },
+        subImg: {
+            type: String,
+            value: "images/减1.png",
         },
         // 减号符是否显示
         subImgShow: {
@@ -60,7 +68,7 @@ Component({
      */
     methods: {
         addClick: function (e) {
-            numOpera.addClick(this.properties.cargoId)
+            numOpera.addClick(this.properties.cargoId);
 
             this.triggerEvent("plusOnClickEvent", {
                 cargoId: this.properties.cargoId
@@ -68,7 +76,7 @@ Component({
         },
 
         subClick: function (e) {
-            numOpera.reduceClick(this.properties.cargoId)
+            numOpera.reduceClick(this.properties.cargoId);
 
             this.triggerEvent("reduceOnClickEvent", {
                 cargoId: this.properties.cargoId
@@ -76,4 +84,4 @@ Component({
         },
 
     }
-})
+});

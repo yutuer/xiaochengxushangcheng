@@ -1,59 +1,66 @@
 /* pages/cargodetail/cargodetail.wxss */
 .detailView {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .detailView .imageView {
-  width: 100%;
+    width: 100%;
 }
 
 .detailView .content {
-  display: flex;
-  flex-direction: column;
-  width: 90%;
-  padding: 20rpx;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    padding: 20rpx;
 }
 
 .basic {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  height: 260rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 260rpx;
 }
 
 .basic .title {
-  height: 100rpx;
-  font-size: 50rpx;
-  font-weight: bold;
+    height: 100rpx;
+    font-size: 50rpx;
+    font-weight: bold;
 }
 
 .productDetail {
-  display: flex;
-  flex-direction: column;
-  background-color: #eeeeee;
-  height: 500rpx;
-  margin-top: 20rpx;
-  padding: 20rpx;
+    display: flex;
+    flex-direction: column;
+    background-color: #eeeeee;
+    height: 500rpx;
+    margin-top: 20rpx;
+    padding: 20rpx;
 }
 
 .productDetail .xiangqing {
-  align-self: center;
+    align-self: center;
 }
 
 .bottomer {
-  display: flex;
-  justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 }
 
 .bottomer .price {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .heightRow {
-  height: 80rpx;
-  margin-top: 20rpx;
+    height: 80rpx;
+    margin-top: 20rpx;
+}
+
+.addCargo {
+    margin-top: 20rpx;
+    height: 80rpx;
+    width: 270rpx;
+    align-self: flex-end;
 }

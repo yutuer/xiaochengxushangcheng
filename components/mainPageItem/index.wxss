@@ -29,7 +29,7 @@
     height: 80rpx;
 }
 
-.mainPageItemContainer image {
+.mainPageItemContainer .borderImg {
     background-color: #999999;
 }
 

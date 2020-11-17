@@ -41,7 +41,7 @@ Page({
         // 显示数组
         let contentArr = [];
         // 所有数据
-        let allDatas = classData.allDatas;
+        let allDatas = cargoCache.getSellCargosFromCache();
         for (let i = 0; i < allDatas.length; i++) {
             let data = allDatas[i];
             if (data.type == type) {

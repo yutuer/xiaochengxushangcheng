@@ -11,5 +11,5 @@
             <text class="">有效期: {{quan.startTimeDesc}}至{{quan.endTimeDesc}}</text>
         </view>
     </view>
-    <image class="img" src="images/优惠券.png"></image>
+    <image class="img" src="images/优惠券.jpg"></image>
 </view>

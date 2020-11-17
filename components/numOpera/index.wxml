@@ -1,8 +1,8 @@
 <!--components/numOpera/index.wxml-->
 <view class="numOpera">
-    <image hidden="{{!subImgShow}}" src="images/减1.png" catch:tap="subClick"
+    <image hidden="{{!subImgShow}}" src="{{subImg}}" catch:tap="subClick"
            style="height:{{imgHeight}}rpx;width:{{imgWidth}}rpx;"/>
     <text hidden="{{!numShow}}" style="width:{{textWidth}}rpx; line-height:{{imgHeight}}rpx">{{showNum}}</text>
-    <image src="images/加1.png" style="height:{{imgHeight}}rpx;width:{{imgWidth}}rpx;" catch:tap="addClick"
+    <image src="{{plusImg}}" style="height:{{imgHeight}}rpx;width:{{imgWidth}}rpx;" catch:tap="addClick"
            hidden="{{!plusImgShow}}"/>
 </view>

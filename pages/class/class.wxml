@@ -28,7 +28,7 @@
                 <!-- <image src='{{contentArr.image}}' class='topImv' wx:if='{{contentArr.image}}'></image> -->
                 <!-- 标题内内容 -->
                 <block wx:for='{{content}}' wx:for-item='itemName' wx:for-index='indexName' wx:key='indexName'>
-                    <classPageItem-cmp imgSrc="{{itemName.icon}}" price="{{itemName.price}}" desc="{{itemName.title}}"
+                    <classPageItem-cmp imgWidth="200" heightRange="180" imgSrc="{{itemName.icon}}" price="{{itemName.price}}" desc="{{itemName.title}}"
                                        catch:tap="cargoDetailTap" cargoId="{{itemName.cargoid}}" subImgShow="{{false}}"
                                        numShow="{{false}}" data-cargoid="{{itemName.cargoid}}"
                                        catch:plusOnClickEvent="plusOnClickFun"/>

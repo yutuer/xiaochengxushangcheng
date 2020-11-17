@@ -295,7 +295,17 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function () {
+        console.log("smsLogin page onPullDownRefresh");
 
+        // 标题栏中显示加载
+        wx.showNavigationBarLoading();
+
+        setTimeout(function () {
+            // 完成停止加载
+            wx.hideNavigationBarLoading();
+            // 停止下拉刷新
+            wx.stopPullDownRefresh();
+        }, 1000);
     },
 
     /**

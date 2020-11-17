@@ -93,6 +93,7 @@
 .youhuiquan {
     width: 100%;
     height: 270rpx;
+    margin-bottom: 16rpx;
 }
 
 /* 猜你喜欢标题 */
@@ -161,6 +162,7 @@
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
+    margin-bottom: 15rpx;
 }
 
 .typeView .item {

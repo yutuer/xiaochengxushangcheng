@@ -1,6 +1,6 @@
 <!--components/mainItem/index.wxml-->
 <view class="mainPageItemContainer widthRange">
-    <image class="widthRange heightRange" src="{{imgSrc}}"></image>
+    <image class="borderImg widthRange heightRange" src="{{imgSrc}}"></image>
     <text class="title">{{title}}</text>
     <text class="desc">{{txt}}</text>
     <view class="opera">

@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "首页",
+  "enablePullDownRefresh": true,
   "usingComponents": {
     "youhuiquan-cmp": "/components/youhuiquan/index",
     "search-cmp": "/components/search/index",

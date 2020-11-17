@@ -51,7 +51,7 @@
 
 /* 分类左侧标签 */
 .leftDetail {
-  width: 30%;
+  width: 24%;
   /*1334(屏幕高度)-98(底部tabBar高度)-128(导航栏高度)-112(顶部搜索高度)*/
   /* 此处应该是动态算出 */
   height: 100vh;
@@ -79,7 +79,7 @@
 
 /* 分类右侧展示 */
 .rightDetail {
-  width: 70%;
+  width: 76%;
   /*1334(屏幕高度)-98(底部tabBar高度)-128(导航栏高度)-112(顶部搜索高度)*/
   height: 100vh;
   background-color: #ffffff;
