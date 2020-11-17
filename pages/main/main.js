@@ -97,19 +97,13 @@ Page({
         let types = cargoCache.getSellCargoTypesFromCache();
 
         let banners = [];
-
-        banners.push(
-            {"cargoid":1, "icon": "images/WechatIMG25.jpeg"},
-            {"cargoid":2, "icon": "images/WechatIMG26.jpeg"},
-            {"cargoid":3, "icon": "images/WechatIMG30.jpeg"},
-            {"cargoid":4, "icon": "images/WechatIMG32.jpeg"},
-            {"cargoid":5, "icon": "images/WechatIMG33.jpeg"},
-        );
-
         let likes = [];
 
         for (let i = 0; i < allCargos.length; i++) {
             let cargo = allCargos[i];
+            if (cargo.isBanner) {
+                banners.push(cargo)
+            }
             if (cargo.isLike) {
                 likes.push(cargo)
             }

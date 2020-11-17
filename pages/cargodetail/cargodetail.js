@@ -6,6 +6,12 @@ import {
 
 let numOpera = new NumOpera();
 
+import {
+    CargoCache
+} from "../../utils/cargoCache";
+
+const cargoCache = new CargoCache();
+
 const app = getApp();
 
 Page({
@@ -55,7 +61,7 @@ Page({
 
         let cargoid = options.cargoid;
         // 遍历查找数据
-        let cargodatas = allCargosData.allDatas;
+        let cargodatas = cargoCache.getSellCargosFromCache();
         for (let i = 0; i < cargodatas.length; i++) {
             let cargo = cargodatas[i];
             if (cargo && cargo.cargoid == cargoid) {
