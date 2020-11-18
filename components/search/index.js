@@ -2,14 +2,14 @@
 
 import {paginationBev} from '../behaviors/pagination.js'
 
-const util = require("../../utils/util.js")
-const app = getApp()
+const util = require("../../utils/util.js");
+const app = getApp();
 
 import {
     NumOpera
 } from '../../utils/tools.js';
 
-let numOpera = new NumOpera()
+let numOpera = new NumOpera();
 
 Component({
     /**
@@ -34,22 +34,22 @@ Component({
             this.setData({
                 finished: true,
                 loadingCenter: true
-            })
+            });
 
-            this.initPagination()
+            this.initPagination();
 
-            let q = event.detail.value || event.detail.text
+            let q = event.detail.value || event.detail.text;
             this.search(q)
         },
 
         search(content) {
-            let allDatas = wx.getStorageSync(app.globalData.allSellItemKey)
-            let result = []
+            let allDatas = wx.getStorageSync(app.globalData.allSellItemKey);
+            let result = [];
             if (content) {
                 // 搜索
                 for (let i = 0; i < allDatas.length; i++) {
-                    let cargo = allDatas[i]
-                    let title = cargo.title
+                    let cargo = allDatas[i];
+                    let title = cargo.title;
 
                     if (title.indexOf(content) >= 0) {
                         result.push(cargo)
@@ -76,14 +76,14 @@ Component({
 
         // 点击了查看详情
         cargoDetailTap: function (e) {
-            const cargoid = e.currentTarget.dataset.cargoid
+            const cargoid = e.currentTarget.dataset.cargoid;
             // 跳转详情页
             util.navigateToDetail(cargoid)
         },
 
         plusOnClickFun: function (e) {
-            console.log("search page plusOnClickFun")
+            console.log("search page plusOnClickFun");
             numOpera.redDot()
         },
     }
-})
+});
