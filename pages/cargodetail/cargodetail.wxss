@@ -61,6 +61,6 @@
 .addCargo {
     margin-top: 20rpx;
     height: 80rpx;
-    width: 270rpx;
-    align-self: flex-end;
+    width: 50%;
+    align-self: center;
 }

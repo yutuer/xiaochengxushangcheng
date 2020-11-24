@@ -11,6 +11,9 @@
     "shopItem-cmp": "/components/shopItem/index",
     "numOpera-cmp": "/components/numOpera/index",
     "search-cmp": "/components/search/index",
-    "tipButton-cmp": "/components/tipButton/index"
+    "tipButton-cmp": "/components/tipButton/index",
+    "mp-cells": "/weui-miniprogram/cells/cells",
+    "mp-cell": "/weui-miniprogram/cell/cell",
+    "mp-slideview": "/weui-miniprogram/slideview/slideview"
   }
 }

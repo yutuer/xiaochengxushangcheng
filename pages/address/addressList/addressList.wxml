@@ -4,41 +4,47 @@
     <scroll-view class='scroll' scroll-y="true">
         <block wx:for="{{address}}" wx:key='index'>
             <!--外部容器-->
-            <view class="addrBlock">
+<!--            <view class="addrBlock">-->
 
-                <!--左边的块-->
-                <view class="addrInfo">
-                    <!--第一行-->
-                    <view class="headLine">
-                        <text class="defaultTxt fontBold" style="margin-right:10rpx"
-                              wx:if="{{isListPage && index == defaultIndex}}">默认
-                        </text>
-                        <text class="choose" catch:tap="chooseTap"
-                              wx:if="{{!isListPage && index != chooseAddrIndex}}"
-                              data-index="{{index}}">选择
-                        </text>
-                        <text>{{item.area}}</text>
-                    </view>
+                <!--右边的修改图标-->
+                <!--                <image class="changeImg" src="images/加1.png" bind:tap="changeTap" data-addr="{{item}}"-->
+                <!--                       data-checked="{{index == defaultIndex}}" data-index="{{index}}"/>-->
 
-                    <!--第2行-->
-                    <text class="areaDetailTxt fontBold">{{item.areaDetail}}</text>
+                <view class="page__bd pdMargin">
+                    <view class="weui-cells">
+                        <mp-slideview buttons="{{slideButtons}}" bindbuttontap="slideButtonTap">
+                            <!--                            <mp-cell value="左滑删除" footer="说明文字"></mp-cell>-->
+                            <view class="addrInfo">
+                                <!--第一行-->
+                                <view class="headLine">
+                                    <text class="defaultTxt fontBold" style="margin-right:10rpx"
+                                          wx:if="{{isListPage && index == defaultIndex}}">默认
+                                    </text>
+                                    <text class="choose" catch:tap="chooseTap"
+                                          wx:if="{{!isListPage && index != chooseAddrIndex}}"
+                                          data-index="{{index}}">选择
+                                    </text>
+                                    <text>{{item.area}}</text>
+                                </view>
 
-                    <!--第3行-->
-                    <view class="bottomLine">
-                        <text class="name" style="margin-right:30rpx">{{item.name}}</text>
-                        <text class="phoneNum">{{item.phoneNum}}</text>
-                        <!--                        <text catch:tap="deleteAddr" data-index="{{index}}">删除</text>-->
+                                <!--第2行-->
+                                <text class="areaDetailTxt fontBold">{{item.areaDetail}}</text>
+
+                                <!--第3行-->
+                                <view class="bottomLine">
+                                    <text class="name" style="margin-right:30rpx">{{item.name}}</text>
+                                    <text class="phoneNum">{{item.phoneNum}}</text>
+                                    <!--                        <text catch:tap="deleteAddr" data-index="{{index}}">删除</text>-->
+                                </view>
+                            </view>
+                        </mp-slideview>
                     </view>
                 </view>
 
-                <!--右边的修改图标-->
-                <image class="changeImg" src="images/加1.png" bind:tap="changeTap" data-addr="{{item}}"
-                       data-checked="{{index == defaultIndex}}" data-index="{{index}}"/>
-
-            </view>
+<!--            </view>-->
         </block>
     </scroll-view>
 
     <!-- 新增按钮 -->
-    <view class="addAddress" catchtap="addressAddTap">新增收货地址</view>
+    <image class="addAddress" src="images/新增收货地址.png" catchtap="addressAddTap"></image>
 </view>

@@ -1,4 +1,6 @@
 /* pages/login/smsLogin/smsLogin.wxss */
+@import '/weui-miniprogram/weui-wxss/dist/style/weui.wxss'
+
 .container {
     width: 100%;
     overflow-x: hidden;
@@ -15,15 +17,10 @@
 }
 
 .loginOut {
-    background-color: deepskyblue;
-    border-radius: 40rpx;
     margin: 0 40rpx;
     margin-top: 100rpx;
     height: 80rpx;
-    text-align: center;
-    line-height: 80rpx;
     width: 90%;
-    color: white;
 }
 
 /* 输入账户 */

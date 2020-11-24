@@ -32,7 +32,7 @@
                                containerWidth="180" containerHeight="180" catch:imgClickEvent="click12"/>
             </view>
         </view>
-        <view class="loginOut" bind:tap="loginOutTap">登 出</view>
+        <image src="images/登出.png" class="loginOut" bind:tap="loginOutTap"></image>
     </view>
 
     <!-- 不存在则登录 -->
@@ -45,7 +45,7 @@
         <!-- 验证码 -->
         <input class='input yzmInput' placeholder='请输入收到的验证码' type='number'></input>
         <!-- 登录按钮 -->
-        <view class='loginView' bindtap="loginTap">登 录</view>
+        <image src="images/登陆.png" class='loginView' bindtap="loginTap"></image>
         <!-- 手机快速注册 -->
         <view class='phoneRegist font28' bind:tap='phoneRegistClick'>手机快速注册</view>
     </view>
@@ -99,4 +99,19 @@
     <!--<mainPageItem-cmp price="20.0" imgSrc="/images/getImages/dc2268445a844a54.jpg!q70.jpg" txt="华嘉 圆形塑料夹子1阳台 12夹水蓝色" />-->
 
     <!-- 用户信息 -->
+
+<!--    <view class="page">-->
+<!--        <view class="page__hd">-->
+<!--            <view class="page__title">Slideview</view>-->
+<!--            <view class="page__desc">左滑操作</view>-->
+<!--        </view>-->
+<!--        <view class="page__bd">-->
+<!--            <view class="weui-cells">-->
+<!--                <mp-slideview buttons="{{slideButtons}}" bindbuttontap="slideButtonTap">-->
+<!--                    <mp-cell value="左滑可以删除" footer="说明文字"></mp-cell>-->
+<!--                </mp-slideview>-->
+<!--            </view>-->
+<!--        </view>-->
+<!--    </view>-->
+
 </view>

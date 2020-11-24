@@ -29,7 +29,8 @@
     "color": "#313030",
     "selectedColor": "#D54331",
     "borderStyle": "black",
-    "list": [{
+    "list": [
+      {
         "pagePath": "pages/main/main",
         "iconPath": "images/tabbar/home_2.png",
         "selectedIconPath": "images/tabbar/home_1.png",

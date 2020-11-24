@@ -7,6 +7,6 @@
 <!-- 验证码 -->
 <input class='yzmInput input' placeholder='请输入收到的验证码' type='number' bindinput="codeInput"></input>
 <!-- 注册按钮 -->
-<view class='loginView' bindtap="registerTap">注 册</view>
+<image src="images/注册.png" class='loginView' bindtap="registerTap"></image>
 <view class='loginView' bindtap="queryLeft"  wx-if="{{showQueryLeft}}">查看余额</view>
 <view class='loginView' bindtap="querySended" wx-if="{{showQuerySended}}">查看已经发送的短信</view>

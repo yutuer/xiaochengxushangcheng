@@ -261,6 +261,24 @@ Page({
                 }
             })
         }
+
+
+        this.setData({
+            slideButtons: [{
+                text: '普通',
+            }, {
+                text: '普通',
+                extClass: 'test',
+            }, {
+                type: 'warn',
+                text: '警示',
+                extClass: 'test',
+            }],
+        });
+    },
+
+    slideButtonTap(e) {
+        console.log('slide button tap', e.detail)
     },
 
     /**

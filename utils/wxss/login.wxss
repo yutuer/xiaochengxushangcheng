@@ -36,10 +36,5 @@
     top: 140rpx;
     margin: 0 40rpx;
     height: 80rpx;
-    border-radius: 40rpx;
-    background-color: #EBBCB6;
-    /* 让文字居中 */
-    text-align: center;
-    line-height: 80rpx;
-    color: #ffffff;
+    width: 90%;
 }

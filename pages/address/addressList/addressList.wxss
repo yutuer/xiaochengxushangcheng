@@ -67,12 +67,11 @@
 }
 
 .addAddress {
-    background-color: deepskyblue;
-    border-radius: 45rpx;
     margin: 0 40rpx;
     height: 80rpx;
-    text-align: center;
-    line-height: 80rpx;
     width: 90%;
-    color: white;
+}
+
+.pdMargin {
+    margin: 15rpx 0;
 }
