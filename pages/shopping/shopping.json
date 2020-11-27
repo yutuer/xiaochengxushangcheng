@@ -3,6 +3,9 @@
   "usingComponents": {
     "shopItem-cmp": "/components/shopItem/index",
     "price-cmp": "/components/price/index",
-    "classPageItem-cmp": "/components/classPageItem/index"
+    "classPageItem-cmp": "/components/classPageItem/index",
+    "mp-cells": "/weui-miniprogram/cells/cells",
+    "mp-cell": "/weui-miniprogram/cell/cell",
+    "mp-slideview": "/weui-miniprogram/slideview/slideview"
   }
 }

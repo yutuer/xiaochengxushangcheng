@@ -1,4 +1,4 @@
-let app = getApp()
+let app = getApp();
 
 class CargoCache {
 
@@ -32,7 +32,7 @@ class CargoCache {
     checkKucun(cargos) {
         for (let i = 0; i < cargos.length; i++) {
             let cargo = cargos[i];
-            let cargoInCache = this.findCargo(cargo.cargoid);
+            let cargoInCache = this.findSellCargo(cargo.cargoid);
 
             if (!cargoInCache || cargoInCache.storageNum < cargo.num) {
                 return {
@@ -45,7 +45,8 @@ class CargoCache {
         return {result: true};
     }
 
-    findCargo(id) {
+    // 从全部商品中找到id的对象
+    findSellCargo(id) {
         let sellCargosFromCache = this.getSellCargosFromCache();
         for (let i = 0; i < sellCargosFromCache.length; i++) {
             let cargo = sellCargosFromCache[i];
@@ -55,6 +56,25 @@ class CargoCache {
         }
         return null
     }
+
+    // 删除购物车中物品
+    deleteShoppingCargo(id) {
+        let index = -1;
+        let shoppingCargoData = this.getShoppingCargoDataFromCache();
+        for (let i = 0; i < shoppingCargoData.length; i++) {
+            let cargo = shoppingCargoData[i];
+            if (cargo.cargoid == id) {
+                index = i;
+                break;
+            }
+        }
+        if (index >= 0) {
+            shoppingCargoData.splice(index, 1);
+
+            this.saveShoppingCargoDataToCache(shoppingCargoData);
+        }
+    }
+
 }
 
 export {

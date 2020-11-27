@@ -5,7 +5,7 @@ import {CargoCache} from "./cargoCache";
 
 const cargoCache = new CargoCache();
 
-let app = getApp()
+let app = getApp();
 
 class NumOpera {
     // 点击add按钮

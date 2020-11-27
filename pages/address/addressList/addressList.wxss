@@ -73,5 +73,5 @@
 }
 
 .pdMargin {
-    margin: 15rpx 0;
+    margin: 25rpx 0;
 }

@@ -94,14 +94,13 @@ Page({
             if (options.isListPage) {
                 isListPage = true
             }
-            chooseIndex = options.choose
+            chooseIndex = options.choose;
         }
 
         this.setData({
             isListPage: isListPage,
             chooseAddrIndex: parseInt(chooseIndex),
         });
-
 
         this.setData({
             slideButtons: [{
@@ -176,7 +175,53 @@ Page({
     },
 
     slideButtonTap(e) {
-        console.log('slide button tap', e.detail)
+        console.log('slide button tap', e.detail);
+        console.log('slide button tap', e.currentTarget.dataset);
+        let index = e.detail.index; // 操作的按钮索引
+        if (index == 0) {
+            // 编辑
+            this.changeTap(e);
+        } else if (index == 1) {
+            // 删除
+            this.deleteAddr(e);
+        }
+    },
+
+    deleteAddr(e) {
+        let that = this;
+        let index = e.currentTarget.dataset.index;
+        // 更新缓存
+        let addressCache = wx.getStorageSync(app.globalData.addressKey);
+        if (addressCache) {
+            console.log(index, addressCache);
+
+            let address = addressCache.address;
+            address.splice(index, 1);
+
+            //构造更新的对象
+            let addressObj = {
+                address: address,
+            };
+
+            // 存储到数据库
+            wx.cloud.callFunction({
+                name: 'updateOneData',
+                data: {
+                    dbName: 'address',
+                    cond: addressCache._id,
+                    dataObj: addressObj,
+                },
+                success: (res) => {
+                    that.setData({
+                        address: address,
+                    });
+
+                    // 重新存入新的
+                    wx.setStorageSync(app.globalData.addressKey, addressCache);
+                },
+                fail: (err) => console.error(err),
+            });
+        }
     },
 
 });

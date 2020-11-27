@@ -247,7 +247,7 @@ function getAddressList() {
                 data = res.result.data[0];
                 _id = data._id;
                 defaultIndex = data.defaultIndex;
-                address = data.address
+                address = data.address;
             }
 
             let addressObj = {
@@ -256,10 +256,10 @@ function getAddressList() {
                 defaultIndex: defaultIndex,
                 address: address,
             };
-            wx.setStorageSync(app.globalData.addressKey, addressObj)
+            wx.setStorageSync(app.globalData.addressKey, addressObj);
         },
         fail(res) {
-            console.log(res)
+            console.error(res);
         }
     })
 }
@@ -270,7 +270,7 @@ function checkLoginStatus() {
     if (!phoneNum) {
         wx.switchTab({
             url: '/pages/login/smsLogin/smsLogin',
-        })
+        });
 
         wx.showToast({
             title: '请先登录!!',

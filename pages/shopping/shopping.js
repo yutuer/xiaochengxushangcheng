@@ -1,6 +1,5 @@
 // pages/shopping/shopping.js
 //引入本地数据
-const allCargoDatas = require('../../utils/data/allCargoData.js');
 import {
     NumOpera
 } from '../../utils/tools.js';
@@ -140,7 +139,7 @@ Page({
                 //如果有一个数量大于0 , 但是没有选中, 全选就不亮
                 // 所有数量 > 0的都是选中状态, 就是全选
                 if (!numCargo.select) {
-                    allIsSelect = false
+                    allIsSelect = false;
                 }
             }
 
@@ -177,6 +176,14 @@ Page({
      */
     onLoad: function (options) {
         console.log("shopping page onLoad");
+
+        this.setData({
+            slideButtons: [{
+                type: 'warn',
+                text: '删除',
+                extClass: 'test',
+            }],
+        });
     },
 
     /**
@@ -248,4 +255,23 @@ Page({
         this.updateShow()
     },
 
-})
+    slideButtonTap(e) {
+        console.log('slide button tap', e.detail);
+        console.log('slide button tap', e.currentTarget.dataset);
+        let index = e.detail.index; // 操作的按钮索引
+        if (index == 0) {
+            // 删除
+            this.deleteCargos(e);
+        }
+    },
+
+    deleteCargos(e) {
+        let cargoid = e.currentTarget.dataset.cargoid;
+        cargoCache.deleteShoppingCargo(cargoid);
+
+        numOpera.redDot();
+
+        this.updateShow();
+    },
+
+});

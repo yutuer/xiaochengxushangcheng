@@ -9,15 +9,22 @@
              如果列表中项目的位置会动态改变或者有新的项目添加到列表中，并且希望列表中的项目保持自己的特征和状态（如 input 中的输入内容，switch 的选中状态），需要使用 wx:key 来指定列表中项目的唯一的标识符。
          -->
             <!-- 单个商品样式 -->
-            <view class='itemView' wx:if="{{subItem.num > 0}}">
-                <image class='choose'
-                       src='{{subItem.select?"/images/shopping/select.png":"/images/shopping/normal.png"}}'
-                       catch:tap='singleSelectClick' data-cargoid='{{subItem.cargoid}}' data-index='{{index}}'></image>
-                <classPageItem-cmp class="right" imgSrc="{{subItem.icon}}" price="{{subItem.price}}"
-                                   desc="{{subItem.title}}" imgWidth="200" cargoId="{{subItem.cargoid}}"
-                                   heightRange="200"
-                                   showNum="{{subItem.num}}" catch:plusOnClickEvent="plusOnClickFun"
-                                   catch:reduceOnClickEvent="reduceOnClickFun"/>
+            <view class="page__bd pdMargin">
+                <view class="weui-cells">
+                    <mp-slideview buttons="{{slideButtons}}" bindbuttontap="slideButtonTap" data-cargoid="{{subItem.cargoid}}">
+                        <view class='itemView' wx:if="{{subItem.num > 0}}">
+                            <image class='choose'
+                                   src='{{subItem.select?"/images/shopping/select.png":"/images/shopping/normal.png"}}'
+                                   catch:tap='singleSelectClick' data-cargoid='{{subItem.cargoid}}'
+                                   data-index='{{index}}'></image>
+                            <classPageItem-cmp class="right" imgSrc="{{subItem.icon}}" price="{{subItem.price}}"
+                                               desc="{{subItem.title}}" imgWidth="200" cargoId="{{subItem.cargoid}}"
+                                               heightRange="200"
+                                               showNum="{{subItem.num}}" catch:plusOnClickEvent="plusOnClickFun"
+                                               catch:reduceOnClickEvent="reduceOnClickFun"/>
+                        </view>
+                    </mp-slideview>
+                </view>
             </view>
         </block>
     </scroll-view>

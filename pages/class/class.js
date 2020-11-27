@@ -134,9 +134,9 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        console.log("class Page onShow")
-        let switchType = app.globalData.switchType
-        this.updateOriginDatas(switchType)
+        console.log("class Page onShow");
+        let switchType = app.globalData.switchType;
+        this.updateOriginDatas(switchType);
         app.globalData.switchType = 1
     },
 
@@ -176,7 +176,7 @@ Page({
     },
 
     plusOnClickFun: function (e) {
-        console.log("class page plusOnClickFun")
+        console.log("class page plusOnClickFun");
         numOpera.redDot()
     },
-})
+});
