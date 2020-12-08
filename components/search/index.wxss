@@ -73,3 +73,11 @@
 .mainPageItem {
     margin-bottom: 20rpx;
 }
+
+.searchResult {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: fixed;
+    margin-top: 100rpx;
+}

@@ -12,6 +12,7 @@ class CargoCache {
         wx.setStorageSync(app.globalData.cargosKey, cargoCache)
     }
 
+    // 所有商品
     saveSellCargosToCache(allCargos) {
         wx.setStorageSync(app.globalData.allSellItemKey, allCargos)
     }
@@ -26,6 +27,43 @@ class CargoCache {
 
     getSellCargoTypesFromCache() {
         return wx.getStorageSync(app.globalData.allSellItemTypeKey)
+    }
+
+    findSellCargosByKeyword(keyword) {
+        let ret = [];
+        if (keyword) {
+            let sellCargosFromCache = this.getSellCargosFromCache();
+            for (let i = 0; i < sellCargosFromCache.length; i++) {
+                let cargo = sellCargosFromCache[i];
+                if (cargo.title.indexOf(keyword) != -1) {
+                    ret.push(cargo);
+                }
+            }
+        }
+
+        if (ret.length == 0) {
+            ret = this.notFindRandomCargos();
+        }
+        return ret;
+    }
+
+    // 没有找到关键字, 随机返回
+    notFindRandomCargos() {
+        let ret = [];
+        let retNum = 3;
+        let sellCargosFromCache = this.getSellCargosFromCache();
+        for (let i = 0; i < sellCargosFromCache.length; i++) {
+            let cargo = sellCargosFromCache[i];
+
+            if (Math.random() > 0.5) {
+                ret.push(cargo);
+            }
+
+            if (ret.length >= retNum) {
+                break;
+            }
+        }
+        return ret;
     }
 
     // 检查想要购买的物品的库存

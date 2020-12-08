@@ -70,9 +70,12 @@ Page({
     // 点击了查看详情
     cargoDetailTap(e) {
         // console.log(e)
-        const cargoid = e.currentTarget.dataset.cargoid;
-        // 跳转详情页
-        util.navigateToDetail(cargoid)
+        let dataset = e.currentTarget.dataset;
+        if (dataset) {
+            let cargoId = dataset.cargoid;
+            // 跳转详情页
+            util.navigateToDetail(cargoId);
+        }
     },
 
     /**

@@ -11,6 +11,12 @@ import {
 
 let numOpera = new NumOpera();
 
+import {
+    CargoCache
+} from "../../utils/cargoCache";
+
+let cargoCache = new CargoCache();
+
 Component({
     /**
      * 组件的属性列表
@@ -24,6 +30,7 @@ Component({
     data: {
         finished: false,
         loadingCenter: true,
+        searchCargos: [],
     },
 
     /**
@@ -85,5 +92,33 @@ Component({
             console.log("search page plusOnClickFun");
             numOpera.redDot()
         },
+
+        searchInputTap: function (e) {
+            console.log("searchInputTap:", e);
+            if (e.detail && e.detail.value) {
+                let v = e.detail.value;
+                console.log("searchInputTap  v:", v);
+
+                let findSellCargosByKeyword = cargoCache.findSellCargosByKeyword(v);
+                this.setData({searchCargos: findSellCargosByKeyword});
+            } else {
+                console.log("searchInputTap  no v:");
+
+                this.setData({searchCargos: []});
+            }
+        },
+
+        tapSearchItem: function (e) {
+            console.log("tapSearchItem:", e);
+            let tapSearchItem = e.currentTarget.dataset;
+            if (tapSearchItem) {
+                // 清除
+                // this.setData({searchCargos: []});
+
+                let cargoId = tapSearchItem.cargoid;
+                // 跳转详情页
+                util.navigateToDetail(cargoId);
+            }
+        }
     }
 });
