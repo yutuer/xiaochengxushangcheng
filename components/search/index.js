@@ -30,27 +30,37 @@ Component({
     data: {
         finished: false,
         loadingCenter: true,
-        searchCargos: [],
+        preSearchResult: [], //预先查询结果
     },
 
     /**
      * 组件的方法列表
      */
     methods: {
-        onConfirm: function (event) {
+        // 点击输入框后, 清除搜索到的结果, 展示预先搜索结果
+        onSearchFocus: function (e) {
+            if (e.detail.value) {
+                this.preSearch(e.detail.value);
+            }
+        },
+
+        // 点击确认后开始查询
+        onSearchConfirm: function (event) {
+            let q = event.detail.value || event.detail.text;
+            this.searchCargoList(q)
+        },
+
+        // 开始根据关键字搜索列表
+        searchCargoList(content) {
             this.setData({
                 finished: true,
-                loadingCenter: true
+                loadingCenter: true,
+                preSearchResult: [],
             });
 
             this.initPagination();
 
-            let q = event.detail.value || event.detail.text;
-            this.search(q)
-        },
-
-        search(content) {
-            let allDatas = wx.getStorageSync(app.globalData.allSellItemKey);
+            let allDatas = cargoCache.getSellCargosFromCache();
             let result = [];
             if (content) {
                 // 搜索
@@ -69,6 +79,7 @@ Component({
             }
         },
 
+        // 点击取消按钮
         onCancel: function (event) {
             this.triggerEvent('cancel', {}, {})
         },
@@ -77,7 +88,8 @@ Component({
             this.setData({
                 finished: false,
                 empty: false,
-                q: ''
+                q: '',
+                preSearchResult: [],
             })
         },
 
@@ -89,35 +101,32 @@ Component({
         },
 
         plusOnClickFun: function (e) {
-            console.log("search page plusOnClickFun");
             numOpera.redDot()
         },
 
-        searchInputTap: function (e) {
-            console.log("searchInputTap:", e);
-            if (e.detail && e.detail.value) {
-                let v = e.detail.value;
-                console.log("searchInputTap  v:", v);
+        // 搜索框输入文字, 开始预查询
+        onSearchInput: function (e) {
+            this.preSearch(e.detail.value);
+        },
 
+        // 根据关键字预先查询
+        preSearch(v) {
+            this.setData({finished: false});
+            if (v) {
                 let findSellCargosByKeyword = cargoCache.findSellCargosByKeyword(v);
-                this.setData({searchCargos: findSellCargosByKeyword});
+                this.setData({preSearchResult: findSellCargosByKeyword});
             } else {
-                console.log("searchInputTap  no v:");
-
-                this.setData({searchCargos: []});
+                this.setData({preSearchResult: []});
             }
         },
 
-        tapSearchItem: function (e) {
-            console.log("tapSearchItem:", e);
-            let tapSearchItem = e.currentTarget.dataset;
+        // 点击了预先搜索的选项, 应该和点击了搜索一样的结果, 而不是跳转
+        tapMatchItem: function (e) {
+            console.log("tapMatchItem:", e);
+            let tapSearchItem = e.currentTarget.dataset.item;
             if (tapSearchItem) {
-                // 清除
-                // this.setData({searchCargos: []});
-
-                let cargoId = tapSearchItem.cargoid;
-                // 跳转详情页
-                util.navigateToDetail(cargoId);
+                let title = tapSearchItem.title;
+                this.searchCargoList(title);
             }
         }
     }

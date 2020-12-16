@@ -85,6 +85,6 @@
         </view>
     </view>
 
-    <search-cmp wx:if="{{searchPanel}}" bind:cancel="onCancel"/>
+    <search-cmp class="searchCmp" wx:if="{{searchPanel}}" bind:cancel="onCancel"/>
 </view>
 

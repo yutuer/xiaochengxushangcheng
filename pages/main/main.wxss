@@ -183,3 +183,7 @@
     background-color: #eaeaea;
     border-radius: 51rpx;
 }
+
+.searchCmp {
+    width: 100%;
+}
