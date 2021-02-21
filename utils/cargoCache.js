@@ -29,6 +29,17 @@ class CargoCache {
         return wx.getStorageSync(app.globalData.allSellItemTypeKey)
     }
 
+    getShoppingCargoNum(cargoId) {
+        let shoppingCargoDataFromCache = this.getShoppingCargoDataFromCache();
+        for (let i = 0; i < shoppingCargoDataFromCache.length; i++) {
+            let cargo = shoppingCargoDataFromCache[i];
+            if (cargo.cargoid == cargoId) {
+                return cargo.num;
+            }
+        }
+        return 0;
+    }
+
     findSellCargosByKeyword(keyword) {
         let ret = [];
         if (keyword) {

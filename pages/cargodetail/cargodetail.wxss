@@ -1,4 +1,11 @@
 /* pages/cargodetail/cargodetail.wxss */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
 .detailView {
     display: flex;
     flex-direction: column;
@@ -60,7 +67,5 @@
 
 .addCargo {
     margin-top: 20rpx;
-    height: 80rpx;
-    width: 50%;
     align-self: center;
 }

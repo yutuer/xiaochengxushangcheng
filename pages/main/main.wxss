@@ -1,16 +1,19 @@
 /* pages/main/main.wxss */
-.out {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    overflow-x: hidden;
-}
+/*.out {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    align-items: center;*/
+/*    width: 100%;*/
+/*    overflow-x: hidden;*/
+/*}*/
 
 .container {
     display: flex;
     flex-direction: column;
-    width: 98%;
+    width: 100%;
     align-items: center;
+    /* 设置横向没有滚动条 */
+    overflow-x: hidden;
 }
 
 /* 顶部搜索 */
@@ -98,11 +101,13 @@
 
 /* 猜你喜欢标题 */
 .cnxhTitle {
-    width: 100%;
-    line-height: 70rpx;
-    padding-left: 40rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 96%;
+    height: 80rpx;
     /* 设置字体样式 */
-    font-size: 34rpx;
+    font-size: 40rpx;
     font-weight: bolder;
     color: #000000;
     /* background-color: red; */
@@ -113,11 +118,12 @@
     flex-wrap: wrap;
     justify-content: space-between;
     background-color: #e4e4e4;
-    padding: 0 12rpx;
+    padding: 0 15rpx;
+    width: 96%;
 }
 
 .mainPageItem {
-    margin-bottom: 20rpx;
+    margin: 14rpx 0;
 }
 
 .detailView {

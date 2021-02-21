@@ -2,6 +2,7 @@
   "navigationBarTitleText": "商品详情",
   "usingComponents": {
     "price-cmp": "/components/price/index",
-    "numOpera-cmp": "/components/numOpera/index"
+    "numOpera-cmp": "/components/numOpera/index",
+    "like-cmp": "/components/like/index"
   }
 }

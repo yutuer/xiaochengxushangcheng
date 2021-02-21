@@ -19,7 +19,7 @@ Component({
         // 文本宽度
         textWidth: {
             type: Number,
-            width: 100
+            value: 100
         },
         // 图片宽度
         imgWidth: {

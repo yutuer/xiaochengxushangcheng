@@ -3,7 +3,9 @@
 
     <!-- 存在则显示用户信息 -->
     <view class="myDetail" wx:if="{{userInfo}}">
-        <view class="hello">你好: {{userInfo.loginPhoneNum}}</view>
+        <view class="hello">
+            <text>你好: {{userInfo.loginPhoneNum}}</text>
+        </view>
         <!-- 订单信息 -->
         <view class="orderInfo">
             <view class="title">
@@ -100,18 +102,18 @@
 
     <!-- 用户信息 -->
 
-<!--    <view class="page">-->
-<!--        <view class="page__hd">-->
-<!--            <view class="page__title">Slideview</view>-->
-<!--            <view class="page__desc">左滑操作</view>-->
-<!--        </view>-->
-<!--        <view class="page__bd">-->
-<!--            <view class="weui-cells">-->
-<!--                <mp-slideview buttons="{{slideButtons}}" bindbuttontap="slideButtonTap">-->
-<!--                    <mp-cell value="左滑可以删除" footer="说明文字"></mp-cell>-->
-<!--                </mp-slideview>-->
-<!--            </view>-->
-<!--        </view>-->
-<!--    </view>-->
+    <!--    <view class="page">-->
+    <!--        <view class="page__hd">-->
+    <!--            <view class="page__title">Slideview</view>-->
+    <!--            <view class="page__desc">左滑操作</view>-->
+    <!--        </view>-->
+    <!--        <view class="page__bd">-->
+    <!--            <view class="weui-cells">-->
+    <!--                <mp-slideview buttons="{{slideButtons}}" bindbuttontap="slideButtonTap">-->
+    <!--                    <mp-cell value="左滑可以删除" footer="说明文字"></mp-cell>-->
+    <!--                </mp-slideview>-->
+    <!--            </view>-->
+    <!--        </view>-->
+    <!--    </view>-->
 
 </view>

@@ -102,15 +102,24 @@
 }
 
 .hello {
-    font-size: 34rpx;
-    margin-bottom: 20rpx;
+    height: 100rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 20rpx;
     width: 100%;
+}
+
+.hello text {
+    font-size: 34rpx;
+    line-height: 34rpx;
 }
 
 .orderInfo {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    /*justify-content: flex-start;*/
     height: 300rpx;
     width: 100%;
     margin-bottom: 20rpx;

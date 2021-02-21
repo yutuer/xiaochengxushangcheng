@@ -15,6 +15,7 @@
     justify-content: space-between;
     align-items: center;
     z-index: 99;
+    padding-bottom: 20rpx;
 }
 
 .bold {
@@ -42,7 +43,7 @@
 .contentView {
     height: 85vh;
     width: 94%;
-    margin-top: 200rpx;
+    margin-top: 220rpx;
     position: fixed;
 }
 

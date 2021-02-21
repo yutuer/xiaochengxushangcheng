@@ -78,9 +78,12 @@ class NumOpera {
     redDot() {
         let cargos = cargoCache.getShoppingCargoDataFromCache();
         if (cargos && cargos.length > 0) {
-            wx.showTabBarRedDot({index: 2})
+            wx.setTabBarBadge({
+                index: 2,
+                text: cargos.length + '',
+            })
         } else {
-            wx.hideTabBarRedDot({index: 2})
+            wx.removeTabBarBadge({index: 2})
         }
     }
 }

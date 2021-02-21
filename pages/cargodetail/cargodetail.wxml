@@ -1,5 +1,5 @@
 <!--pages/cargodetail/cargodetail.wxml-->
-<view class="container" >
+<view class="container">
     <view class='detailView' catchtap="cargoDetailTap" data-cargoid="{{item.cargoid}}">
         <image class='imageView' src='{{item.icon}}'></image>
         <view class="content">
@@ -27,7 +27,9 @@
                 <!-- <text>最快 <text>{{leftTime}}</text> 分钟送达</text> -->
                 <!-- <image class='add' src='../../images/shopping/add.png' catchtap='addClick' data-cargoid='{{itemName.cargoid}}'/> -->
             </view>
-            <image class="addCargo" src="images/加入购物车.png" bind:tap="addCargo" data-cargoid="{{item.cargoid}}"></image>
+            <like-cmp class="addCargo" pic="images/加入购物车.png" imgWidth="300" imgHeight="80"
+                      cargoId="{{item.cargoid}}"></like-cmp>
+            <!--            <image class="addCargo" src="images/加入购物车.png" bind:tap="addCargo" data-cargoid="{{item.cargoid}}"></image>-->
         </view>
     </view>
 </view>
