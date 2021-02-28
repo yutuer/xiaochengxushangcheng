@@ -116,8 +116,10 @@ function jumpToOrders(sucFun) {
 
 // 请求支付
 function payForPayment(outTradeNo, payment, youhuiquan) {
-    let _this = this;
+    let that = this;
+
     console.log("outTradeNo:", outTradeNo, ", payment:", payment, ", youhuiquan:", youhuiquan);
+
     wx.requestPayment({
         ...payment,
         success(res) {
@@ -195,12 +197,14 @@ function updateOrderPayExpire(_package) {
 function updateOrderPaySuccess(_package) {
     const now = Date.parse(new Date());
     const timeDesc = getTimeDesc(now);
+
     updateOrderPayStatus(_package, app.globalData.orderStatus.hasPay.status, timeDesc)
 }
 
 // 更新订单支付成功
 function updateOrderPayStatus(_package, _status, payTime) {
     let phoneNum = wx.getStorageSync(app.globalData.userKey);
+
     wx.cloud.callFunction({
         name: 'updateWhereData',
         data: {
@@ -350,7 +354,8 @@ function loadOrdersFromDB(page) {
                         finish = false;
                         if (order.status == app.globalData.orderStatus.waitForPay.status) {
                             // 还有未完成的
-                            waiforPay = true
+                            waiforPay = true;
+                            break;
                         }
                     }
                 }

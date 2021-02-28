@@ -52,6 +52,7 @@ Page({
 
         //TODO 确定没有未完成的订单, 如果有未付款的订单, 则不让下单
 
+
         //TODO 检查库存
 
         // 先查询db -> 更新缓存 -> 校验缓存库存 -》 发起订单 -》 数据库减去库存
@@ -114,8 +115,11 @@ Page({
 
     // 插入订单到数据库
     insertPaymentToDB(orderNo, address, cargos, payment, allPrice, youhuiquan) {
+        // 用户id
         let phoneNum = wx.getStorageSync(app.globalData.userKey);
+        // 当前时间
         const timestamp = Date.parse(new Date());
+        // 当前时间描述
         const timeDesc = util.getTimeDesc(timestamp);
 
         let orderObj = {
@@ -132,14 +136,17 @@ Page({
             youhuiquan: youhuiquan,
         };
 
-        // 存库
+        // 订单存库
         wx.cloud.callFunction({
             name: 'addOneData',
             data: {
                 dbName: 'orders',
                 dataObj: orderObj
             },
-            success: res => console.log(res),
+            success: res => {
+                //更新缓存
+
+            },
             fail: err => console.err(err),
         })
     },
@@ -212,6 +219,7 @@ Page({
                 fail: err => console.log(err),
             })
         } else {
+            // 生成订单, 插入数据库, 更新本地缓存. 并且开始轮询支付结果
             // 订单号
             let orderNo = that.genOrderNo();
 

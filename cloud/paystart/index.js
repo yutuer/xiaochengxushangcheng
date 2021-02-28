@@ -6,17 +6,7 @@ cloud.init({
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-    // const wxContext = cloud.getWXContext()
-
-    // const appId = appid = wxContext.APPID
-    // const openid = wxContext.OPENID
-
-    // const nonce_str = Math.random().toString(36).substr(2, 15)
-    // const timeStamp = parseInt(Date.now() / 1000) + ''
-    // const out_trade_no = 'yut' + nonce_str + timeStamp
-
-    // let money = 1
-
+    // 生成一个预付的订单
     const res = await cloud.cloudPay.unifiedOrder({
         "body": "帅狗生鲜-配送中心",
         "outTradeNo": event.order,

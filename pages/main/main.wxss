@@ -126,43 +126,6 @@
     margin: 14rpx 0;
 }
 
-.detailView {
-    display: inline-block;
-    border: 1px solid #eaeaea;
-    box-sizing: border-box;
-    width: 375rpx;
-    height: 520rpx;
-    /*375+105+40*/
-    /* background-color: yellow; */
-}
-
-.detailView .detailImv {
-    width: 375rpx;
-    height: 375rpx;
-    background-color: #999999;
-}
-
-.detailView .detailTxt {
-    width: 375rpx;
-    /* 设置文字样式 */
-    font-size: 28rpx;
-    color: #000000;
-    /*限制2行*/
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-    /* 文字超出部分变成省略号 */
-    overflow: hidden;
-    text-overflow: -o-ellipsis-lastline;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-}
-
-.detailView .priceTxt {
-    color: red;
-    font-size: 34rpx;
-}
-
 .typeView {
     display: flex;
     flex-wrap: wrap;
