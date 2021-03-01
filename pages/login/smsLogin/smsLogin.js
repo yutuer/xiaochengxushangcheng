@@ -86,39 +86,27 @@ Page({
         };
 
         if (!dataParam.name) {
-            wx.showToast({
-                title: '名称未填写',
-            });
-            return
+            verify.showToast('名称未填写');
+            return;
         }
         if (!dataParam.desc) {
-            wx.showToast({
-                title: '描述未填写',
-            });
-            return
+            verify.showToast('描述未填写');
+            return;
         }
         if (dataParam.needMoney == 0) {
-            wx.showToast({
-                title: '金额未填写',
-            });
-            return
+            verify.showToast('金额未填写');
+            return;
         }
         if (!dataParam.startTimeDesc) {
-            wx.showToast({
-                title: '开始日期未填写',
-            });
+            verify.showToast('开始日期未填写');
             return
         }
         if (!dataParam.endTimeDesc) {
-            wx.showToast({
-                title: '结束日期未填写',
-            });
-            return
+            verify.showToast('结束日期未填写');
+            return;
         }
         if (dataParam.leftUseCount == 0) {
-            wx.showToast({
-                title: '剩余数量未填写',
-            });
+            verify.showToast('剩余数量未填写');
             return
         }
 

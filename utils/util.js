@@ -12,6 +12,10 @@ import {
 
 let cargoDB = new CargoDB();
 
+import {OrderCache} from './orderCache.js';
+
+let orderCache = new OrderCache();
+
 const formatTime = date => {
     const year = date.getFullYear();
     const month = date.getMonth() + 1;

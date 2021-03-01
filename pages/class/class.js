@@ -2,6 +2,7 @@
 //引入本地数据
 let classData = require('../../utils/data/classData.js');
 const util = require('../../utils/util.js');
+const verify = require('../../utils/verify.js');
 
 import {
     NumOpera
@@ -106,9 +107,7 @@ Page({
             })
         }
         wx.setStorageSync(app.globalData.cargosKey, cargos);
-        wx.showToast({
-            title: '添加成功',
-        })
+        verify.showToast('添加成功');
     },
 
     /**

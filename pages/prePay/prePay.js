@@ -1,4 +1,5 @@
 // pages/prePay/prePay.js
+
 const app = getApp();
 let util = require('../../utils/util.js');
 let verify = require('../../utils/verify.js');
@@ -19,6 +20,9 @@ import {CargoDB} from "../../utils/cargoDB";
 
 const cargoDB = new CargoDB();
 
+import {OrderCache} from "../../utils/orderCache";
+
+const orderCache = new OrderCache();
 Page({
 
     /**
@@ -51,9 +55,15 @@ Page({
         }
 
         //TODO 确定没有未完成的订单, 如果有未付款的订单, 则不让下单
+        util.loadOrdersFromDB();
 
-
-        //TODO 检查库存
+        let ordersCacheObj = orderCache.getOrdersFromCache();
+        if (ordersCacheObj) {
+            if (ordersCacheObj.waitforPay) {
+                verify.showToast('还有未支付的订单,请先处理!');
+                return;
+            }
+        }
 
         // 先查询db -> 更新缓存 -> 校验缓存库存 -》 发起订单 -》 数据库减去库存
         youhuiquanDB.loadYouhuiquan();
@@ -68,6 +78,7 @@ Page({
             }
         }
 
+        // 检查库存
         cargoDB.loadCargos();
 
         const cargos = this.data.orderDetail.cargos;
