@@ -62,21 +62,21 @@
     <!--    <input type="number" bindblur="maxUseCount" value="100" placeholder="最大使用次数"></input>-->
     <!--</view>-->
 
-    <!--<view class="out-container">-->
-    <!--    <view class="container">-->
-    <!--        <view class="r">-->
-    <!--            <text>11111</text>-->
-    <!--            <text>22222</text>-->
-    <!--        </view>-->
-    <!--        <view class="g">-->
-    <!--            <text>111111111</text>-->
-    <!--            <text>222222222</text>-->
-    <!--        </view>-->
-    <!--        <view class="b">-->
-    <!--            <text>11</text>-->
-    <!--            <text>22</text>-->
-    <!--        </view>-->
-    <!--    </view>-->
+<!--    <view class="out-container">-->
+<!--        &lt;!&ndash;        <view class="container">&ndash;&gt;-->
+<!--        <view class="r">-->
+<!--            <text>11111</text>-->
+<!--            <text>22222</text>-->
+<!--        </view>-->
+<!--        <view class="g">-->
+<!--            <text>111111111</text>-->
+<!--            <text>222222222</text>-->
+<!--        </view>-->
+<!--        <view class="b">-->
+<!--            <text>11</text>-->
+<!--            <text>22</text>-->
+<!--        </view>-->
+<!--    </view>-->
     <!--    <image src="../../../images/class/search-normal.png" style="height:40rpx;width:40rpx"></image>-->
     <!--</view>-->
 

@@ -54,7 +54,7 @@ Page({
             return
         }
 
-        //TODO 确定没有未完成的订单, 如果有未付款的订单, 则不让下单
+        // 确定没有未完成的订单, 如果有未付款的订单, 则不让下单
         util.loadOrdersFromDB();
 
         let ordersCacheObj = orderCache.getOrdersFromCache();
@@ -84,12 +84,12 @@ Page({
         const cargos = this.data.orderDetail.cargos;
         let checkKucun = cargoCache.checkKucun(cargos);
         if (checkKucun && !checkKucun.result) {
-            verify.showToast("没有足够的 " + checkKucun.cargoName + ", 请修改");
+            verify.showToast("没有足够的 " + checkKucun.cargoName + ", 请修改数量");
             return
         }
 
         // !!!! 发起支付请求啦
-        this.payStart(1)
+        this.payStart()
     },
 
     cancelOrder(e) {
@@ -102,7 +102,7 @@ Page({
             success: res => {
                 console.log(res);
 
-                util.updateOrderPayFinish(order.package);
+                util.updateOrderPayFinish(order.outTradeNo);
 
                 // 跳转到订单页面
                 util.jumpToOrders(function (res) {
@@ -125,7 +125,7 @@ Page({
     },
 
     // 插入订单到数据库
-    insertPaymentToDB(orderNo, address, cargos, payment, allPrice, youhuiquan) {
+    insertPaymentToDB(orderNo, nonceStr, address, cargos, payment, allPrice, youhuiquan) {
         // 用户id
         let phoneNum = wx.getStorageSync(app.globalData.userKey);
         // 当前时间
@@ -135,6 +135,7 @@ Page({
 
         let orderObj = {
             outTradeNo: orderNo,
+            nonceStr: nonceStr,
             phoneNum: phoneNum,
             cargos: cargos,
             address: address,
@@ -173,7 +174,7 @@ Page({
     },
 
     // 开始支付
-    payStart(money) {
+    payStart() {
         let that = this;
 
         const allPrice = this.data.orderDetail.allPrice;
@@ -184,8 +185,8 @@ Page({
         let order = this.data.orderDetail.order;
         if (order) {
             // 通过订单列表过来的请求
-            let orderStatus = app.globalData.orderStatus;
 
+            let orderStatus = app.globalData.orderStatus;
             if (order.status != orderStatus.waitForPay.status) {
                 return
             }
@@ -197,7 +198,7 @@ Page({
             if (time + 15 * 60 * 1000 < now) {
                 order.status = orderStatus.expire.status;
 
-                util.updateOrderPayExpire(order.package);
+                util.updateOrderPayExpire(order.outTradeNo);
 
                 util.jumpToOrders(function (res) {
                     verify.showToast("订单支付超时");
@@ -207,13 +208,13 @@ Page({
 
             // 订单号
             let orderNo = order.outTradeNo;
-
+            let nonceStr = order.nonceStr;
             let dataSend = {
-                money: money,
-                // nonceStr: nonceStr,
+                money: 1,
+                nonceStr: nonceStr,
                 order: orderNo,
             };
-            console.log("dataSend:", dataSend);
+            console.log("通过订单列表过来的请求:", dataSend);
 
             // 小程序代码
             wx.cloud.callFunction({
@@ -223,7 +224,7 @@ Page({
                 },
                 success: res => {
                     const payment = res.result.payment;
-                    console.log("payment:", payment);
+                    console.log("通过订单列表过来的结果 payment:", payment);
                     // 轮询处理支付
                     util.payForPayment(orderNo, payment, youhuiquan)
                 },
@@ -233,15 +234,13 @@ Page({
             // 生成订单, 插入数据库, 更新本地缓存. 并且开始轮询支付结果
             // 订单号
             let orderNo = that.genOrderNo();
-
-            // let nonceStr = that.nonceStr()
-
+            let nonceStr = that.nonceStr();
             let dataSend = {
-                money: money,
-                // nonceStr: nonceStr,
+                money: 1,
+                nonceStr: nonceStr,
                 order: orderNo,
             };
-            console.log("dataSend:", dataSend);
+            console.log("直接支付的请求:", dataSend);
             // 小程序代码
             wx.cloud.callFunction({
                 name: 'paystart',
@@ -250,10 +249,10 @@ Page({
                 },
                 success: res => {
                     const payment = res.result.payment;
-                    console.log("payment:", payment);
+                    console.log("直接支付的结果 payment:", payment);
 
                     // 插入数据库
-                    that.insertPaymentToDB(orderNo, address, cargos, payment, allPrice, youhuiquan);
+                    that.insertPaymentToDB(orderNo, nonceStr, address, cargos, payment, allPrice, youhuiquan);
                     // 缓存设置为无效
                     that.updateCache();
 

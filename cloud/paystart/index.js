@@ -16,6 +16,7 @@ exports.main = async (event, context) => {
         "envId": "xiaochi-rlwg9",
         "functionName": "payCallback",
         "tradeType": "JSAPI",
+        "nonceStr":event.nonceStr,
     });
     return res
 };

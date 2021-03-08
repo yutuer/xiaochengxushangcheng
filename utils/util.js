@@ -129,7 +129,7 @@ function payForPayment(outTradeNo, payment, youhuiquan) {
         success(res) {
             console.log('pay success', res);
             //更新状态后跳转
-            updateOrderPaySuccess(payment.package);
+            updateOrderPaySuccess(outTradeNo);
 
             console.log('pay success', res);
 
@@ -188,25 +188,25 @@ function getTimeDesc(timestamp) {
     return Y + "-" + M + "-" + D + " " + h + ":" + m
 }
 
-function updateOrderPayFinish(_package) {
-    updateOrderPayStatus(_package, app.globalData.orderStatus.finish.status)
+function updateOrderPayFinish(outTradeNo) {
+    updateOrderPayStatus(outTradeNo, app.globalData.orderStatus.finish.status)
 }
 
 
-function updateOrderPayExpire(_package) {
-    updateOrderPayStatus(_package, app.globalData.orderStatus.expire.status)
+function updateOrderPayExpire(outTradeNo) {
+    updateOrderPayStatus(outTradeNo, app.globalData.orderStatus.expire.status)
 }
 
 // 更新订单支付成功
-function updateOrderPaySuccess(_package) {
+function updateOrderPaySuccess(outTradeNo) {
     const now = Date.parse(new Date());
     const timeDesc = getTimeDesc(now);
 
-    updateOrderPayStatus(_package, app.globalData.orderStatus.hasPay.status, timeDesc)
+    updateOrderPayStatus(outTradeNo, app.globalData.orderStatus.hasPay.status, timeDesc)
 }
 
 // 更新订单支付成功
-function updateOrderPayStatus(_package, _status, payTime) {
+function updateOrderPayStatus(outTradeNo, _status, payTime) {
     let phoneNum = wx.getStorageSync(app.globalData.userKey);
 
     wx.cloud.callFunction({
@@ -215,7 +215,7 @@ function updateOrderPayStatus(_package, _status, payTime) {
             dbName: 'orders',
             cond: {
                 phoneNum: phoneNum,
-                "package": _package,
+                outTradeNo: outTradeNo,
             },
             dataObj: {
                 status: _status,
@@ -326,14 +326,14 @@ function loadOrdersFromDB(page) {
                 let orderStatus = app.globalData.orderStatus;
 
                 for (let i = 0; i < orders.length; i++) {
-                    let order = orders[i]
+                    let order = orders[i];
 
                     if (order.status == orderStatus.waitForPay.status) {
                         // 如果15分钟还是未支付, 则更新为已完成
-                        let time = order.time
+                        let time = order.time;
                         if (time + 15 * 60 * 1000 < now) {
                             order.status = orderStatus.waitForPay.status;
-                            updateOrderPayExpire(order.package)
+                            updateOrderPayExpire(order.outTradeNo)
                         }
                     }
 

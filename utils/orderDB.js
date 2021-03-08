@@ -38,7 +38,7 @@ class OrderDB extends DB {
                         let time = order.time;
                         if (time + 15 * 60 * 1000 < now) {
                             order.status = orderStatus.waitForPay.status;
-                            this.updateOrderPayExpire(order.package)
+                            this.updateOrderPayExpire(order.outTradeNo)
                         }
                     }
 
