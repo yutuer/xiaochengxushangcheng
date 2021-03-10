@@ -50,6 +50,8 @@ class OrderDB extends DB {
                         order.statusDesc = orderStatus.finish.name
                     } else if (order.status == orderStatus.expire.status) {
                         order.statusDesc = orderStatus.expire.name
+                    } else if (order.status == orderStatus.cancel.status) {
+                        order.statusDesc = orderStatus.cancel.name
                     }
                 }
 
@@ -63,7 +65,8 @@ class OrderDB extends DB {
                         finish = false;
                         if (order.status == app.globalData.orderStatus.waitForPay.status) {
                             // 还有未完成的
-                            waiforPay = true
+                            waiforPay = true;
+                            break;
                         }
                     }
                 }
@@ -102,7 +105,6 @@ class OrderDB extends DB {
     updateOrderPayFinish(_package) {
         this.updateOrderPayStatus(_package, app.globalData.orderStatus.finish.status)
     }
-
 
     updateOrderPayExpire(_package) {
         this.updateOrderPayStatus(_package, app.globalData.orderStatus.expire.status)

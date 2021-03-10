@@ -17,7 +17,7 @@
     <scroll-view class="contentView" scroll-y="true">
         <block wx:for='{{orders}}' wx:for-item='order' wx:key='index'>
             <view class="oneOrder"
-                  wx:if="{{chooseStatus==0 || order.status == chooseStatus || (chooseStatus==3 && order.status == 4)}}"
+                  wx:if="{{chooseStatus==0 || order.status == chooseStatus || (chooseStatus==3 && (order.status == 4 || order.status == 5))}}"
                   data-order="{{order}}"
                   catch:tap="tapOneOrder">
                 <view class="firstLine">

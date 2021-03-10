@@ -1,6 +1,6 @@
 // pages/orderDetail/orderDetail.js
-let util = require('../../utils/util.js')
-const app = getApp()
+let util = require('../../utils/util.js');
+const app = getApp();
 Page({
 
     /**
@@ -11,11 +11,11 @@ Page({
     },
 
     payOrder() {
-        let order = this.data.order
+        let order = this.data.order;
         if (order && order.status == app.globalData.orderStatus.waitForPay.status) {
-            let payment = order.payment
-            let youhuiquan = order.youhuiquan
-            console.log("payment:", payment)
+            let payment = order.payment;
+            let youhuiquan = order.youhuiquan;
+            console.log("payment:", payment);
             util.payForPayment(order.outTradeNo, payment, youhuiquan)
         }
     },
@@ -25,8 +25,8 @@ Page({
      */
     onLoad: function (options) {
         // str转化回对象
-        let order = JSON.parse(decodeURIComponent(options.order))
-        console.log("deseriable order:", order)
+        let order = JSON.parse(decodeURIComponent(options.order));
+        console.log("deseriable order:", order);
 
         this.setData({
             order: order

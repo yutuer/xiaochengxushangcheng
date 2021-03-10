@@ -192,6 +192,9 @@ function updateOrderPayFinish(outTradeNo) {
     updateOrderPayStatus(outTradeNo, app.globalData.orderStatus.finish.status)
 }
 
+function updateOrderPayCancel(outTradeNo) {
+    updateOrderPayStatus(outTradeNo, app.globalData.orderStatus.cancel.status)
+}
 
 function updateOrderPayExpire(outTradeNo) {
     updateOrderPayStatus(outTradeNo, app.globalData.orderStatus.expire.status)
@@ -345,6 +348,8 @@ function loadOrdersFromDB(page) {
                         order.statusDesc = orderStatus.finish.name
                     } else if (order.status == orderStatus.expire.status) {
                         order.statusDesc = orderStatus.expire.name
+                    } else if (order.status == orderStatus.cancel.status) {
+                        order.statusDesc = orderStatus.cancel.name
                     }
                 }
 
@@ -407,6 +412,7 @@ module.exports = {
     loadOrdersFromDB: loadOrdersFromDB,
     updateOrderPayExpire: updateOrderPayExpire,
     updateOrderPayFinish: updateOrderPayFinish,
+    updateOrderPayCancel: updateOrderPayCancel,
     jumpToOrders: jumpToOrders,
     getTimeDesc: getTimeDesc,
     subYouhuiquanLeftUseCount: subYouhuiquanLeftUseCount,

@@ -41,10 +41,6 @@
     width: 160rpx;
 }
 
-.areaInput {
-    width: 500rpx;
-}
-
 .areaText {
     width: 500rpx;
     height: 100rpx;

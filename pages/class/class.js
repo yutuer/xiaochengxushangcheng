@@ -25,7 +25,7 @@ Page({
      */
     data: {
         // 标题数据
-        titleArray: [],
+        typeArray: [],
         content: [],
         selectType: 1,
     },
@@ -41,7 +41,7 @@ Page({
     updateOriginDatas(type) {
         // 显示数组
         let contentArr = [];
-        // 所有数据
+        // 拷贝所有数据
         let allDatas = cargoCache.getSellCargosFromCache();
         for (let i = 0; i < allDatas.length; i++) {
             let data = allDatas[i];
@@ -53,16 +53,16 @@ Page({
         // 设置当前选中的下标
         this.setData({
             content: contentArr,
-            selectType: type
-        })
+            selectType: type,
+        });
     },
 
     // 点击了分类查看
     titleViewClick(e) {
-        console.log(e);
+        // console.log(e);
         var type = e.currentTarget.dataset.index + 1;
-
-        this.updateOriginDatas(type)
+        app.globalData.switchType = type;
+        this.updateOriginDatas(type);
     },
 
     // 点击了查看详情
@@ -136,7 +136,9 @@ Page({
         console.log("class Page onShow");
         let switchType = app.globalData.switchType;
         this.updateOriginDatas(switchType);
-        app.globalData.switchType = 1
+        // app.globalData.switchType = 1;
+
+        numOpera.redDot();
     },
 
     /**

@@ -102,7 +102,7 @@ Page({
             success: res => {
                 console.log(res);
 
-                util.updateOrderPayFinish(order.outTradeNo);
+                util.updateOrderPayCancel(order.outTradeNo);
 
                 // 跳转到订单页面
                 util.jumpToOrders(function (res) {

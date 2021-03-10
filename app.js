@@ -35,7 +35,7 @@ App({
         userKey: 'userKey', // 存放登录标识, 现在是注册的phonenum
         openidKey: 'openidKey', //存放openid
         allSellItemKey: 'allSellItemKey', // 所有商品(从服务器读出来, 缓存)的key
-        allSellItemTypeKey:'allSellItemTypeKey', // 所有商品的类型
+        allSellItemTypeKey: 'allSellItemTypeKey', // 所有商品的类型
         //存放所有地址
         // 格式:
         // wx: {_id: _id, hasQuery:bool, defaultIndex: int, address:[]}
@@ -66,19 +66,23 @@ App({
         orderStatus: {
             waitForPay: {
                 name: '未支付',
-                status: 1
+                status: 1,
             },
             hasPay: {
                 name: '待发货',
-                status: 2
+                status: 2,
             },
             finish: {
                 name: '已完成',
-                status: 3
+                status: 3,
             },
             expire: {
                 name: '已超时',
-                status: 4
+                status: 4,
+            },
+            cancel: {
+                name: '已取消',
+                status: 5,
             },
         }
     }

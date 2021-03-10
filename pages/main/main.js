@@ -150,7 +150,7 @@ Page({
             youhuiquan: youhuiquanData.data,
         });
 
-        numOpera.redDot()
+        numOpera.redDot();
     },
 
     /**

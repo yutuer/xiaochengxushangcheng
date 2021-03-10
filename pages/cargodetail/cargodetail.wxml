@@ -1,6 +1,6 @@
 <!--pages/cargodetail/cargodetail.wxml-->
 <view class="container">
-    <view class='detailView' catchtap="cargoDetailTap" data-cargoid="{{item.cargoid}}">
+    <view class='detailView' data-cargoid="{{item.cargoid}}">
         <image class='imageView' src='{{item.icon}}'></image>
         <view class="content">
             <view class="basic">
@@ -15,7 +15,7 @@
                     </view>
                     <numOpera-cmp imgWidth="50" imgHeight="50" cargoId="{{item.cargoid}}" textWidth="100"
                                   plusImg="images/购物篮.png"
-                                  subImgShow="{{false}}" numShow="{{false}}"/>
+                                  subImgShow="{{false}}" numShow="{{false}}" plusImgShow="{{false}}"/>
                 </view>
             </view>
             <view class="productDetail">

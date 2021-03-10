@@ -225,10 +225,10 @@ Page({
             key: 'EYRBZ-RZXLU-HWCVW-2H32Q-7M2IZ-3XBPB'
         });
 
-        this.setData({
-            area: "小区/写字楼/学校",
-            hasAreaValue: false,
-        })
+        // this.setData({
+        //     area: "小区/写字楼/学校",
+        //     hasAreaValue: false,
+        // })
     },
 
     /**

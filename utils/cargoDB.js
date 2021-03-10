@@ -30,6 +30,10 @@ class CargoDB extends DB {
     loadCargoTypes() {
         const suc = (res) => {
             let allCargoTypes = res.result.data;
+            allCargoTypes.sort(function (a, b) {
+                return a.type - b.type;
+            });
+
             cargoCache.saveSellCargoTypesToCache(allCargoTypes);
         };
         const fail = (err) => {

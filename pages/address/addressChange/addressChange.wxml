@@ -3,12 +3,9 @@
     <view class="container">
         <view class="content">
             <!-- 所在地区 -->
-            <view class="areaInfo" catch:tap="areaInfoTap">
+            <view class="areaInfo">
                 <text class="area left">收货地址</text>
-                <input class="areaInput" placeholder="小区/写字楼/学校" disabled="true" wx:if="{{!hasAreaValue}}"></input>
-                <text class="areaText" user-select="false" wx:if="{{hasAreaValue}}">{{area}}</text>
-                <text class="arrow">></text>
-                <!-- <image class="positionImg"></image> -->
+                <input class="areaInput" bind:input="areaInputTap" placeholder="小区/写字楼/学校" value="{{area}}"></input>
             </view>
             <view class="areaDetailInfo">
                 <text class="areaDetail left">门牌号</text>
@@ -24,7 +21,8 @@
             <view class="phoneInfo">
                 <text class="phone left">手机号</text>
                 <!-- 不允许修改, 做查询使用的 -->
-                <input class="phoneInput" type="number" value="{{phoneNum}}" placeholder="配送员联系您的手机号" bind:input="phoneInputTap">
+                <input class="phoneInput" type="number" value="{{phoneNum}}" placeholder="配送员联系您的手机号"
+                       bind:input="phoneInputTap">
                 </input>
             </view>
 

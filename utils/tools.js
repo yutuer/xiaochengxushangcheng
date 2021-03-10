@@ -78,9 +78,17 @@ class NumOpera {
     redDot() {
         let cargos = cargoCache.getShoppingCargoDataFromCache();
         if (cargos && cargos.length > 0) {
+            let totalNum = 0;
+            for (let i = 0; i < cargos.length; i++) {
+                let cargo = cargos[i];
+                if (cargo.num > 0) {
+                    totalNum += cargo.num;
+                }
+            }
+
             wx.setTabBarBadge({
                 index: 2,
-                text: cargos.length + '',
+                text: totalNum + '',
             })
         } else {
             wx.removeTabBarBadge({index: 2})
