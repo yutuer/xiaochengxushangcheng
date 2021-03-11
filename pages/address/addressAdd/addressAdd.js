@@ -35,8 +35,9 @@ Page({
     },
     //  手机号输入
     phoneInputTap(e) {
+        let phoneNum = e.detail.value;
         this.setData({
-            phoneNum: e.detail.value
+            phoneNum: phoneNum,
         })
     },
     // 收货地址输入
@@ -70,19 +71,25 @@ Page({
 
         if (!address.name || address.name.length == 0) {
             verify.showToast("联系人至少请输入1个字");
-            return
+            return;
         }
         if (!address.phoneNum || address.phoneNum.length == 0) {
             verify.showToast("请正确填写手机号码");
-            return
+            return;
         }
         if (!address.area || address.area.length == 0) {
             verify.showToast("请补充收货地址");
-            return
+            return;
         }
         if (!address.areaDetail || address.areaDetail.length == 0) {
             verify.showToast("请补充收货地址");
-            return
+            return;
+        }
+
+        // 校验电话号码
+        if (address.phoneNum.length != 11) {
+            verify.showToast("请输入11位电话号码");
+            return;
         }
 
         //存入远端数据库, 成功后加入缓存

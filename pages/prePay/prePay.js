@@ -84,12 +84,25 @@ Page({
         const cargos = this.data.orderDetail.cargos;
         let checkKucun = cargoCache.checkKucun(cargos);
         if (checkKucun && !checkKucun.result) {
-            verify.showToast("没有足够的 " + checkKucun.cargoName + ", 请修改数量");
+            verify.showToast(checkKucun.errMsg);
             return
         }
 
         // !!!! 发起支付请求啦
         this.payStart()
+    },
+
+    // 二次确认取消订单
+    preCancelOrder(e) {
+        let that = this;
+        wx.showModal({
+            content: '确认要取消订单?',
+            success(res) {
+                if (res.confirm) {
+                    that.cancelOrder(e);
+                }
+            },
+        })
     },
 
     cancelOrder(e) {

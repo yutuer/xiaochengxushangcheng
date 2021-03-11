@@ -79,18 +79,25 @@ class CargoCache {
 
     // 检查想要购买的物品的库存
     checkKucun(cargos) {
+        let names = [];
+        let desc = [];
         for (let i = 0; i < cargos.length; i++) {
             let cargo = cargos[i];
             let cargoInCache = this.findSellCargo(cargo.cargoid);
 
             if (!cargoInCache || cargoInCache.storageNum < cargo.num) {
-                return {
-                    cargoid: cargo.cargoid,
-                    cargoName: cargo.title,
-                    result: false,
-                };
+                names.push(cargo.title);
+                desc.push(cargo.title + " 剩余" + cargoInCache.storageNum + "个");
             }
         }
+
+        if (names.length > 0) {
+            return {
+                errMsg: "没有足够的物品.当前" + desc.join(","),
+                result: false,
+            };
+        }
+
         return {result: true};
     }
 
