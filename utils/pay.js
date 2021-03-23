@@ -6,6 +6,7 @@ import {CargoCache} from "./cargoCache";
 const cargoCache = new CargoCache();
 
 class Pay {
+
     // 点击结算按钮
     countNumTap(allPrice, chooseCargos, youhuiquan, order) {
         if (chooseCargos.length == 0) {

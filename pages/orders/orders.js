@@ -1,10 +1,15 @@
-const util = require("../../utils/util");
-
 import {
     Pay
 } from '../../utils/pay.js'
 
 let pay = new Pay();
+
+import {
+    OrderDB
+} from "../../utils/orderDB";
+
+const orderDB = new OrderDB();
+
 // pages/orders/orders.js
 const app = getApp();
 Page({
@@ -57,8 +62,6 @@ Page({
     // 获取到后先检查下. 如果全部完成, 则下次从缓存拿
     // 2. 否则使用缓存数据.
     loadOrders() {
-        let that = this;
-
         let ordersObj = wx.getStorageSync(app.globalData.ordersKey);
         // if (ordersObj && ordersObj.isAllFinish) {
         if (false) {
@@ -67,79 +70,7 @@ Page({
                 orders: ordersObj.orders
             })
         } else {
-            util.loadOrdersFromDB(this)
-
-            // const phoneNum = wx.getStorageSync(app.globalData.userKey)
-            // const now = Date.parse(new Date())
-            // wx.cloud.callFunction({
-            //     name: 'queryAllData',
-            //     data: {
-            //         dbName: 'orders',
-            //         cond: {
-            //             phoneNum: phoneNum
-            //         }
-            //     },
-            //     success(res) {
-            //         console.log(res)
-            //         if (res.errMsg == 'cloud.callFunction:ok') {
-            //             const orders = res.result.data
-            //             let orderStatus = app.globalData.orderStatus
-            //
-            //             for (let i = 0; i < orders.length; i++) {
-            //                 let order = orders[i]
-            //
-            //                 // 如果15分钟还是未支付, 则更新为已完成
-            //                 let time = order.time
-            //                 if (time + 15 * 60 * 1000 < now) {
-            //                     if (order.status == orderStatus.waitForPay.status) {
-            //                         order.status = orderStatus.expire.status
-            //                         util.updateOrderPayExpire(order.payInfo._package)
-            //                     }
-            //                 }
-            //
-            //                 if (order.status == orderStatus.waitForPay.status) {
-            //                     order.statusDesc = orderStatus.waitForPay.name
-            //                 } else if (order.status == orderStatus.hasPay.status) {
-            //                     order.statusDesc = orderStatus.hasPay.name
-            //                 } else if (order.status == orderStatus.finish.status) {
-            //                     order.statusDesc = orderStatus.finish.name
-            //                 } else if (order.status == orderStatus.expire.status) {
-            //                     order.statusDesc = orderStatus.expire.name
-            //                 }
-            //             }
-            //
-            //             // 所有订单
-            //             that.setData({
-            //                 orders: orders,
-            //             })
-            //
-            //             // 遍历下看看是否全部完成
-            //             let finish = true
-            //             let waiforPay = false
-            //             for (let i = 0; i < orders.length; i++) {
-            //                 let order = orders[i]
-            //                 if (order.status < app.globalData.orderStatus.finish.status) {
-            //                     // 还有未完成的
-            //                     finish = false
-            //                     if (order.status == app.globalData.orderStatus.waitForPay.status) {
-            //                         // 还有未完成的
-            //                         waiforPay = true
-            //                     }
-            //                 }
-            //             }
-            //
-            //             // 设置到缓存中
-            //             const ordersCache = {
-            //                 isAllFinish: finish,
-            //                 waitforPay: waiforPay,
-            //                 orders: orders
-            //             }
-            //             // 加入缓存
-            //             wx.setStorageSync(app.globalData.ordersKey, ordersCache)
-            //         }
-            //     },
-            //     fail: console.error
-            // })
+            orderDB.loadOrders(this)
         }
     },
 

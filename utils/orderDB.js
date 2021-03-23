@@ -102,29 +102,50 @@ class OrderDB extends DB {
         this.callFunctionFromCloudyByCond('queryAllData', data, suc, fail)
     }
 
-    updateOrderPayFinish(_package) {
-        this.updateOrderPayStatus(_package, app.globalData.orderStatus.finish.status)
+    updateOrderPayFinish(outTradeNo) {
+        this.updateOrderPayStatus(outTradeNo, app.globalData.orderStatus.finish.status)
     }
 
-    updateOrderPayExpire(_package) {
-        this.updateOrderPayStatus(_package, app.globalData.orderStatus.expire.status)
+    updateOrderPayCancel(outTradeNo) {
+        this.updateOrderPayStatus(outTradeNo, app.globalData.orderStatus.cancel.status)
+    }
+
+    updateOrderPayExpire(outTradeNo) {
+        this.updateOrderPayStatus(outTradeNo, app.globalData.orderStatus.expire.status)
     }
 
     // 更新订单支付成功
-    updateOrderPaySuccess(_package) {
+    updateOrderPaySuccess(outTradeNo) {
         const now = Date.parse(new Date());
         const timeDesc = util.getTimeDesc(now);
-        this.updateOrderPayStatus(_package, app.globalData.orderStatus.hasPay.status, timeDesc)
+
+        this.updateOrderPayStatus(outTradeNo, app.globalData.orderStatus.hasPay.status, timeDesc)
+    }
+
+    // 跳转到订单页面
+    jumpToOrders(sucFun) {
+        wx.redirectTo({
+            url: '../orders/orders',
+            success: function (res) {
+                wx.reLaunch({
+                    url: '../orders/orders',
+                });
+
+                if (sucFun) {
+                    sucFun(res)
+                }
+            },
+        })
     }
 
     // 更新订单支付成功
-    updateOrderPayStatus(_package, _status, payTime) {
+    updateOrderPayStatus(outTradeNo, _status, payTime) {
         let phoneNum = wx.getStorageSync(app.globalData.userKey);
         let data = {
             dbName: 'orders',
             cond: {
                 phoneNum: phoneNum,
-                "package": _package,
+                outTradeNo: outTradeNo,
             },
             dataObj: {
                 status: _status,

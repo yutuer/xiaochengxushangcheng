@@ -14,7 +14,7 @@
             <view class="infoContent">
                 <tipButton-cmp txt="未支付" fontSize="30" imgSrc="images/未支付.png" imgWidth="40" imgHeight="40"
                                containerWidth="180" containerHeight="120" bind:imgClickEvent="click1"/>
-                <tipButton-cmp txt="待收货" fontSize="30" imgSrc="images/待收货.png" imgWidth="40" imgHeight="40"
+                <tipButton-cmp txt="待发货" fontSize="30" imgSrc="images/待发货.png" imgWidth="40" imgHeight="40"
                                containerWidth="180" containerHeight="120" bind:imgClickEvent="click2"/>
                 <tipButton-cmp txt="已完成" fontSize="30" imgSrc="images/已完成.png" imgWidth="40" imgHeight="40"
                                containerWidth="180" containerHeight="120" bind:imgClickEvent="click3"/>

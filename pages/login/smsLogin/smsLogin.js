@@ -2,6 +2,11 @@
 let app = getApp();
 const verify = require("../../../utils/verify.js");
 const util = require("../../../utils/util.js");
+
+import {OrderDB} from "../../../utils/orderDB";
+
+const orderDB = new OrderDB();
+
 Page({
 
     /**
@@ -152,7 +157,7 @@ Page({
         let that = this
         if (app.globalData.isTest) {
             // 验证手机号
-            that.checkPhoneNumRight()
+            that.checkPhoneNumRight();
         } else {
             // 判断验证码是否填了
 
@@ -175,7 +180,8 @@ Page({
                 },
             },
             success(res) {
-                console.log(res)
+                console.log(res);
+
                 if (res.result.data.length > 0) {
                     // 存入手机号到缓存
                     wx.setStorageSync(app.globalData.userKey, loginPhoneNum);
@@ -184,8 +190,10 @@ Page({
 
                     //获取地址信息
                     util.getAddressList();
+
                     // 获取订单信息
-                    util.loadOrders(false);
+                    orderDB.loadOrders(false);
+
                     // 重新加载当前页面
                     wx.reLaunch({
                         url: '../smsLogin/smsLogin',

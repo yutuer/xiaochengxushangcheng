@@ -42,12 +42,50 @@ class CargoDB extends DB {
         this.callFunctionFromCloudy('queryAllData', 'cargoType', suc, fail)
     }
 
+    subCargoUseCount(cargos) {
+        if (cargos) {
+            for (let i = 0; i < cargos.length; i++) {
+                let cargo = cargos[i];
+                this.subCargosNum({id: cargo._id, num: cargo.num});
+            }
+        }
+    }
+
+    addCargoUseCount(cargos) {
+        if (cargos) {
+            for (let i = 0; i < cargos.length; i++) {
+                let cargo = cargos[i];
+                this.addCargosNum({id: cargo._id, num: cargo.num});
+            }
+        }
+    }
+
     subCargosNum(cargo) {
         let data = {
             dbName: 'cargo',
             cond: cargo.id,
             dataObj: {
                 num: cargo.num,
+            }
+        };
+
+        const suc = (res) => {
+            console.log(res)
+        };
+
+        const fail = (err) => {
+            console.error(err)
+        };
+
+        this.callFunctionFromCloudyByCond('updateOneCargoNum', data, suc, fail);
+    }
+
+    addCargosNum(cargo) {
+        let data = {
+            dbName: 'cargo',
+            cond: cargo.id,
+            dataObj: {
+                num: cargo.num * -1,
             }
         };
 

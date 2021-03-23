@@ -73,7 +73,7 @@ App({
                 status: 2,
             },
             finish: {
-                name: '已完成',
+                name: '已发货',
                 status: 3,
             },
             expire: {
@@ -87,4 +87,4 @@ App({
         }
     }
 
-})
+});

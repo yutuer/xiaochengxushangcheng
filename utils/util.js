@@ -12,9 +12,11 @@ import {
 
 let cargoDB = new CargoDB();
 
-import {OrderCache} from './orderCache.js';
+import {
+    OrderDB
+} from "./orderDB.js";
 
-let orderCache = new OrderCache();
+const orderDB = new OrderDB();
 
 const formatTime = date => {
     const year = date.getFullYear();
@@ -102,26 +104,8 @@ function uuid(len, radix) {
     return uuid.join('')
 }
 
-// 跳转到订单页面
-function jumpToOrders(sucFun) {
-    wx.redirectTo({
-        url: '../orders/orders',
-        success: function (res) {
-            wx.reLaunch({
-                url: '../orders/orders',
-            });
-
-            if (sucFun) {
-                sucFun(res)
-            }
-        },
-    })
-}
-
 // 请求支付
 function payForPayment(outTradeNo, payment, youhuiquan) {
-    let that = this;
-
     console.log("outTradeNo:", outTradeNo, ", payment:", payment, ", youhuiquan:", youhuiquan);
 
     wx.requestPayment({
@@ -129,11 +113,11 @@ function payForPayment(outTradeNo, payment, youhuiquan) {
         success(res) {
             console.log('pay success', res);
             //更新状态后跳转
-            updateOrderPaySuccess(outTradeNo);
+            cargoDB.updateOrderPaySuccess(outTradeNo);
 
             console.log('pay success', res);
 
-            jumpToOrders()
+            orderDB.jumpToOrders()
         },
         fail(err) {
             console.error('pay fail', err);
@@ -143,7 +127,7 @@ function payForPayment(outTradeNo, payment, youhuiquan) {
             queryPayment(outTradeNo, payment);
 
             // 也跳转
-            jumpToOrders()
+            orderDB.jumpToOrders()
         }
     })
 }
@@ -186,26 +170,6 @@ function getTimeDesc(timestamp) {
     //分
     var m = getLessTenShow(date.getMinutes());
     return Y + "-" + M + "-" + D + " " + h + ":" + m
-}
-
-function updateOrderPayFinish(outTradeNo) {
-    updateOrderPayStatus(outTradeNo, app.globalData.orderStatus.finish.status)
-}
-
-function updateOrderPayCancel(outTradeNo) {
-    updateOrderPayStatus(outTradeNo, app.globalData.orderStatus.cancel.status)
-}
-
-function updateOrderPayExpire(outTradeNo) {
-    updateOrderPayStatus(outTradeNo, app.globalData.orderStatus.expire.status)
-}
-
-// 更新订单支付成功
-function updateOrderPaySuccess(outTradeNo) {
-    const now = Date.parse(new Date());
-    const timeDesc = getTimeDesc(now);
-
-    updateOrderPayStatus(outTradeNo, app.globalData.orderStatus.hasPay.status, timeDesc)
 }
 
 // 更新订单支付成功
@@ -389,15 +353,6 @@ function loadOrdersFromDB(page) {
     });
 }
 
-function subCargoUseCount(cargos) {
-    if (cargos) {
-        for (let i = 0; i < cargos.length; i++) {
-            let cargo = cargos[i];
-            cargoDB.subCargosNum({id: cargo._id, num: cargo.num});
-        }
-    }
-}
-
 module.exports = {
     formatTime: formatTime,
     getCloudDB: getCloudDB,
@@ -408,13 +363,6 @@ module.exports = {
     getAddressList: getAddressList,
     checkLoginStatus: checkLoginStatus,
     getDateByStr: getDateByStr,
-    loadOrders: loadOrders,
-    loadOrdersFromDB: loadOrdersFromDB,
-    updateOrderPayExpire: updateOrderPayExpire,
-    updateOrderPayFinish: updateOrderPayFinish,
-    updateOrderPayCancel: updateOrderPayCancel,
-    jumpToOrders: jumpToOrders,
     getTimeDesc: getTimeDesc,
     subYouhuiquanLeftUseCount: subYouhuiquanLeftUseCount,
-    subCargoUseCount: subCargoUseCount,
 };

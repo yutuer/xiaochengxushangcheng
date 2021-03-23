@@ -23,6 +23,13 @@ const cargoDB = new CargoDB();
 import {OrderCache} from "../../utils/orderCache";
 
 const orderCache = new OrderCache();
+
+import {
+    OrderDB
+} from "../../utils/orderDB";
+
+const orderDB = new OrderDB();
+
 Page({
 
     /**
@@ -55,7 +62,7 @@ Page({
         }
 
         // 确定没有未完成的订单, 如果有未付款的订单, 则不让下单
-        util.loadOrdersFromDB();
+        orderDB.loadOrders();
 
         let ordersCacheObj = orderCache.getOrdersFromCache();
         if (ordersCacheObj) {
@@ -115,10 +122,13 @@ Page({
             success: res => {
                 console.log(res);
 
-                util.updateOrderPayCancel(order.outTradeNo);
+                orderDB.updateOrderPayCancel(order.outTradeNo);
+
+                // 加回物品库存
+                cargoDB.addCargoUseCount(order.cargos);
 
                 // 跳转到订单页面
-                util.jumpToOrders(function (res) {
+                orderDB.jumpToOrders(function (res) {
                     verify.showToast("取消订单成功");
                 })
             },
@@ -211,9 +221,12 @@ Page({
             if (time + 15 * 60 * 1000 < now) {
                 order.status = orderStatus.expire.status;
 
-                util.updateOrderPayExpire(order.outTradeNo);
+                orderDB.updateOrderPayExpire(order.outTradeNo);
 
-                util.jumpToOrders(function (res) {
+                // 加回物品库存
+                cargoDB.addCargoUseCount(cargos);
+
+                orderDB.jumpToOrders(function (res) {
                     verify.showToast("订单支付超时");
                 });
                 return
@@ -253,7 +266,9 @@ Page({
                 nonceStr: nonceStr,
                 order: orderNo,
             };
+
             console.log("直接支付的请求:", dataSend);
+
             // 小程序代码
             wx.cloud.callFunction({
                 name: 'paystart',
@@ -262,6 +277,7 @@ Page({
                 },
                 success: res => {
                     const payment = res.result.payment;
+
                     console.log("直接支付的结果 payment:", payment);
 
                     // 插入数据库
@@ -270,7 +286,7 @@ Page({
                     that.updateCache();
 
                     // 减去物品库存
-                    util.subCargoUseCount(cargos);
+                    cargoDB.subCargoUseCount(cargos);
 
                     // 清除掉购物车中所有选择的物品
                     that.removeCargosBuy();
