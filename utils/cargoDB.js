@@ -2,13 +2,11 @@ import {
     DB
 } from 'db.js';
 
-import {CargoCache} from "./cargoCache";
+import {
+    CargoCache
+} from "cargoCache.js";
 
 const cargoCache = new CargoCache();
-
-let app = getApp();
-
-const allCargoDatas = require('data/allCargoData.js');
 
 class CargoDB extends DB {
     // 加载商品
@@ -17,11 +15,13 @@ class CargoDB extends DB {
         // cargoCache.saveSellCargosToCache(allCargos);
 
         const suc = (res) => {
+            console.log("func:loadCargos, res:", res);
+
             let allCargos = res.result.data;
             cargoCache.saveSellCargosToCache(allCargos);
         };
         const fail = (err) => {
-            console.error(err)
+            console.error("func:loadCargos, err:", err);
         };
         this.callFunctionFromCloudy('queryAllData', 'cargo', suc, fail)
     }
@@ -29,6 +29,8 @@ class CargoDB extends DB {
     // 加载商品类型
     loadCargoTypes() {
         const suc = (res) => {
+            console.log("func:loadCargoTypes, res:", res);
+
             let allCargoTypes = res.result.data;
             allCargoTypes.sort(function (a, b) {
                 return a.type - b.type;
@@ -37,12 +39,14 @@ class CargoDB extends DB {
             cargoCache.saveSellCargoTypesToCache(allCargoTypes);
         };
         const fail = (err) => {
-            console.error(err)
+            console.error("func:loadCargoTypes, err:", err);
         };
         this.callFunctionFromCloudy('queryAllData', 'cargoType', suc, fail)
     }
 
     subCargoUseCount(cargos) {
+        console.log("func:loadCargoTypes, cargos:", cargos);
+
         if (cargos) {
             for (let i = 0; i < cargos.length; i++) {
                 let cargo = cargos[i];
@@ -52,6 +56,8 @@ class CargoDB extends DB {
     }
 
     addCargoUseCount(cargos) {
+        console.log("func:addCargoUseCount, cargos:", cargos);
+
         if (cargos) {
             for (let i = 0; i < cargos.length; i++) {
                 let cargo = cargos[i];
@@ -61,6 +67,8 @@ class CargoDB extends DB {
     }
 
     subCargosNum(cargo) {
+        console.log("func:subCargosNum, cargos:", cargos);
+
         let data = {
             dbName: 'cargo',
             cond: cargo.id,
@@ -70,17 +78,19 @@ class CargoDB extends DB {
         };
 
         const suc = (res) => {
-            console.log(res)
+            console.log("func:subCargosNum, res:", res);
         };
 
         const fail = (err) => {
-            console.error(err)
+            console.error("func:subCargosNum, err:", err);
         };
 
         this.callFunctionFromCloudyByCond('updateOneCargoNum', data, suc, fail);
     }
 
     addCargosNum(cargo) {
+        console.log("func:addCargosNum, cargo:", cargo);
+
         let data = {
             dbName: 'cargo',
             cond: cargo.id,
@@ -90,11 +100,11 @@ class CargoDB extends DB {
         };
 
         const suc = (res) => {
-            console.log(res)
+            console.log("func:addCargosNum, res:", res);
         };
 
         const fail = (err) => {
-            console.error(err)
+            console.error("func:addCargosNum, err:", err);
         };
 
         this.callFunctionFromCloudyByCond('updateOneCargoNum', data, suc, fail);

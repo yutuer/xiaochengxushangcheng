@@ -4,23 +4,33 @@ const app = getApp();
 let util = require('../../utils/util.js');
 let verify = require('../../utils/verify.js');
 
-import {YouhuiquanCache} from "../../utils/youhuiquanCache";
+import {
+    YouhuiquanCache
+} from "../../utils/youhuiquanCache";
 
 let youhuiquanCache = new YouhuiquanCache();
 
-import {YouhuiquanDB} from "../../utils/youhuiquanDB";
+import {
+    YouhuiquanDB
+} from "../../utils/youhuiquanDB";
 
 const youhuiquanDB = new YouhuiquanDB();
 
-import {CargoCache} from "../../utils/cargoCache";
+import {
+    CargoCache
+} from "../../utils/cargoCache";
 
 const cargoCache = new CargoCache();
 
-import {CargoDB} from "../../utils/cargoDB";
+import {
+    CargoDB
+} from "../../utils/cargoDB";
 
 const cargoDB = new CargoDB();
 
-import {OrderCache} from "../../utils/orderCache";
+import {
+    OrderCache
+} from "../../utils/orderCache";
 
 const orderCache = new OrderCache();
 
@@ -120,7 +130,7 @@ Page({
                 order: order.outTradeNo,
             },
             success: res => {
-                console.log(res);
+                console.log("file: prePay.js, func: cancelOrder, res:", res);
 
                 orderDB.updateOrderPayCancel(order.outTradeNo);
 
@@ -133,7 +143,7 @@ Page({
                 })
             },
             fail: err => {
-                console.err(err)
+                console.err("file: prePay.js, func: cancelOrder,  err:", err)
             }
         })
     },
@@ -325,7 +335,7 @@ Page({
             orderDetail: orderDetail,
         });
 
-        console.log("prePay  onLoad, orderDetail:", orderDetail);
+        console.log("file:prePay.js, func:onLoad, orderDetail:", orderDetail);
 
         // 从缓存中读出默认地址
         const addressCache = wx.getStorageSync(app.globalData.addressKey);

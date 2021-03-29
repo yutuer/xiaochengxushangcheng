@@ -22,6 +22,8 @@ class YouhuiquanDB extends DB {
         //
         // this.updateYouhuiquanCacheUpdateKey(true);
 
+        console.log("func:loadYouhuiquan");
+
         let now = Date.parse(new Date());
         const suc = (res) => {
             let datas = res.result.data;
@@ -41,7 +43,7 @@ class YouhuiquanDB extends DB {
             youhuiquanCache.saveYouhuiquanToCache(youhuiquanC);
         };
         const fail = (err) => {
-            console.error(err)
+            console.error("func:loadYouhuiquan, err:", err);
         };
 
         this.callFunctionFromCloudy('queryAllData', 'youhuiquan', suc, fail);
@@ -57,11 +59,11 @@ class YouhuiquanDB extends DB {
         };
 
         const suc = (res) => {
-            console.log(res)
+            console.log("func:subYouhuiquanNum, res:", res);
         };
 
         const fail = (err) => {
-            console.error(err)
+            console.error("func:subYouhuiquanNum, err:", err);
         };
 
         this.callFunctionFromCloudyByCond('updateYouhuiquanNum', data, suc, fail);

@@ -1,7 +1,3 @@
-const util = require('util.js');
-const verify = require('verify.js');
-let app = getApp();
-
 class DB {
     // 加载云端数据
     callFunctionFromCloudy(funName, dbName, successFun, failFun) {

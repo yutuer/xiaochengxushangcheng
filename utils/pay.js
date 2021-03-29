@@ -1,7 +1,9 @@
 const app = getApp();
 let verify = require("verify.js");
 
-import {CargoCache} from "./cargoCache";
+import {
+    CargoCache
+} from "cargoCache.js";
 
 const cargoCache = new CargoCache();
 

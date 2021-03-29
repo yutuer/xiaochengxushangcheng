@@ -76,7 +76,7 @@ Page({
 
     tapOneOrder(e) {
         let order = e.currentTarget.dataset.order;
-        console.log("order :", order);
+        console.log("fun:tapOneOrder, order:", order);
 
         if (order.status > 1) {
             this.viewOrderDetail(e)
@@ -97,7 +97,7 @@ Page({
     countNumTap(e) {
         let order = e.currentTarget.dataset.order;
 
-        console.log("order :", order);
+        console.log("file:orders.js, func:countNumTap, order :", order);
 
         const allPrice = order.allPrice;
         const chooseCargos = order.cargos;

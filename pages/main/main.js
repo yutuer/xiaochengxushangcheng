@@ -146,9 +146,11 @@ Page({
         console.log("main Page onShow");
 
         let youhuiquanData = youhuiquanCache.getYouhuiquanDataFromCache();
-        this.setData({
-            youhuiquan: youhuiquanData.data,
-        });
+        if (youhuiquanData) {
+            this.setData({
+                youhuiquan: youhuiquanData.data,
+            });
+        }
 
         numOpera.redDot();
     },
@@ -183,7 +185,7 @@ Page({
             wx.stopPullDownRefresh();
 
             wx.reLaunch({
-                    url: 'pages/main/main',
+                    url: '/pages/main/main',
                 }
             );
         }, 1000);

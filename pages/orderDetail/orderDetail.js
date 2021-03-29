@@ -26,7 +26,7 @@ Page({
     onLoad: function (options) {
         // str转化回对象
         let order = JSON.parse(decodeURIComponent(options.order));
-        console.log("deseriable order:", order);
+        console.log("in orderDetail.js, deseriable order:", order);
 
         this.setData({
             order: order

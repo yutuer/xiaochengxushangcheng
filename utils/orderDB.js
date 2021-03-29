@@ -2,12 +2,17 @@ import {
     DB
 } from 'db.js';
 
-
 import {
     OrderCache
-} from "./orderCache";
+} from "orderCache.js";
 
 let orderCache = new OrderCache();
+
+import {
+    CargoDB
+} from "./cargoDB";
+
+let cargoDB = new CargoDB();
 
 const util = require("./util.js");
 
@@ -23,7 +28,7 @@ class OrderDB extends DB {
         }
 
         const suc = (res) => {
-            console.log(res);
+            console.log("func: loadOrders, res:", res);
 
             const now = Date.parse(new Date());
             if (res.errMsg == 'cloud.callFunction:ok') {
@@ -37,8 +42,11 @@ class OrderDB extends DB {
                         // 如果15分钟还是未支付, 则更新为已完成
                         let time = order.time;
                         if (time + 15 * 60 * 1000 < now) {
-                            order.status = orderStatus.waitForPay.status;
-                            this.updateOrderPayExpire(order.outTradeNo)
+                            order.status = orderStatus.expire.status;
+                            this.updateOrderPayExpire(order.outTradeNo);
+
+                            // 加回物品库存
+                            cargoDB.addCargoUseCount(order.cargos);
                         }
                     }
 
@@ -64,7 +72,7 @@ class OrderDB extends DB {
                         // 还有未完成的
                         finish = false;
                         if (order.status == app.globalData.orderStatus.waitForPay.status) {
-                            // 还有未完成的
+                            // 还有未支付的
                             waiforPay = true;
                             break;
                         }
@@ -88,9 +96,7 @@ class OrderDB extends DB {
             }
         };
 
-        const fail = (err) => {
-            console.error(err)
-        };
+        const fail = (err) => console.error(err);
 
         let data = {
             dbName: 'orders',
@@ -125,10 +131,10 @@ class OrderDB extends DB {
     // 跳转到订单页面
     jumpToOrders(sucFun) {
         wx.redirectTo({
-            url: '../orders/orders',
+            url: '/pages/orders/orders',
             success: function (res) {
                 wx.reLaunch({
-                    url: '../orders/orders',
+                    url: '/pages/orders/orders',
                 });
 
                 if (sucFun) {
@@ -139,7 +145,7 @@ class OrderDB extends DB {
     }
 
     // 更新订单支付成功
-    updateOrderPayStatus(outTradeNo, _status, payTime) {
+    updateOrderPayStatus(outTradeNo, status, payTime) {
         let phoneNum = wx.getStorageSync(app.globalData.userKey);
         let data = {
             dbName: 'orders',
@@ -148,12 +154,12 @@ class OrderDB extends DB {
                 outTradeNo: outTradeNo,
             },
             dataObj: {
-                status: _status,
+                status: status,
                 payTime: payTime,
             },
         };
 
-        let sucFunc = (res) => console.log(res);
+        let sucFunc = (res) => console.log("func:updateOrderPayStatus, res:", res);
         let failFunc = (err) => console.error(err);
 
         this.callFunctionFromCloudyByCond('updateWhereData', data, sucFunc, failFunc);
